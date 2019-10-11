@@ -22,5 +22,10 @@ public class MenuViewController {
 	
 		System.out.println("TASKS CLICKED");
 	}
+	@FXML
+	public void onParentButtonClicked() {
+	
+		System.out.println("PARENTS CLICKED");
+	}
 
 }

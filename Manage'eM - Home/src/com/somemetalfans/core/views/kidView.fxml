@@ -6,35 +6,39 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.ToolBar?>
-<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.SepiaTone?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="342.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.somemetalfans.core.MenuViewController">
    <children>
-      <ToolBar layoutX="-5.0" layoutY="471.0" prefHeight="54.0" prefWidth="349.0">
+      <ToolBar layoutX="-5.0" layoutY="466.0" prefHeight="63.0" prefWidth="350.0">
          <items>
             <ImageView fitHeight="44.0" fitWidth="44.0" onMouseClicked="#oncKidButtonClicked" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../images/kid.png" />
+                  <Image url="@../../../../images/kid.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="44.0" fitWidth="44.0" onMouseClicked="#onParentButtonClicked" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../images/parents.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="44.0" fitWidth="44.0" onMouseClicked="#onTaskButtonClicked" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../images/task.png" />
+                  <Image url="@../../../../images/task.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="44.0" fitWidth="44.0" onMouseClicked="#onRewardButtonClicked" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../images/reward.png" />
+                  <Image url="@../../../../images/reward.png" />
                </image>
             </ImageView>
          </items>
          <effect>
-            <Blend mode="DARKEN" />
+            <SepiaTone />
          </effect>
       </ToolBar>
       <MenuBar layoutY="1.0" prefHeight="26.0" prefWidth="342.0">
@@ -61,6 +65,6 @@
             <Font size="25.0" />
          </font>
       </Label>
-      <ScrollBar layoutX="321.0" layoutY="67.0" orientation="VERTICAL" prefHeight="403.0" prefWidth="14.0" />
+      <ScrollBar layoutX="321.0" layoutY="61.0" orientation="VERTICAL" prefHeight="403.0" prefWidth="14.0" />
    </children>
 </AnchorPane>
