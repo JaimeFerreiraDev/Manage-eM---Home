@@ -35,7 +35,7 @@ public static void openMenu() throws IOException {
 		}
 	
 }
-
+// TESTE
 public static void openKid() {
 	try {
 	Pane root = FXMLLoader.load(Main.class.getResource("views/kidView.fxml"));
