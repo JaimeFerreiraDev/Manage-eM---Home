@@ -17,14 +17,14 @@
    <children>
       <ToolBar layoutX="-3.0" layoutY="483.0" prefHeight="44.0" prefWidth="288.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="-3.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="483.0">
          <items>
-            <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="44.0" fitWidth="44.0" onMouseClicked="#oncKidButtonClicked" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/pressedKid.png" />
+                  <Image url="@../images/kid.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="44.0" fitWidth="44.0" onMouseClicked="#onParentButtonClicked" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/parents.png" />
+                  <Image url="@../images/pressedParents.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="44.0" fitWidth="44.0" onMouseClicked="#onTaskButtonClicked" pickOnBounds="true" preserveRatio="true">

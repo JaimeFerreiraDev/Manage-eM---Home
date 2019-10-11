@@ -19,7 +19,7 @@
          <items>
             <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/pressedKid.png" />
+                  <Image url="@../images/kid.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="44.0" fitWidth="44.0" onMouseClicked="#onParentButtonClicked" pickOnBounds="true" preserveRatio="true">
@@ -29,7 +29,7 @@
             </ImageView>
             <ImageView fitHeight="44.0" fitWidth="44.0" onMouseClicked="#onTaskButtonClicked" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/task.png" />
+                  <Image url="@../images/pressedTask.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="44.0" fitWidth="44.0" onMouseClicked="#onRewardButtonClicked" pickOnBounds="true" preserveRatio="true">

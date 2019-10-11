@@ -12,21 +12,23 @@ public class MenuViewController {
 	}
 	
 	@FXML
-	public void onRewardButtonClicked() {
+	public void onParentButtonClicked() {
+		Main.openParent();
+		System.out.println("PARENTS CLICKED");
+	}
 	
+	@FXML
+	public void onRewardButtonClicked() {
+		Main.openReward();
 		System.out.println("REWARDS CLICKED");
 	}
 	
 	
 	@FXML
 	public void onTaskButtonClicked() {
-	
+		Main.openTask();
 		System.out.println("TASKS CLICKED");
 	}
-	@FXML
-	public void onParentButtonClicked() {
 	
-		System.out.println("PARENTS CLICKED");
-	}
 
 }
