@@ -1,4 +1,4 @@
-package com.somemetalfans.core;
+package pt.iade.ManageeMHome;
 
 import java.io.IOException;
 
@@ -14,7 +14,7 @@ static Stage secondaryStage;
 	@Override
 	public void start(Stage primaryStage) throws IOException {
 
-		Pane root = FXMLLoader.load(getClass().getResource("LoginView.fxml"));
+		Pane root = FXMLLoader.load(getClass().getResource("views/LoginView.fxml"));
 		
 		scene = new Scene(root);
 		primaryStage.setScene(scene);
@@ -24,7 +24,7 @@ static Stage secondaryStage;
 public static void openMenu() throws IOException {
 	try {
 		
-		Pane root = FXMLLoader.load(Main.class.getResource("menuView.fxml"));
+		Pane root = FXMLLoader.load(Main.class.getResource("views/kidView.fxml"));
 		
 		scene = new Scene(root);
 		secondaryStage = new Stage();
@@ -38,7 +38,7 @@ public static void openMenu() throws IOException {
 
 public static void openKid() {
 	try {
-	Pane root = FXMLLoader.load(Main.class.getResource("kidView.fxml"));
+	Pane root = FXMLLoader.load(Main.class.getResource("views/kidView.fxml"));
 	scene = new Scene(root);
 	secondaryStage.setScene(scene);
 	secondaryStage.show();
@@ -48,9 +48,8 @@ public static void openKid() {
 	}
 	
 }
+public static void main(String[] args) {
+	launch(args);
+}
 
-
-	public static void main(String[] args) {
-		launch(args);
-	}
 }

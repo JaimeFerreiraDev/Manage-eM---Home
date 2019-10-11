@@ -1,7 +1,8 @@
-package com.somemetalfans.core;
+package pt.iade.ManageeMHome.controllers;
 
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
+import pt.iade.ManageeMHome.Main;
 
 public class MenuViewController {
 	@FXML
@@ -21,6 +22,11 @@ public class MenuViewController {
 	public void onTaskButtonClicked() {
 	
 		System.out.println("TASKS CLICKED");
+	}
+	@FXML
+	public void onParentButtonClicked() {
+	
+		System.out.println("PARENTS CLICKED");
 	}
 
 }
