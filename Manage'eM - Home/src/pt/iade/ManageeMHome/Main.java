@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -14,6 +15,8 @@ import javafx.stage.Stage;
 public class Main extends Application {
 static Scene scene;
 static Stage secondaryStage;
+static Stage terciaryStage;
+
 
 	@Override
 	public void start(Stage primaryStage) throws IOException {
@@ -46,10 +49,10 @@ public static void openKid() {
 	scene = new Scene(root);
 	secondaryStage.setScene(scene);
 	secondaryStage.show();
-	
 	} catch (Exception e) {
 		System.out.println(e);
 	}
+	
 	
 }
 
@@ -82,6 +85,19 @@ public static void openTask() {
 public static void openReward() {
 	try {
 	Pane root = FXMLLoader.load(Main.class.getResource("views/rewardView.fxml"));
+	scene = new Scene(root);
+	secondaryStage.setScene(scene);
+	secondaryStage.show();
+	
+	} catch (Exception e) {
+		System.out.println(e);
+	}
+	
+}
+
+public static void openPlus() {
+	try {
+	Pane root = FXMLLoader.load(Main.class.getResource("views/addKidView.fxml"));
 	scene = new Scene(root);
 	secondaryStage.setScene(scene);
 	secondaryStage.show();

@@ -30,5 +30,11 @@ public class MenuViewController {
 		System.out.println("TASKS CLICKED");
 	}
 	
+	@FXML
+	public void onPlusButtonClicked() {
+		Main.openPlus();
+		System.out.println("PLUS CLICKED");
+	}
+	
 
 }

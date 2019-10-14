@@ -70,7 +70,7 @@
          </font>
       </Label>
       <ScrollBar layoutX="274.0" layoutY="72.0" orientation="VERTICAL" prefHeight="403.0" prefWidth="14.0" />
-      <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="223.0" layoutY="432.0" onMouseClicked="#onRewardButtonClicked" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="223.0" layoutY="432.0" onMouseClicked="#onPlusButtonClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/plus.png" />
          </image>
