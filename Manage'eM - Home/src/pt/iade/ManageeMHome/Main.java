@@ -16,6 +16,7 @@ public class Main extends Application {
 	static Scene scene;
 	static Stage secondaryStage;
 	public static Stage kidPlusStage;
+	public static Stage taskPlusStage;
 	public static Stage primaryStage;
 	static Stage terciaryStage;
 
@@ -25,8 +26,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws IOException {
 
 		openLogin();
-
-
+		
 	}
 
 	public static void openLogin() throws IOException {
@@ -121,6 +121,21 @@ public class Main extends Application {
 			kidPlusStage = new Stage();
 			kidPlusStage.setScene(scene);
 			kidPlusStage.show();
+
+
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+
+	}
+	public static void openPlusTask() {
+		try {
+			Pane root = FXMLLoader.load(Main.class.getResource("views/addTaskView.fxml"));	
+			scene = new Scene(root);
+
+			taskPlusStage = new Stage();
+			taskPlusStage.setScene(scene);
+			taskPlusStage.show();
 
 
 		} catch (Exception e) {

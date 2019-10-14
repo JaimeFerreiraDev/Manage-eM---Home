@@ -36,5 +36,10 @@ public class MenuViewController {
 		System.out.println("PLUS CLICKED");
 	}
 	
+	public void onPlusTaskButtonClicked() {
+		Main.openPlusTask();
+		System.out.println("PLUS CLICKED");
+	}
+	
 
 }
