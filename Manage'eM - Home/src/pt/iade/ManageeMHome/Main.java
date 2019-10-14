@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
 static Scene scene;
 static Stage secondaryStage;
-static Stage kidPlusStage;
+public static Stage kidPlusStage;
 
 static Stage terciaryStage;
 

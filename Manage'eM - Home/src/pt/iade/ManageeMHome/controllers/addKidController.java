@@ -10,11 +10,7 @@ public class addKidController {
 	@FXML
 	public void addButtonOnCLick() {
 	
-	try {
-		Main.openMenu();
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
+		Main.kidPlusStage.close();
+	
 	}}
 
