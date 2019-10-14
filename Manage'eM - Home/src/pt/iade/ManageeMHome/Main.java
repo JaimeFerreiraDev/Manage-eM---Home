@@ -26,6 +26,7 @@ static Stage terciaryStage;
 		scene = new Scene(root);
 		primaryStage.setScene(scene);
 		primaryStage.show();
+		
 
 	}
 public static void openMenu() throws IOException {
@@ -97,10 +98,11 @@ public static void openReward() {
 
 public static void openPlus() {
 	try {
-	Pane root = FXMLLoader.load(Main.class.getResource("views/addKidView.fxml"));
+	Pane root = FXMLLoader.load(Main.class.getResource("views/addKidView.fxml"));	
 	scene = new Scene(root);
 	secondaryStage.setScene(scene);
 	secondaryStage.show();
+	
 	
 	} catch (Exception e) {
 		System.out.println(e);
