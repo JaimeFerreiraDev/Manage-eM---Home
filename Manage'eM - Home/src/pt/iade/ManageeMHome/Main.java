@@ -15,7 +15,10 @@ import javafx.stage.Stage;
 public class Main extends Application {
 static Scene scene;
 static Stage secondaryStage;
+static Stage kidPlusStage;
+
 static Stage terciaryStage;
+
 
 
 	@Override
@@ -43,7 +46,7 @@ public static void openMenu() throws IOException {
 		}
 	
 }
-// TESTE
+// TESTE1
 public static void openKid() {
 	try {
 	Pane root = FXMLLoader.load(Main.class.getResource("views/kidView.fxml"));
@@ -100,10 +103,17 @@ public static void openPlus() {
 	try {
 	Pane root = FXMLLoader.load(Main.class.getResource("views/addKidView.fxml"));	
 	scene = new Scene(root);
+<<<<<<< HEAD
 	secondaryStage.setScene(scene);
 	secondaryStage.show();
 	
 	
+=======
+	kidPlusStage = new Stage();
+	kidPlusStage.setScene(scene);
+	kidPlusStage.show();
+
+>>>>>>> refs/remotes/origin/master
 	} catch (Exception e) {
 		System.out.println(e);
 	}
