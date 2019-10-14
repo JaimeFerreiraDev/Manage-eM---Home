@@ -41,9 +41,12 @@ public static void openMenu() throws IOException {
 		secondaryStage = new Stage();
 		secondaryStage.setScene(scene);
 		secondaryStage.show();
+		
 		} catch(Exception e) {
 		System.out.println(e);
 		}
+	
+	
 	
 }
 // TESTE1
@@ -103,17 +106,12 @@ public static void openPlus() {
 	try {
 	Pane root = FXMLLoader.load(Main.class.getResource("views/addKidView.fxml"));	
 	scene = new Scene(root);
-<<<<<<< HEAD
-	secondaryStage.setScene(scene);
-	secondaryStage.show();
 	
-	
-=======
 	kidPlusStage = new Stage();
 	kidPlusStage.setScene(scene);
 	kidPlusStage.show();
 
->>>>>>> refs/remotes/origin/master
+
 	} catch (Exception e) {
 		System.out.println(e);
 	}
