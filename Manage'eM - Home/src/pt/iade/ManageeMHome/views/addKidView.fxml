@@ -11,6 +11,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.iade.ManageeMHome.controllers.addKidController">
+
    <children>
       <AnchorPane prefHeight="174.0" prefWidth="238.0">
          <children>
@@ -38,7 +39,11 @@
                   <TextField promptText="ex: 132456" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </GridPane>
+
             <Button layoutX="155.0" layoutY="139.0" mnemonicParsing="false" onMouseClicked="#addButtonOnCLick" prefHeight="26.0" prefWidth="60.0" text="Add" />
+
+            <Button layoutX="155.0" layoutY="139.0" mnemonicParsing="false" onMouseClicked="#addButtonOnCLick" prefHeight="26.0" prefWidth="60.0" text="Add" />
+
             <Button layoutX="93.0" layoutY="140.0" mnemonicParsing="false" text="Cancel" />
          </children>
       </AnchorPane>

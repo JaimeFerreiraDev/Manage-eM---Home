@@ -1,5 +1,6 @@
 package pt.iade.ManageeMHome.controllers;
 
+
 import java.io.IOException;
 
 import javafx.fxml.FXML;
@@ -15,5 +16,5 @@ public class addKidController {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	}
-}
+	}}
+

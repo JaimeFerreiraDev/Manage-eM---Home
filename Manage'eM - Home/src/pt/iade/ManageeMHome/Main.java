@@ -17,6 +17,9 @@ static Scene scene;
 static Stage secondaryStage;
 static Stage kidPlusStage;
 
+static Stage terciaryStage;
+
+
 
 	@Override
 	public void start(Stage primaryStage) throws IOException {
@@ -102,7 +105,7 @@ public static void openPlus() {
 	kidPlusStage = new Stage();
 	kidPlusStage.setScene(scene);
 	kidPlusStage.show();
-	
+
 	} catch (Exception e) {
 		System.out.println(e);
 	}
