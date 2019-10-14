@@ -18,6 +18,8 @@ public class LoginViewController {
 	
 	try {
 		Main.openMenu();
+		Main.primaryStage.close();
+	
 		} catch (IOException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
