@@ -64,7 +64,7 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Label alignment="CENTER" layoutX="68.0" layoutY="36.0" text="Manage'eM">
+      <Label alignment="CENTER" layoutX="82.0" layoutY="36.0" text="Manage'eM">
          <font>
             <Font size="25.0" />
          </font>
