@@ -8,7 +8,7 @@ import pt.iade.ManageeMHome.Main;
 
 public class AddTaskController {
 	@FXML
-	public void addButtonOnCLick() {
+	public void addButtonOnClick() {
 	
 		Main.taskPlusStage.close();
 	

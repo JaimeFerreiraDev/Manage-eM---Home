@@ -23,4 +23,11 @@ public class RewardViewController {
 		Main.openTask();
 		System.out.println("TASKS CLICKED");
 	}
+	// Botao de adicionar
+		@FXML
+		public void onPlusButtonClicked() {
+			Main.openPlusReward();
+			System.out.println("PLUS CLICKED");
+		}
+		
 }

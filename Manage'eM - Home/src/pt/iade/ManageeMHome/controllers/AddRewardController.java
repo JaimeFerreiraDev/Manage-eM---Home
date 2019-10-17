@@ -6,7 +6,7 @@ import pt.iade.ManageeMHome.Main;
 public class AddRewardController {
 
 	@FXML
-	public void addButtonOnCLick() {
+	public void addButtonOnClick() {
 
 		Main.rewardPlusStage.close();
 	}

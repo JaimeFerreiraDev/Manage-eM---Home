@@ -19,14 +19,14 @@ public class Main extends Application {
 	public static Stage taskPlusStage;
 	public static Stage primaryStage;
 	static Stage terciaryStage;
-
-
+	public static Stage rewardPlusStage;
+	public static Stage parentPlusStage;
 
 	@Override
 	public void start(Stage primaryStage) throws IOException {
 
 		openLogin();
-		
+
 	}
 
 	public static void openLogin() throws IOException {
@@ -41,7 +41,7 @@ public class Main extends Application {
 			System.out.println(e);	
 		}
 	}
-	
+
 
 	public static void openMenu() throws IOException {
 		try {
@@ -136,6 +136,36 @@ public class Main extends Application {
 			taskPlusStage = new Stage();
 			taskPlusStage.setScene(scene);
 			taskPlusStage.show();
+
+
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+
+	}
+	public static void openPlusReward() {
+		try {
+			Pane root = FXMLLoader.load(Main.class.getResource("views/addRewardView.fxml"));	
+			scene = new Scene(root);
+
+			rewardPlusStage = new Stage();
+			rewardPlusStage.setScene(scene);
+			rewardPlusStage.show();
+
+
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+
+	}
+	public static void openPlusParent() {
+		try {
+			Pane root = FXMLLoader.load(Main.class.getResource("views/addParentView.fxml"));	
+			scene = new Scene(root);
+
+			parentPlusStage = new Stage();
+			parentPlusStage.setScene(scene);
+			parentPlusStage.show();
 
 
 		} catch (Exception e) {

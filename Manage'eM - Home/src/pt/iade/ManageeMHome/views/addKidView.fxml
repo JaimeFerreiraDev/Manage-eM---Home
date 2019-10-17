@@ -40,9 +40,8 @@
                </children>
             </GridPane>
 
-            <Button layoutX="155.0" layoutY="139.0" mnemonicParsing="false" onMouseClicked="#addButtonOnCLick" prefHeight="26.0" prefWidth="60.0" text="Add" />
 
-            <Button layoutX="155.0" layoutY="139.0" mnemonicParsing="false" onMouseClicked="#addButtonOnCLick" prefHeight="26.0" prefWidth="60.0" text="Add" />
+            <Button layoutX="155.0" layoutY="139.0" mnemonicParsing="false" onMouseClicked="#addButtonOnClick" prefHeight="26.0" prefWidth="60.0" text="Add" />
 
             <Button layoutX="93.0" layoutY="140.0" mnemonicParsing="false" text="Cancel" />
          </children>

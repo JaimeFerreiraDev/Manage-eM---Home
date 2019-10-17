@@ -23,4 +23,11 @@ public class ParentViewController {
 		Main.openReward();
 		System.out.println("REWARDS CLICKED");
 	}
+	// Botao de adicionar
+		@FXML
+		public void onPlusButtonClicked() {
+			Main.openPlusParent();
+			System.out.println("PLUS CLICKED");
+		}
+		
 }

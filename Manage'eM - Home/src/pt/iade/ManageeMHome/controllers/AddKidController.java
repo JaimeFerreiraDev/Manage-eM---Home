@@ -8,7 +8,7 @@ import pt.iade.ManageeMHome.Main;
 
 public class AddKidController {
 	@FXML
-	public void addButtonOnCLick() {
+	public void addButtonOnClick() {
 	
 		Main.kidPlusStage.close();
 	
