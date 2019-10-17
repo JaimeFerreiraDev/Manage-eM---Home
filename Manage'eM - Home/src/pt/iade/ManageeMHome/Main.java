@@ -113,7 +113,7 @@ public class Main extends Application {
 
 	}
 
-	public static void openPlus() {
+	public static void openPlusKid() {
 		try {
 			Pane root = FXMLLoader.load(Main.class.getResource("views/addKidView.fxml"));	
 			scene = new Scene(root);

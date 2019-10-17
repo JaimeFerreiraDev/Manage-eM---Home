@@ -6,7 +6,7 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import pt.iade.ManageeMHome.Main;
 
-public class addTaskController {
+public class AddTaskController {
 	@FXML
 	public void addButtonOnCLick() {
 	
