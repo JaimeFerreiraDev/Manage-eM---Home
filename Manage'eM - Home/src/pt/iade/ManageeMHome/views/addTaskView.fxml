@@ -38,7 +38,7 @@
             <Label text="Start:" GridPane.rowIndex="2" />
             <TextField prefHeight="6.0" prefWidth="157.0" promptText="ex: 50" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="End:" GridPane.rowIndex="3" />
-            <Slider max="80.0" value="10.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Slider max="80.0" value="70.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
       <Button layoutX="154.0" layoutY="415.0" mnemonicParsing="false" onAction="#cancelButtonOnClick" text="Cancel" />
