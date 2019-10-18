@@ -33,7 +33,7 @@
             <Slider max="80.0" prefWidth="217.0" value="10.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <Button layoutX="207.0" layoutY="128.0" mnemonicParsing="false" onMouseClicked="#addButtonOnClick" prefHeight="26.0" prefWidth="60.0" text="Add" />
-      <Button layoutX="148.0" layoutY="128.0" mnemonicParsing="false" text="Cancel" />
+      <Button layoutX="222.0" layoutY="127.0" mnemonicParsing="false" onMouseClicked="#addButtonOnClick" prefHeight="26.0" prefWidth="60.0" text="Add" />
+      <Button layoutX="159.0" layoutY="127.0" mnemonicParsing="false" onAction="#cancelButtonOnClick" text="Cancel" />
    </children>
 </AnchorPane>

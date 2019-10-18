@@ -10,4 +10,10 @@ public class AddParentController {
 
 		Main.parentPlusStage.close();
 	}
+	@FXML
+	public void cancelButtonOnClick() {
+	
+		Main.parentPlusStage.close();
+	
+	}	
 }

@@ -41,7 +41,7 @@
             <Slider max="80.0" value="10.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
-      <Button layoutX="154.0" layoutY="415.0" mnemonicParsing="false" text="Cancel" />
+      <Button layoutX="154.0" layoutY="415.0" mnemonicParsing="false" onAction="#cancelButtonOnClick" text="Cancel" />
       <TextField alignment="TOP_LEFT" layoutX="60.0" layoutY="294.0" prefHeight="110.0" prefWidth="217.0" promptText="ex: - The dishes must be well cleaned" />
       <Label layoutX="11.0" layoutY="267.0" text="Details:" />
       <GridPane layoutX="67.0" layoutY="215.0" prefHeight="52.0" prefWidth="228.0">
