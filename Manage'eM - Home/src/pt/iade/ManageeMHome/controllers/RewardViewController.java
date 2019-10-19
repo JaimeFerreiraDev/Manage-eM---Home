@@ -8,25 +8,25 @@ public class RewardViewController {
 	// Outras tabs
 	@FXML
 	public void onKidButtonClicked() {
-		Main.openKid();
+		Main.changeTab("views/kidView.fxml");
 		System.out.println("KIDS CLICKED");
 	}
 	// Outras tabs
 	@FXML
 	public void onParentButtonClicked() {
-		Main.openParent();
+		Main.changeTab("views/parentView.fxml");
 		System.out.println("PARENTS CLICKED");
 	}
 	// Outras tabs
 	@FXML
 	public void onTaskButtonClicked() {
-		Main.openTask();
+		Main.changeTab("views/taskView.fxml");
 		System.out.println("TASKS CLICKED");
 	}
 	// Botao de adicionar
 		@FXML
 		public void onPlusButtonClicked() {
-			Main.openPlusReward();
+			Main.openPlus("views/addRewardView.fxml");
 			System.out.println("PLUS CLICKED");
 		}
 		

@@ -14,11 +14,4 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>lib/mysql-connector-java-8.0.17.jar</name>
-			<type>1</type>
-			<location>D:/JDBC/mysql-connector-java-8.0.17/mysql-connector-java-8.0.17.jar</location>
-		</link>
-	</linkedResources>
 </projectDescription>

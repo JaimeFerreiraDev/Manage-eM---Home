@@ -8,12 +8,12 @@ public class AddRewardController {
 	@FXML
 	public void addButtonOnClick() {
 
-		Main.rewardPlusStage.close();
+		Main.plusStage.close();
 	}
 	@FXML
 	public void cancelButtonOnClick() {
 	
-		Main.rewardPlusStage.close();
+		Main.plusStage.close();
 	
 	}	
 }

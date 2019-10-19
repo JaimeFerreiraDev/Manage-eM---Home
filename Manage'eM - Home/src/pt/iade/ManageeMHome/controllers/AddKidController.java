@@ -10,13 +10,13 @@ public class AddKidController {
 	@FXML
 	public void addButtonOnClick() {
 	
-		Main.kidPlusStage.close();
+		Main.plusStage.close();
 	
 	}
 	@FXML
 	public void cancelButtonOnClick() {
 	
-		Main.kidPlusStage.close();
+		Main.plusStage.close();
 	
 	}	
 }

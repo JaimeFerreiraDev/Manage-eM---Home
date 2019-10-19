@@ -10,14 +10,12 @@ public class AddTaskController {
 	@FXML
 	public void addButtonOnClick() {
 	
-		Main.taskPlusStage.close();
+		Main.plusStage.close();
 	
 	}
 	@FXML
 	public void cancelButtonOnClick() {
 	
-		Main.taskPlusStage.close();
+		Main.plusStage.close();
 	
-	}	
-	}
-
+	}}
