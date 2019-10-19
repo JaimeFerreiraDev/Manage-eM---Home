@@ -1,11 +1,5 @@
-# Manage-eM---Home
-Family management application
-
 *Manage’eM -Home
 
-Participantes:
- -	Fernando Santos 50039077
- - 	Jaime Ferreira 50039473
 
 **Enquadramento do projecto:
 Após um estudo de mercado podemos concluir que, sem ter em consideração aplicações que não funcionam corretamente, existe apenas uma que possui o mesmo sistema de recompensas que a nossa aplicação. Contudo nós temos mais duas funcionalidades. Chama-se ChildReward https://play.google.com/store/apps/details?id=com.childreward.
@@ -32,6 +26,9 @@ Os pais criam recompensas para os filhos poderem gastar os seus pontos.
 Os pais enviam pontos para os filhos como semanada ou mesada, ou apenas de forma esporádica, conforme a preferência.
 (Assumindo que os pais criaram tarefas que foram completadas pelos filhos ou simplesmente lhes enviaram pontos) Os filhos utilizam os seus pontos (M's) para redimir recompensas.
 
-**Referências
-[1] Produto desenvolvido por Bartosz Smyk, esta referência foi feita na versão 0.0.67(atualizada em 26/8/19).
+
+
+
+
+
 
