@@ -13,6 +13,7 @@ A nossa aplicação vai permitir um controlo parental amigável para os filhos, 
 
 **Personas:
     O nosso projeto tem dois tipos de utilizadores diferentes:
+    
 Pais
 Os pais têm o papel de criar tarefas e rewards, conferindo-lhes todos os atributos necessários. Os pais têm também a função de verificar se as tarefas foram completadas corretamente. 
 Os pais têm uma tab de filhos em que podem gerir os seus filhos e oferecer-lhes pontos (M’s) esporadicamente ou definir uma mesada ou semanada. Os pais podem ainda consultar o histórico de si mesmos como de outro encarregado.
