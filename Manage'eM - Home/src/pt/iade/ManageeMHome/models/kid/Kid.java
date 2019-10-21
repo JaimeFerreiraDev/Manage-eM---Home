@@ -11,6 +11,9 @@ public class Kid {
 	public int getAge() {
 		return age;
 	}
+	public String getName() {
+		return name;
+	}
 
 	@Override
 	public String toString() {
