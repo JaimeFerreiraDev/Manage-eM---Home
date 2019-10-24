@@ -15,6 +15,7 @@ public class AddKidController {
 	public void addButtonOnClick() {
 	
 		KidViewController.currentKidList.add(new Kid(3,nameField.getText()));
+		System.out.println(nameField.getText());
 		Main.plusStage.close();
 	}
 	@FXML

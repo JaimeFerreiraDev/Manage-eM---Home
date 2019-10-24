@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.iade.ManageeMHome.controllers.AddParentController">
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.iade.ManageeMHome.controllers.AddParentController">
 
    <children>
       <AnchorPane prefHeight="145.0" prefWidth="238.0">
@@ -29,7 +29,7 @@
                 <RowConstraints maxHeight="32.799993896484374" minHeight="10.0" prefHeight="32.799993896484374" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TextField prefWidth="157.0" promptText="ex: Jim" GridPane.columnIndex="1" />
+                  <TextField fx:id="nameField" prefWidth="157.0" promptText="ex: Jim" GridPane.columnIndex="1" />
                   <Label text="Name :" />
                   <Label text="ID :" GridPane.rowIndex="1" />
                   <TextField promptText="ex: 132456" GridPane.columnIndex="1" GridPane.rowIndex="1" />

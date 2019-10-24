@@ -1,12 +1,10 @@
-package pt.iade.ManageeMHome.models.kid;
+package pt.iade.ManageeMHome.models.parent;
 
 import pt.iade.ManageeMHome.Person;
 
-public class Kid extends Person{
+public class Parent extends Person{
 
-	private int points;
-	
-	public Kid(int age, String name/*, int id, String username, String password*/) {
+	public Parent(int age, String name/*, int id, String username, String password*/) {
 		super(age, name/* id, username, password*/);
 		this.name = name;
 		this.age = age;

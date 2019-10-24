@@ -47,8 +47,7 @@ public class KidViewController {
 	public void onPlusButtonClicked() {
 		Main.openPlus("views/addKidView.fxml");
 		System.out.println("PLUS CLICKED");
-    	
-    	//tableView.getItems().setAll(getItems());
+
 	}
 	
 	
@@ -59,16 +58,14 @@ public class KidViewController {
 	    @FXML
 	    private Label nameL;
 	 
-	    public ObservableList<Kid> getItems(){
-	    	kidList.add(new Kid(3, "noob"));
-	    	return kidList;
-	    }
+
 	 @FXML
 	   private void initialize() {
 		 nameColumn.setCellValueFactory(new PropertyValueFactory<String, Kid>("Name"));
 	     ageColumn.setCellValueFactory(new PropertyValueFactory<Integer, Kid>("Age"));
 	     kidList = FXCollections.observableArrayList();
 	     currentKidList = kidList;
+	     tableView.setItems(kidList);
 	    }
 
 	
