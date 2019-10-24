@@ -21,10 +21,12 @@ public class Main extends Application {
 	
 	public static Stage plusStage;
 
+
 	@Override
 	public void start(Stage primaryStage) throws IOException {
 
 		openLogin();
+
 
 	}
 	public static void openMenu() throws IOException {

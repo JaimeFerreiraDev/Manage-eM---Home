@@ -1,14 +1,16 @@
 package pt.iade.ManageeMHome.models.kid;
+import pt.iade.ManageeMHome.Person;
 
-public class Kid {
-	private int age;
-	private String name;
-	private String ID;
-	public Kid(String name, int age, String ID) {
-		this.age = age;
+public class Kid extends Person{
+
+	private int points;
+
+	public Kid( String name, int age, String id/*, String username, String password*/) {
+		super(age, name ,id/*, username, password*/);
 		this.name = name;
-		this.ID = ID;
-		
+		this.age = age;
+		this.id=id;
+
 	}
 	public int getAge() {
 		return age;
@@ -17,7 +19,7 @@ public class Kid {
 		return name;
 	}
 	public String getID() {
-		return ID;
+		return id;
 	}
 
 	@Override

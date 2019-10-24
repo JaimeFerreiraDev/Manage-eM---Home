@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="288.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.iade.ManageeMHome.controllers.KidViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="294.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.iade.ManageeMHome.controllers.KidViewController">
    <children>
       <ToolBar layoutX="-3.0" layoutY="483.0" prefHeight="44.0" prefWidth="288.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="-3.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="483.0">
          <items>
@@ -47,7 +47,7 @@
             <Insets left="10.0" top="-3.0" />
          </padding>
       </ToolBar>
-      <MenuBar layoutY="1.0" prefHeight="26.0" prefWidth="288.0">
+      <MenuBar layoutY="1.0" prefHeight="32.0" prefWidth="294.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
@@ -71,16 +71,16 @@
             <Font size="25.0" />
          </font>
       </Label>
-      <ScrollBar layoutX="274.0" layoutY="72.0" orientation="VERTICAL" prefHeight="403.0" prefWidth="14.0" />
+      <ScrollBar layoutX="274.0" layoutY="62.0" orientation="VERTICAL" prefHeight="403.0" prefWidth="14.0" />
       <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="223.0" layoutY="432.0" onMouseClicked="#onPlusButtonClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/plus.png" />
          </image>
       </ImageView>
-      <TableView fx:id="tableView" layoutX="14.0" layoutY="83.0" prefHeight="350.0" prefWidth="242.0">
+      <TableView fx:id="tableView" layoutX="14.0" layoutY="88.0" prefHeight="340.0" prefWidth="242.0">
         <columns>
-          <TableColumn fx:id="nameColumn" prefWidth="116.0" text="Name" />
-          <TableColumn fx:id="ageColumn" prefWidth="53.0" text="Age" />
+          <TableColumn fx:id="nameColumn" prefWidth="110.0" text="Name" />
+          <TableColumn fx:id="ageColumn" prefWidth="59.0" text="Age" />
             <TableColumn fx:id="IDColumn" maxWidth="50000.0" prefWidth="74.0" text="ID" />
         </columns>
       </TableView>

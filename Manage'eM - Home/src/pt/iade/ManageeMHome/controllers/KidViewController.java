@@ -48,8 +48,10 @@ public class KidViewController {
 	public void onPlusButtonClicked() {
 		Main.openPlus("views/addKidView.fxml");
 		System.out.println("PLUS CLICKED");
+
 	}
 	 
+
 	 @FXML
 	   private void initialize() {
 		 

@@ -18,9 +18,9 @@ public class AddKidController {
 	private TextField IDField;
 	@FXML
 	ComboBox<Integer> ageOptions;
+	
 	@FXML
 	public void addButtonOnClick() {
-	
 		KidViewController.currentKidList.add(new Kid(nameField.getText(), 3, IDField.getText()));
 		
 		Main.plusStage.close();
