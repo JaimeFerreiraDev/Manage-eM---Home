@@ -3,9 +3,11 @@ package pt.iade.ManageeMHome.models.kid;
 public class Kid {
 	private int age;
 	private String name;
-	public Kid(int age, String name) {
+	private String ID;
+	public Kid(String name, int age, String ID) {
 		this.age = age;
 		this.name = name;
+		this.ID = ID;
 		
 	}
 	public int getAge() {
@@ -13,6 +15,9 @@ public class Kid {
 	}
 	public String getName() {
 		return name;
+	}
+	public String getID() {
+		return ID;
 	}
 
 	@Override

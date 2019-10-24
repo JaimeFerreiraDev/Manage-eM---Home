@@ -77,10 +77,11 @@
             <Image url="@../images/plus.png" />
          </image>
       </ImageView>
-      <TableView fx:id="currentKidList" layoutX="14.0" layoutY="83.0" prefHeight="350.0" prefWidth="200.0">
+      <TableView fx:id="tableView" layoutX="14.0" layoutY="83.0" prefHeight="350.0" prefWidth="242.0">
         <columns>
-          <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name" />
-          <TableColumn fx:id="ageColumn" prefWidth="75.0" text="Age" />
+          <TableColumn fx:id="nameColumn" prefWidth="116.0" text="Name" />
+          <TableColumn fx:id="ageColumn" prefWidth="53.0" text="Age" />
+            <TableColumn fx:id="IDColumn" maxWidth="50000.0" prefWidth="74.0" text="ID" />
         </columns>
       </TableView>
    </children>

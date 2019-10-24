@@ -32,11 +32,11 @@
               </rowConstraints>
                <children>
                   <TextField fx:id="nameField" promptText="ex: Jim" GridPane.columnIndex="1" />
-                  <ComboBox prefHeight="26.0" prefWidth="171.0" visibleRowCount="20" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <ComboBox fx:id="ageOptions" onAction="#comboBoxClick" prefHeight="26.0" prefWidth="171.0" visibleRowCount="20" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label text="Name :" />
                   <Label text="Age :" GridPane.rowIndex="1" />
                   <Label text="ID :" GridPane.rowIndex="2" />
-                  <TextField promptText="ex: 132456" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="IDField" promptText="ex: 132456" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </GridPane>
 
