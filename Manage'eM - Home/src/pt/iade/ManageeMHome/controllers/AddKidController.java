@@ -6,12 +6,15 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import pt.iade.ManageeMHome.Main;
+import pt.iade.ManageeMHome.models.kid.Kid;
 
 public class AddKidController {
 	@FXML
-	TextField nameField;
+	private TextField nameField;
 	@FXML
 	public void addButtonOnClick() {
+	
+		KidViewController.currentKidList.add(new Kid(3,nameField.getText()));
 		Main.plusStage.close();
 	}
 	@FXML
