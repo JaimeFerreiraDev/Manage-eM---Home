@@ -12,15 +12,11 @@ public class AddKidController {
 	TextField nameField;
 	@FXML
 	public void addButtonOnClick() {
-	
 		Main.plusStage.close();
-	
 	}
 	@FXML
 	public void cancelButtonOnClick() {
-	
 		Main.plusStage.close();
-	
 	}	
 }
 

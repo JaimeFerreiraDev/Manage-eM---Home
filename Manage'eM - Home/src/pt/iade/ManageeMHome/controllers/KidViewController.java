@@ -10,6 +10,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import pt.iade.ManageeMHome.Main;
 import pt.iade.ManageeMHome.models.kid.Kid;
+import pt.iade.ManageeMHome.models.kid.KidListView;
 
 public class KidViewController {
 	// Outras tabs
@@ -48,16 +49,15 @@ public class KidViewController {
     	tableView.getItems().setAll(getItems());
 	}
 	
+	
+	
     //List view
 
 
 	    @FXML
 	    private Label nameL;
-	    
-	    
 	 
 	    public ObservableList<Kid> getItems(){
-	    	
 	    	kidList.add(new Kid(3, "noob"));
 	    	return kidList;
 	    }

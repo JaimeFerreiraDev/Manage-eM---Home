@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -69,10 +70,12 @@ public class Main extends Application {
 		try {
 			Pane root = FXMLLoader.load(Main.class.getResource(FXMLPlusLink));	
 			scene = new Scene(root);
-
+			
 			plusStage = new Stage();
+			plusStage.initOwner(secondaryStage);
+			plusStage.initModality(Modality.APPLICATION_MODAL);
 			plusStage.setScene(scene);
-			plusStage.show();
+			plusStage.showAndWait();
 
 
 		} catch (Exception e) {
