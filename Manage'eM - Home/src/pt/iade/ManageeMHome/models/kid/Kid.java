@@ -6,7 +6,7 @@ public class Kid extends Person{
 	private int points;
 
 	public Kid( String name, int age, String id/*, String username, String password*/) {
-		super(age, name ,id/*, username, password*/);
+		super(name, age ,id/*, username, password*/);
 		this.name = name;
 		this.age = age;
 		this.id=id;

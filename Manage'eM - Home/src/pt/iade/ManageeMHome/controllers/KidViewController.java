@@ -9,6 +9,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import pt.iade.ManageeMHome.Main;
+import pt.iade.ManageeMHome.models.DAO.KidDAO;
 import pt.iade.ManageeMHome.models.kid.Kid;
 import pt.iade.ManageeMHome.models.kid.KidListView;
 
@@ -59,8 +60,7 @@ public class KidViewController {
 		 ageColumn.setCellValueFactory(new PropertyValueFactory<Integer, Kid>("Age"));
 		 IDColumn.setCellValueFactory(new PropertyValueFactory<String, Kid>("ID"));
 	     kidList = FXCollections.observableArrayList();
-	     currentKidList = kidList;
-	     tableView.setItems(kidList);
+	     tableView.setItems(KidDAO.getKidList());
 	    }
 
 	

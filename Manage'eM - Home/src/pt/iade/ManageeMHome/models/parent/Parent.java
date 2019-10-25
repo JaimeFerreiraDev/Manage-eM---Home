@@ -4,10 +4,10 @@ import pt.iade.ManageeMHome.Person;
 
 public class Parent extends Person{
 
-	public Parent(int age, String name, String id/*, String username, String password*/) {
-		super(age, name, id/*, username, password*/);
+	public Parent( String name,int age, String id/*, String username, String password*/) {
+		super(name, age, id/*, username, password*/);
 		this.name = name;
-		this.age = age;
+		this.age=age;
 		this.id=id;
 	}
 	public int getAge() {
