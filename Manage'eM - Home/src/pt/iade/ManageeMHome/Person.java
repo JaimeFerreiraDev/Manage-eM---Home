@@ -9,7 +9,7 @@ public class Person {
 	protected String password;
 	
 	
-	public Person( int age, String name, String id/*, String username, String password*/) {
+	public Person(  String name, int age, String id/*, String username, String password*/) {
 		super();
 		this.name = name;
 		this.age = age;
