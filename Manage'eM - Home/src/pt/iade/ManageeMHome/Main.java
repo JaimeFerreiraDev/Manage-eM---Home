@@ -18,30 +18,34 @@ public class Main extends Application {
 	static Stage secondaryStage;
 	public static Stage primaryStage;
 	static Stage terciaryStage;
-	
+
 	public static Stage plusStage;
 
 
+	private static float startTime;
+	private static float currentTime;
+	private int age;
+
 	@Override
 	public void start(Stage primaryStage) throws IOException {
-
+		startTime = System.currentTimeMillis();
 		openLogin();
 
 
 	}
 	public static void openMenu() throws IOException {
-        try {
+		try {
 
-            Pane root = FXMLLoader.load(Main.class.getResource("views/kidView.fxml"));
+			Pane root = FXMLLoader.load(Main.class.getResource("views/kidView.fxml"));
 
-            scene = new Scene(root);
-            secondaryStage = new Stage();
-            secondaryStage.setScene(scene);
-            secondaryStage.show();
+			scene = new Scene(root);
+			secondaryStage = new Stage();
+			secondaryStage.setScene(scene);
+			secondaryStage.show();
 
-        } catch(Exception e) {
-            System.out.println(e);
-        }}
+		} catch(Exception e) {
+			System.out.println(e);
+		}}
 	public static void openLogin() throws IOException {
 		try {
 			Pane root = FXMLLoader.load(Main.class.getResource("views/LoginView.fxml"));
@@ -72,7 +76,7 @@ public class Main extends Application {
 		try {
 			Pane root = FXMLLoader.load(Main.class.getResource(FXMLPlusLink));	
 			scene = new Scene(root);
-			
+
 			plusStage = new Stage();
 			plusStage.initOwner(secondaryStage);
 			plusStage.initModality(Modality.APPLICATION_MODAL);
@@ -88,5 +92,9 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
-
+	public int personAge() {
+		
+		return age;
+	}
 }
+
