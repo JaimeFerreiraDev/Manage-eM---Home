@@ -77,7 +77,7 @@
             <Image url="@../images/plus.png" />
          </image>
       </ImageView>
-      <TableView fx:id="tableView" layoutX="14.0" layoutY="88.0" prefHeight="340.0" prefWidth="242.0">
+      <TableView fx:id="kidTV" layoutX="14.0" layoutY="88.0" prefHeight="340.0" prefWidth="242.0">
         <columns>
           <TableColumn fx:id="nameColumn" prefWidth="110.0" text="Name" />
           <TableColumn fx:id="ageColumn" prefWidth="59.0" text="Age" />

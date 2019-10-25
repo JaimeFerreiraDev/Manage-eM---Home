@@ -14,12 +14,9 @@ import pt.iade.ManageeMHome.models.kid.Kid;
 import pt.iade.ManageeMHome.models.kid.KidListView;
 
 public class KidViewController {
-	// Outras tabs
-	private ObservableList<Kid> kidList;
 	// Paraa apagar quando tivermos BD
-	public static ObservableList<Kid> currentKidList;
 	@FXML
-	private TableView<Kid> tableView;
+	private TableView<Kid> kidTV;
 	@FXML
 	private TableColumn<String, Kid> nameColumn;
 	@FXML
@@ -59,8 +56,8 @@ public class KidViewController {
 		 nameColumn.setCellValueFactory(new PropertyValueFactory<String, Kid>("Name"));
 		 ageColumn.setCellValueFactory(new PropertyValueFactory<Integer, Kid>("Age"));
 		 IDColumn.setCellValueFactory(new PropertyValueFactory<String, Kid>("ID"));
-	     kidList = FXCollections.observableArrayList();
-	     tableView.setItems(KidDAO.getKidList());
+	     FXCollections.observableArrayList();
+	     kidTV.setItems(KidDAO.getKidList());
 	    }
 
 	

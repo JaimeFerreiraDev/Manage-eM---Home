@@ -27,10 +27,10 @@
             <RowConstraints maxHeight="32.799993896484374" minHeight="10.0" prefHeight="32.799993896484374" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <TextField promptText="Ex: Icecream" GridPane.columnIndex="1" />
+            <TextField fx:id="nameField" promptText="Ex: Icecream" GridPane.columnIndex="1" />
             <Label text="Name:" />
             <Label text="Points:" GridPane.rowIndex="1" />
-            <JFXSlider GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <JFXSlider fx:id="slider" max="300.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
       <Button layoutX="222.0" layoutY="127.0" mnemonicParsing="false" onMouseClicked="#addButtonOnClick" prefHeight="26.0" prefWidth="60.0" text="Add" />

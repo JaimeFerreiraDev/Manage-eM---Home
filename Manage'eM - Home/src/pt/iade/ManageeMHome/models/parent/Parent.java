@@ -17,9 +17,5 @@ public class Parent extends Person{
 		return name;
 	}
 
-	@Override
-	public String toString() {
-		return "("+age+")";
-	}
-	
+
 }

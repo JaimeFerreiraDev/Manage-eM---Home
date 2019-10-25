@@ -22,9 +22,5 @@ public class Kid extends Person{
 		return id;
 	}
 
-	@Override
-	public String toString() {
-		return "("+age+")";
-	}
 	
 }
