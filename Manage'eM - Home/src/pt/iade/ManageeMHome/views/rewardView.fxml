@@ -6,6 +6,8 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.effect.Blend?>
 <?import javafx.scene.image.Image?>
@@ -13,7 +15,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="288.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.iade.ManageeMHome.controllers.RewardViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="288.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.iade.ManageeMHome.controllers.RewardViewController">
    <children>
       <ToolBar layoutX="-3.0" layoutY="483.0" prefHeight="44.0" prefWidth="288.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="-3.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="483.0">
          <items>
@@ -75,5 +77,11 @@
             <Image url="@../images/plus.png" />
          </image>
       </ImageView>
+      <TableView fx:id="rewardTV" layoutX="17.0" layoutY="78.0" prefHeight="347.0" prefWidth="231.0">
+        <columns>
+          <TableColumn fx:id="nameColumn" prefWidth="164.0" text="Name" />
+          <TableColumn fx:id="pointsColumn" prefWidth="72.0" text="M's" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>
