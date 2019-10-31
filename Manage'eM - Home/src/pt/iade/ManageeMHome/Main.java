@@ -20,6 +20,7 @@ public class Main extends Application {
 	static Stage terciaryStage;
 
 	public static Stage plusStage;
+	public static Stage tableItemStage;
 
 
 	private static float startTime;
@@ -44,7 +45,7 @@ public class Main extends Application {
 			secondaryStage.show();
 
 		} catch(Exception e) {
-			System.out.println(e);
+			e.printStackTrace();
 		}}
 	public static void openLogin() throws IOException {
 		try {
@@ -55,7 +56,7 @@ public class Main extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch (Exception e) {
-			System.out.println(e);	
+			e.printStackTrace();
 		}
 	}
 
@@ -67,7 +68,7 @@ public class Main extends Application {
 			secondaryStage.show();
 
 		} catch (Exception e) {
-			System.out.println(e);
+			e.printStackTrace();
 		}
 
 	}
@@ -85,16 +86,30 @@ public class Main extends Application {
 
 // this is easteregg
 		} catch (Exception e) {
-			System.out.println(e);
+			e.printStackTrace();
 		}
 
 	}
+	
+//	public static void openTableItem() {
+//		try {
+//			Pane root = FXMLLoader.load(Main.class.getResource());	
+//			scene = new Scene(root);
+//
+//			tableItemStage = new Stage();
+//			tableItemStage.initOwner(secondaryStage);
+//			tableItemStage.initModality(Modality.APPLICATION_MODAL);
+//			tableItemStage.setScene(scene);
+//			tableItemStage.showAndWait();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
+	
 	public static void main(String[] args) {
 		launch(args);
 	}
-	public int personAge() {
-		
-		return age;
-	}
+
 }
 

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXSlider?>
+<?import com.jfoenix.controls.JFXTimePicker?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
@@ -13,7 +14,7 @@
 
 <AnchorPane prefHeight="458.0" prefWidth="296.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.iade.ManageeMHome.controllers.AddTaskController">
    <children>
-      <Button layoutX="217.0" layoutY="414.0" mnemonicParsing="false" onMouseClicked="#addButtonOnClick" prefHeight="26.0" prefWidth="60.0" text="Add" />
+      <Button layoutX="217.0" layoutY="414.0" mnemonicParsing="false" onAction="#addButtonOnClick" prefHeight="26.0" prefWidth="60.0" text="Add" />
       <Label layoutX="14.0" layoutY="14.0" text="Add Task:" textFill="#1666c2">
          <font>
             <Font size="16.0" />
@@ -31,18 +32,18 @@
             <RowConstraints maxHeight="28.799993896484366" minHeight="10.0" prefHeight="28.000006103515616" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <TextField promptText="ex: Wash the dishes" GridPane.columnIndex="1" />
+            <TextField fx:id="nameField" promptText="ex: Wash the dishes" GridPane.columnIndex="1" />
             <Label text="Name:" />
             <Label text="Points:" GridPane.rowIndex="1" />
             <Label text="Start:" GridPane.rowIndex="2" />
-            <TextField prefHeight="6.0" prefWidth="157.0" promptText="ex: 50" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="End:" GridPane.rowIndex="3" />
-            <JFXSlider GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <JFXSlider GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <JFXSlider fx:id="pointsSilder" value="10.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <JFXTimePicker fx:id="timeStart" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <JFXTimePicker fx:id="timeEnd" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
       <Button layoutX="154.0" layoutY="415.0" mnemonicParsing="false" onAction="#cancelButtonOnClick" text="Cancel" />
-      <TextField alignment="TOP_LEFT" layoutX="60.0" layoutY="294.0" prefHeight="110.0" prefWidth="217.0" promptText="ex: - The dishes must be well cleaned" />
+      <TextField fx:id="descriptionField" alignment="TOP_LEFT" layoutX="60.0" layoutY="294.0" prefHeight="110.0" prefWidth="217.0" promptText="ex: - The dishes must be well cleaned" />
       <Label layoutX="11.0" layoutY="267.0" text="Details:" />
       <GridPane layoutX="67.0" layoutY="215.0" prefHeight="52.0" prefWidth="228.0">
         <columnConstraints>
@@ -54,10 +55,10 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <RadioButton mnemonicParsing="false" text="One time" />
-            <RadioButton mnemonicParsing="false" text="Daily" GridPane.columnIndex="1" />
-            <RadioButton mnemonicParsing="false" text="Weekly" GridPane.rowIndex="1" />
-            <RadioButton mnemonicParsing="false" text="Monthly" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <RadioButton fx:id="radioOneTime" mnemonicParsing="false" text="One time" />
+            <RadioButton fx:id="radioDaily" mnemonicParsing="false" text="Daily" GridPane.columnIndex="1" />
+            <RadioButton fx:id="radioWeekly" mnemonicParsing="false" text="Weekly" GridPane.rowIndex="1" />
+            <RadioButton fx:id="radioMonthly" mnemonicParsing="false" text="Monthly" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
       <Label layoutX="13.0" layoutY="194.0" text="Frequency:" />
