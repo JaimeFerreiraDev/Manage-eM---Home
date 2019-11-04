@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox prefHeight="200.0" prefWidth="100.0" spacing="40.0">
+         <padding>
+            <Insets left="20.0" right="20.0" top="10.0" />
+         </padding>
+         <children>
+            <AnchorPane prefHeight="49.0" prefWidth="560.0">
+               <children>
+                  <Label layoutX="263.0" layoutY="14.0" text="TASK" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="48.0" prefWidth="560.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="14.0" text="Name:" />
+                  <Text fx:id="taskTableItemName" layoutX="110.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="There's no set name." wrappingWidth="435.6708984375" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="116.0" prefWidth="560.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="14.0" text="Starts at:" />
+                  <Text layoutX="92.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="notSet" />
+                  <Text layoutX="92.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="notSet" />
+                  <Label layoutX="14.0" layoutY="50.0" text="Ends at:" />
+                  <Label layoutX="349.0" layoutY="14.0" text="Periodicy:" />
+                  <Text layoutX="432.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Not set" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="116.0" prefWidth="560.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="14.0" text="Description:" />
+                  <Text fx:id="taskTableDescription" layoutX="110.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="There's no set description." wrappingWidth="435.6708984375" />
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </children>
+</StackPane>
