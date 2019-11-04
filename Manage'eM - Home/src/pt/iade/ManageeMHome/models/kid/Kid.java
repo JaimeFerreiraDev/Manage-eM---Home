@@ -5,11 +5,12 @@ public class Kid extends Person{
 
 	private int points;
 
-	public Kid( String name, int age, String id/*, String username, String password*/) {
+	public Kid( String name, int age, String id, int points/*, String username, String password*/) {
 		super(name, age ,id/*, username, password*/);
 		this.name = name;
 		this.age = age;
 		this.id=id;
+		this.points=points;
 
 	}
 	public int getAge() {
@@ -20,6 +21,12 @@ public class Kid extends Person{
 	}
 	public String getID() {
 		return id;
+	}
+	public int getPoints() {
+		return points;
+	}
+	public void setPoints(int points) {
+		this.points = points;
 	}
 
 	

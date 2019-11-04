@@ -52,13 +52,21 @@ public class KidViewController {
 
 	 @FXML
 	   private void initialize() {
-		 
+		  
 		 nameColumn.setCellValueFactory(new PropertyValueFactory<String, Kid>("Name"));
 		 ageColumn.setCellValueFactory(new PropertyValueFactory<Integer, Kid>("Age"));
 		 IDColumn.setCellValueFactory(new PropertyValueFactory<String, Kid>("ID"));
-	     FXCollections.observableArrayList();
-	     kidTV.setItems(KidDAO.getKidList());
+	      kidTV.setItems(KidDAO.getKidList());
+	     
+	     kidTV.getSelectionModel().
+			selectedItemProperty().addListener(
+				(obs,oldVal,newVal)-> {
+					Main.openKidTableItem(newVal);
+				});
+	     
+	     
 	    }
+
 
 	
 }

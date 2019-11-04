@@ -18,7 +18,7 @@ public class AddKidController {
 	@FXML
 	private TextField IDField;
 	@FXML
-	ComboBox<Integer> ageOptions = new ComboBox<Integer>();
+	ComboBox<Integer> ageOptions;
 	
 	
 	@FXML
@@ -26,7 +26,7 @@ public class AddKidController {
 		KidDAO.getKidList().add(new Kid(
 				nameField.getText(),
 				ageOptions.getSelectionModel().getSelectedItem(),
-				IDField.getText()));
+				IDField.getText(), 0));
 		Main.plusStage.close();
 	}
 	@FXML

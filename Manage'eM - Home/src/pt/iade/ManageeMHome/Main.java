@@ -12,6 +12,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import pt.iade.ManageeMHome.controllers.giftKidController;
+import pt.iade.ManageeMHome.controllers.kidTableItemController;
+import pt.iade.ManageeMHome.models.kid.Kid;
 
 public class Main extends Application {
 	static Scene scene;
@@ -20,6 +23,8 @@ public class Main extends Application {
 	static Stage terciaryStage;
 	
 	public static Stage plusStage;
+	public static Stage tableItemStage;
+	public static Stage giftStage;
 
 
 	@Override
@@ -79,12 +84,67 @@ public class Main extends Application {
 			plusStage.setScene(scene);
 			plusStage.showAndWait();
 
-// this is easteregg
 		} catch (Exception e) {
 			System.out.println(e);
 		}
 
 	}
+	
+	public static void openKidTableItem(Kid kid) {
+		try {
+		FXMLLoader loader = new FXMLLoader(Main.class.getResource("views/kidTableItem.fxml"));
+		loader.setController(new kidTableItemController(kid));
+			
+		Pane root = loader.load();	
+		scene = new Scene(root);
+		
+		
+		tableItemStage = new Stage();
+		tableItemStage.initOwner(secondaryStage);
+		tableItemStage.initModality(Modality.APPLICATION_MODAL);
+		tableItemStage.setScene(scene);
+		tableItemStage.showAndWait();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+	public static void openGift(kidTableItemController itemKid, Kid kid) {
+		try {
+		
+		FXMLLoader loader = new FXMLLoader(Main.class.getResource("views/giftKidView.fxml"));
+		giftKidController cont =new giftKidController(kid); 
+		loader.setController(cont);
+			
+		Pane root = loader.load();	
+		scene = new Scene(root);
+		
+		
+		giftStage = new Stage();
+		giftStage.initOwner(secondaryStage);
+		giftStage.initModality(Modality.APPLICATION_MODAL);
+		giftStage.setScene(scene);
+		giftStage.showAndWait();
+		itemKid.updateKidInfo();
+		
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+	public static void updateKidTableItem(Kid kid) {
+		try {
+			FXMLLoader loader = new FXMLLoader(Main.class.getResource("views/kidTableItem.fxml"));
+			loader.setController(new kidTableItemController(kid));
+				
+			Pane root = loader.load();	
+			scene = new Scene(root);
+			
+			tableItemStage.setScene(scene);
+		
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+	
 	public static void main(String[] args) {
 		launch(args);
 	}
