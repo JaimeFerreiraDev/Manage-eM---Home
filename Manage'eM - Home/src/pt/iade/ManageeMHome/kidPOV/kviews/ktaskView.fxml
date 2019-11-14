@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="294.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ToolBar layoutX="-3.0" layoutY="483.0" prefHeight="44.0" prefWidth="301.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="-3.0" AnchorPane.rightAnchor="-4.0" AnchorPane.topAnchor="483.0">
+         <effect>
+            <Blend />
+         </effect>
+         <padding>
+            <Insets left="10.0" top="-3.0" />
+         </padding>
+         <items>
+            <HBox alignment="CENTER" prefHeight="48.0" prefWidth="89.0" style="-fx-background-color: grey;">
+               <children>
+                  <ImageView fitHeight="48.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/task.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="48.0" prefWidth="89.0">
+               <children>
+                  <ImageView fitHeight="48.0" fitWidth="57.0" onMouseClicked="#rewardsClick" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/rewards.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="87.0">
+               <children>
+                  <ImageView fitHeight="50.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/coin.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+         </items>
+      </ToolBar>
+      <Label alignment="CENTER" layoutX="81.0" layoutY="14.0" text="Manage'eM">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <TableView fx:id="kidTV" layoutX="28.0" layoutY="68.0" prefHeight="391.0" prefWidth="240.0">
+        <columns>
+          <TableColumn fx:id="nameColumn" prefWidth="110.0" text="Name" />
+          <TableColumn fx:id="ageColumn" prefWidth="59.0" text="Age" />
+            <TableColumn fx:id="pointsColumn" maxWidth="50000.0" prefWidth="74.0" text="M's" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

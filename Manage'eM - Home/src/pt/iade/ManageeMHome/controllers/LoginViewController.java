@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import pt.iade.ManageeMHome.Main;
+import pt.iade.ManageeMHome.kidPOV.kcontrollers.KtaskController;
 import pt.iade.ManageeMHome.models.DAO.KidDAO;
 import pt.iade.ManageeMHome.models.DAO.UserDAO;
 import pt.iade.ManageeMHome.models.users.User;
@@ -27,6 +28,7 @@ public class LoginViewController {
 	@FXML
 	public void newAccButton() {
 		Main.changeTab("views/newAccView.fxml", new NewAccController());
+		Main.setCounter(0);
 		Main.primaryStage.close();
 	}
 
@@ -41,7 +43,7 @@ public class LoginViewController {
 				}
 				if(User.isParentBool()==false) {
 					Main.primaryStage.close();
-					Main.changeTab("views/kidView.fxml", new KidViewController());
+					Main.changeTab("kidPOV/kviews/ktaskView.fxml", new KtaskController());
 				}
 			}
 		}

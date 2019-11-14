@@ -27,7 +27,7 @@ public class Main extends Application {
 	public static Stage tableItemStage;
 	public static Stage giftOrAllowanceStage;
     
-	private static int counter=0;
+	public static int counter=0;
 
 
 	private static float startTime;
@@ -58,6 +58,10 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 
+	}
+	//This method allows the counter to be reset
+	public static void setCounter(int counter) {
+		Main.counter = counter;
 	}
 	public static void openLogin() throws IOException {
 		try {
