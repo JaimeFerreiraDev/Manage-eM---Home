@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="259.0" prefWidth="321.0" spacing="25.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="292.0" prefWidth="321.0" spacing="25.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label fx:id="kidNameLabel" alignment="TOP_RIGHT" text="Label" textFill="#0062ff">
          <VBox.margin>
@@ -27,28 +27,33 @@
          </children></VBox>
       <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Label fx:id="kidPointsLabel" prefHeight="21.0" prefWidth="137.0" text="Label">
+            <Label fx:id="kidPointsLabel" prefHeight="21.0" prefWidth="240.0" text="Label">
                <HBox.margin>
                   <Insets left="20.0" />
                </HBox.margin>
             </Label>
             <Button mnemonicParsing="false" onAction="#giftButtonClick" prefHeight="31.0" prefWidth="57.0" text="Gift">
                <HBox.margin>
-                  <Insets left="5.0" />
-               </HBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" text="Allowance">
-               <HBox.margin>
-                  <Insets left="5.0" right="5.0" />
+                  <Insets left="5.0" right="10.0" />
                </HBox.margin>
             </Button>
          </children>
       </HBox>
       <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
          <children>
+            <Label fx:id="kidAllowanceLabel" prefHeight="21.0" prefWidth="199.0" text="Label" />
+            <Button mnemonicParsing="false" onAction="#allowanceButtonClick" text="Allowance">
+               <HBox.margin>
+                  <Insets left="5.0" right="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_RIGHT" prefHeight="57.0" prefWidth="321.0">
+         <children>
             <Button mnemonicParsing="false" onAction="#okButtonClick" text="OK">
                <HBox.margin>
-                  <Insets right="15.0" />
+                  <Insets bottom="5.0" right="15.0" />
                </HBox.margin>
             </Button>
          </children>

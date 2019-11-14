@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane prefWidth="231.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.iade.ManageeMHome.controllers.LoginViewController">
+<StackPane prefHeight="121.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.iade.ManageeMHome.controllers.LoginViewController">
   <children>
     <StackPane>
       <children>
@@ -20,8 +20,8 @@
               <children>
                 <Label text="Username:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
                 <Label text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                <TextField fx:id="user" promptText="Use &quot;open&quot; to login" text="open" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-                <TextField fx:id="password" promptText="Use &quot;sesame&quot; to login" text="sesame" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <TextField fx:id="userText" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                <TextField fx:id="passText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
               </children>
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="148.0" minWidth="10.0" prefWidth="109.0" />
@@ -35,6 +35,11 @@
             <StackPane prefHeight="-1.0" prefWidth="-1.0">
               <children>
                 <Button fx:id="loginButton" alignment="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#loginButtonOnCLick" text="Login" StackPane.alignment="CENTER_RIGHT" />
+                        <Button mnemonicParsing="false" onAction="#newAccButton" text="New Account">
+                           <StackPane.margin>
+                              <Insets right="70.0" />
+                           </StackPane.margin>
+                        </Button>
               </children>
             </StackPane>
           </children>

@@ -12,21 +12,22 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import pt.iade.ManageeMHome.controllers.giftKidController;
-import pt.iade.ManageeMHome.controllers.kidTableItemController;
+import pt.iade.ManageeMHome.controllers.GiftKidController;
+import pt.iade.ManageeMHome.controllers.KidTableItemController;
+import pt.iade.ManageeMHome.controllers.KidViewController;
 import pt.iade.ManageeMHome.models.kid.Kid;
 
 public class Main extends Application {
 	static Scene scene;
-	static Stage secondaryStage;
+	public static Stage secondaryStage;
 	public static Stage primaryStage;
 	static Stage terciaryStage;
 
 	public static Stage plusStage;
 	public static Stage tableItemStage;
-	public static Stage giftStage;
-
-
+	public static Stage giftOrAllowanceStage;
+    
+	private static int counter=0;
 
 
 	private static float startTime;
@@ -40,19 +41,24 @@ public class Main extends Application {
 
 
 	}
-	public static void openMenu() throws IOException {
+	public static void changeTab(String FXMLTabLink, Object cont) {
 		try {
-
-			Pane root = FXMLLoader.load(Main.class.getResource("views/kidView.fxml"));
-
+			FXMLLoader loader = new FXMLLoader(Main.class.getResource(FXMLTabLink));
+			loader.setController(cont);
+			Pane root = loader.load();
 			scene = new Scene(root);
+			if(counter<1) {
 			secondaryStage = new Stage();
+			counter++;
+			}
 			secondaryStage.setScene(scene);
 			secondaryStage.show();
 
-		} catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		}}
+		}
+
+	}
 	public static void openLogin() throws IOException {
 		try {
 			Pane root = FXMLLoader.load(Main.class.getResource("views/LoginView.fxml"));
@@ -66,19 +72,50 @@ public class Main extends Application {
 		}
 	}
 
-	public static void changeTab(String FXMLTabLink) {
+
+	
+	public static void openTableItem(KidViewController kidView,String FXMLItemLink, KidTableItemController cont) {
 		try {
-			Pane root = FXMLLoader.load(Main.class.getResource(FXMLTabLink));
-			scene = new Scene(root);
-			secondaryStage.setScene(scene);
-			secondaryStage.show();
-
+		FXMLLoader loader = new FXMLLoader(Main.class.getResource(FXMLItemLink));
+		loader.setController(cont);
+			
+		Pane root = loader.load();	
+		scene = new Scene(root);
+		
+		
+		tableItemStage = new Stage();
+		tableItemStage.initOwner(secondaryStage);
+		tableItemStage.initModality(Modality.APPLICATION_MODAL);
+		tableItemStage.setScene(scene);
+		tableItemStage.showAndWait();
+		kidView.updateKidInfo();
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(e);
 		}
-
 	}
 
+	public static void openGiftOrAllowance(KidTableItemController itemKid, Kid kid, String FXMLLink,  Object cont) {
+		try {
+		
+		FXMLLoader loader = new FXMLLoader(Main.class.getResource(FXMLLink));
+		loader.setController(cont);
+			
+		Pane root = loader.load();	
+		scene = new Scene(root);
+		
+		
+		giftOrAllowanceStage = new Stage();
+		giftOrAllowanceStage.initOwner(secondaryStage);
+		giftOrAllowanceStage.initModality(Modality.APPLICATION_MODAL);
+		giftOrAllowanceStage.setScene(scene);
+		giftOrAllowanceStage.showAndWait();
+		itemKid.updateKidInfo();
+		
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+	
 	public static void openPlus(String FXMLPlusLink) {
 		try {
 			Pane root = FXMLLoader.load(Main.class.getResource(FXMLPlusLink));	
@@ -96,80 +133,10 @@ public class Main extends Application {
 
 	}
 	
-	public static void openKidTableItem(Kid kid) {
-		try {
-		FXMLLoader loader = new FXMLLoader(Main.class.getResource("views/kidTableItem.fxml"));
-		loader.setController(new kidTableItemController(kid));
-			
-		Pane root = loader.load();	
-		scene = new Scene(root);
-		
-		
-		tableItemStage = new Stage();
-		tableItemStage.initOwner(secondaryStage);
-		tableItemStage.initModality(Modality.APPLICATION_MODAL);
-		tableItemStage.setScene(scene);
-		tableItemStage.showAndWait();
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-	}
-	public static void openGift(kidTableItemController itemKid, Kid kid) {
-		try {
-		
-		FXMLLoader loader = new FXMLLoader(Main.class.getResource("views/giftKidView.fxml"));
-		giftKidController cont =new giftKidController(kid); 
-		loader.setController(cont);
-			
-		Pane root = loader.load();	
-		scene = new Scene(root);
-		
-		
-		giftStage = new Stage();
-		giftStage.initOwner(secondaryStage);
-		giftStage.initModality(Modality.APPLICATION_MODAL);
-		giftStage.setScene(scene);
-		giftStage.showAndWait();
-		itemKid.updateKidInfo();
-		
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-	}
-	public static void updateKidTableItem(Kid kid) {
-		try {
-			FXMLLoader loader = new FXMLLoader(Main.class.getResource("views/kidTableItem.fxml"));
-			loader.setController(new kidTableItemController(kid));
-				
-			Pane root = loader.load();	
-			scene = new Scene(root);
-			
-			tableItemStage.setScene(scene);
-		
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-	}
-//	public static void openTableItem() {
-//		try {
-//			Pane root = FXMLLoader.load(Main.class.getResource());	
-//			scene = new Scene(root);
-//
-//			tableItemStage = new Stage();
-//			tableItemStage.initOwner(secondaryStage);
-//			tableItemStage.initModality(Modality.APPLICATION_MODAL);
-//			tableItemStage.setScene(scene);
-//			tableItemStage.showAndWait();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//	}
-
-	
 	public static void main(String[] args) {
 		launch(args);
 	}
+	
 
 }
 

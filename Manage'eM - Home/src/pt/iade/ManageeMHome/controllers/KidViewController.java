@@ -16,29 +16,29 @@ import pt.iade.ManageeMHome.models.kid.KidListView;
 public class KidViewController {
 	// Paraa apagar quando tivermos BD
 	@FXML
-	private TableView<Kid> kidTV;
+	public TableView<Kid> kidTV;
 	@FXML
 	private TableColumn<String, Kid> nameColumn;
 	@FXML
 	private TableColumn<Integer, Kid> ageColumn;
 	@FXML
-	private TableColumn<String, Kid> IDColumn;
-	
+	private TableColumn<Integer, Kid> pointsColumn;
+
 	@FXML
 	public void onParentButtonClicked() {
-		Main.changeTab("views/parentView.fxml");
+		Main.changeTab("views/parentView.fxml", new ParentViewController());
 		System.out.println("PARENTS CLICKED");
 	}
 	// Outras tabs
 	@FXML
 	public void onRewardButtonClicked() {
-		Main.changeTab("views/rewardView.fxml");
+		Main.changeTab("views/rewardView.fxml", new RewardViewController());
 		System.out.println("REWARDS CLICKED");
 	}
 	// Outras tabs
 	@FXML
 	public void onTaskButtonClicked() {
-		Main.changeTab("views/taskView.fxml");
+		Main.changeTab("views/taskView.fxml", new TaskViewController());
 		System.out.println("TASKS CLICKED");
 	}
 	// Botao de adicionar
@@ -48,25 +48,25 @@ public class KidViewController {
 		System.out.println("PLUS CLICKED");
 
 	}
-	 
 
-	 @FXML
-	   private void initialize() {
-		  
-		 nameColumn.setCellValueFactory(new PropertyValueFactory<String, Kid>("Name"));
-		 ageColumn.setCellValueFactory(new PropertyValueFactory<Integer, Kid>("Age"));
-		 IDColumn.setCellValueFactory(new PropertyValueFactory<String, Kid>("ID"));
-	      kidTV.setItems(KidDAO.getKidList());
-	     
-	     kidTV.getSelectionModel().
-			selectedItemProperty().addListener(
+
+	@FXML
+	private void initialize() {
+
+		nameColumn.setCellValueFactory(new PropertyValueFactory<String, Kid>("name"));
+		ageColumn.setCellValueFactory(new PropertyValueFactory<Integer, Kid>("age"));
+		pointsColumn.setCellValueFactory(new PropertyValueFactory<Integer, Kid>("points"));
+		kidTV.setItems(KidDAO.getKidList());
+		kidTV.getSelectionModel().selectedItemProperty().addListener(
 				(obs,oldVal,newVal)-> {
-					Main.openKidTableItem(newVal);
-				});
-	     
-	     
-	    }
+					
+					Main.openTableItem(this, "views/kidTableItemView.fxml", new KidTableItemController(newVal));
+					});
 
+	}
+	public void updateKidInfo() {
+		kidTV.refresh();
+		
+	}
 
-	
 }

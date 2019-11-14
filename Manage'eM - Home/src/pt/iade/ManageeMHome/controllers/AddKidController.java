@@ -25,8 +25,8 @@ public class AddKidController {
 	public void addButtonOnClick() {
 		KidDAO.getKidList().add(new Kid(
 				nameField.getText(),
-				ageOptions.getSelectionModel().getSelectedItem(),
-				IDField.getText(), 0));
+				ageOptions.getSelectionModel().getSelectedItem(),0,
+				IDField.getText()));
 		Main.plusStage.close();
 	}
 	@FXML

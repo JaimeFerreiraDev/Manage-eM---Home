@@ -5,12 +5,14 @@ public class Kid extends Person{
 
 	private int points;
 
-	public Kid( String name, int age, String id, int points/*, String username, String password*/) {
+	public Kid( String name, int age, int points, String id/*, String username, String password*/) {
 		super(name, age ,id/*, username, password*/);
 		this.name = name;
 		this.age = age;
-		this.id=id;
 		this.points=points;
+		
+		this.id=id;
+		
 
 	}
 	public int getAge() {
