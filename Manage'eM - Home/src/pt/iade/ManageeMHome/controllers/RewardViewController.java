@@ -41,8 +41,12 @@ public class RewardViewController {
 	// Botao de adicionar
 		@FXML
 		public void onPlusButtonClicked() {
-			Main.openPlus("views/addRewardView.fxml");
+			Main.openPlus("views/addRewardView.fxml", new AddRewardController());
 			System.out.println("PLUS CLICKED");
+		}
+		@FXML
+		private void notificationClick() {
+			Main.openNotifications("views/notificationsView.fxml", new NotificationsController());
 		}
 		
 		@FXML

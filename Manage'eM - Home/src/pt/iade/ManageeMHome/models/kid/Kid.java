@@ -31,5 +31,9 @@ public class Kid extends Person{
 		this.points = points;
 	}
 
+	public String toString() {
+		return name;
+	}
+
 	
 }

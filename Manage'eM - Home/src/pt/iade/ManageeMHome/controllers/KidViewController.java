@@ -27,26 +27,26 @@ public class KidViewController {
 	@FXML
 	public void onParentButtonClicked() {
 		Main.changeTab("views/parentView.fxml", new ParentViewController());
-		System.out.println("PARENTS CLICKED");
 	}
 	// Outras tabs
 	@FXML
 	public void onRewardButtonClicked() {
 		Main.changeTab("views/rewardView.fxml", new RewardViewController());
-		System.out.println("REWARDS CLICKED");
 	}
 	// Outras tabs
 	@FXML
 	public void onTaskButtonClicked() {
 		Main.changeTab("views/taskView.fxml", new TaskViewController());
-		System.out.println("TASKS CLICKED");
 	}
 	// Botao de adicionar
 	@FXML
 	public void onPlusButtonClicked() {
-		Main.openPlus("views/addKidView.fxml");
-		System.out.println("PLUS CLICKED");
-
+		Main.openPlus("views/addKidView.fxml", new AddKidController());
+	}
+	
+	@FXML
+	private void notificationClick() {
+		Main.openNotifications("views/notificationsView.fxml", new NotificationsController());
 	}
 
 

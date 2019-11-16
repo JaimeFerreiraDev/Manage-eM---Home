@@ -1,14 +1,23 @@
 package pt.iade.ManageeMHome.controllers;
 
 
+import java.util.ArrayList;
+
 import com.jfoenix.controls.JFXSlider;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
-import pt.iade.ManageeMHome.Main;
-import pt.iade.ManageeMHome.models.DAO.TaskDAO;
-import pt.iade.ManageeMHome.models.task.Task;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import pt.iade.ManageeMHome.Main;
+import pt.iade.ManageeMHome.models.DAO.KidDAO;
+import pt.iade.ManageeMHome.models.DAO.TaskDAO;
+import pt.iade.ManageeMHome.models.kid.Kid;
+import pt.iade.ManageeMHome.models.task.Task;
 
 public class AddTaskController {
 
@@ -37,17 +46,21 @@ public class AddTaskController {
 	private RadioButton radioMonthly;
 
 	@FXML
-	private TextField descriptionField;
-
-
-
+	private TextArea descriptionArea;
+	
+	@FXML
+	private ComboBox<Kid> kidComboBox;
+	private ObservableList<Kid> selectedKids= FXCollections.observableArrayList();
+	
+	ObservableList<Kid> kidOList = FXCollections.observableArrayList();
 	@FXML
 	public void addButtonOnClick() {
 
 
-		int intSlider= (int)pointsSilder.getValue();
-		TaskDAO.getTaskList().add(new Task(nameField.getText(), intSlider, descriptionField.getText()));
+	
+		TaskDAO.getTaskList().add(new Task(nameField.getText(), (int)pointsSilder.getValue(), descriptionArea.getText(), selectedKids));
 		Main.plusStage.close();
+		
 
 	}
 	
@@ -57,6 +70,12 @@ public class AddTaskController {
 		Main.plusStage.close();
 
 	}
+	@FXML
+	public void addKidButtonClick() {
+		selectedKids.add(kidComboBox.getSelectionModel().getSelectedItem());
+		kidOList.remove(kidComboBox.getSelectionModel().getSelectedItem());
+		kidComboBox.setItems(kidOList);
+	}
 
 	@FXML
 	public void initialize() {
@@ -65,14 +84,19 @@ public class AddTaskController {
 		radioWeekly.setToggleGroup(frequency);
 		radioDaily.setToggleGroup(frequency);
 		radioMonthly.setToggleGroup(frequency);
+		for(Kid kid: KidDAO.getKidList()) {
+			kidOList.add(kid);
+		}
+		kidComboBox.setItems(kidOList);
+		
 	}
 
 	public TextField getNameField() {
 		return nameField;
 	}
 
-	public TextField getDescriptionField() {
-		return descriptionField;
+	public TextArea getDescriptionField() {
+		return descriptionArea;
 	}
 
 

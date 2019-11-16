@@ -44,9 +44,14 @@ public class TaskViewController {
 		System.out.println("REWARDS CLICKED");
 	}
 	// Botão de adicionar
+	@FXML
 	public void onPlusTaskButtonClicked() {
-		Main.openPlus("views/addTaskView.fxml");
+		Main.openPlus("views/addTaskView.fxml", new AddTaskController());
 		System.out.println("PLUS CLICKED");
+	}
+	@FXML
+	private void notificationClick() {
+		Main.openNotifications("views/notificationsView.fxml", new NotificationsController());
 	}
 
 
@@ -60,7 +65,6 @@ public class TaskViewController {
 
 		nameColumn.setCellValueFactory(new PropertyValueFactory<String, Task>("Name"));
 		pointsColumn.setCellValueFactory(new PropertyValueFactory<Integer, Task>("Points"));
-		System.out.println("HERE");
 		statusColumn.setCellFactory((tableCol)-> {
 			return new TableCell<Boolean, Task> ()  {
 				@Override
@@ -79,18 +83,6 @@ public class TaskViewController {
 				}   
 			}; 
 		});
-
-
-//		taskTV.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-//			if (newSelection != null) {
-//				Task(newSelection);
-//			}
-//		});
-
-		
-		
-		
-
 		FXCollections.observableArrayList();
 		taskTV.setItems(TaskDAO.getTaskList());
 	}

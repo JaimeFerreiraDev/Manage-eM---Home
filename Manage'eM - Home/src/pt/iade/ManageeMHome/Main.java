@@ -26,6 +26,7 @@ public class Main extends Application {
 	public static Stage plusStage;
 	public static Stage tableItemStage;
 	public static Stage giftOrAllowanceStage;
+	public static Stage notificationStage;
     
 	public static int counter=0;
 
@@ -76,7 +77,24 @@ public class Main extends Application {
 		}
 	}
 
+	public static void openNotifications(String FXMLTabLink, Object cont) {
+		try {
+			FXMLLoader loader = new FXMLLoader(Main.class.getResource(FXMLTabLink));
+			loader.setController(cont);
+			Pane root = loader.load();
+			scene = new Scene(root);
+			
+			notificationStage = new Stage();
+			notificationStage.initOwner(secondaryStage);
+			notificationStage.initModality(Modality.APPLICATION_MODAL);
+			notificationStage.setScene(scene);
+			notificationStage.showAndWait();
 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
 	
 	public static void openTableItem(KidViewController kidView,String FXMLItemLink, KidTableItemController cont) {
 		try {
@@ -120,9 +138,12 @@ public class Main extends Application {
 		}
 	}
 	
-	public static void openPlus(String FXMLPlusLink) {
+	public static void openPlus(String FXMLPlusLink, Object cont) {
 		try {
-			Pane root = FXMLLoader.load(Main.class.getResource(FXMLPlusLink));	
+			
+			FXMLLoader loader = new FXMLLoader(Main.class.getResource(FXMLPlusLink));
+			loader.setController(cont);
+			Pane root = loader.load();	
 			scene = new Scene(root);
 
 			plusStage = new Stage();

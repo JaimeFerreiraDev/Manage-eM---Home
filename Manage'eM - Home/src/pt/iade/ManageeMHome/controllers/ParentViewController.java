@@ -41,12 +41,13 @@ public class ParentViewController {
 	// Botao de adicionar
 	@FXML
 	public void onPlusButtonClicked() {
-		Main.openPlus("views/addParentView.fxml");
+		Main.openPlus("views/addParentView.fxml", new AddParentController());
 		System.out.println("PLUS CLICKED");
 	}
+
 	@FXML
-	public void listClick() {
-		
+	private void notificationClick() {
+		Main.openNotifications("views/notificationsView.fxml", new NotificationsController());
 	}
 
 	@FXML
