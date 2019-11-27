@@ -56,7 +56,7 @@
             <Font size="25.0" />
          </font>
       </Label>
-       <TableView fx:id="kidTV" layoutX="28.0" layoutY="68.0" prefHeight="391.0" prefWidth="240.0">
+       <TableView fx:id="taskTV" layoutX="28.0" layoutY="68.0" prefHeight="391.0" prefWidth="240.0">
         <columns>
           <TableColumn fx:id="nameColumn" prefWidth="106.0" text="Tasks" />
           <TableColumn fx:id="pointsColumn" minWidth="0.0" prefWidth="65.0" text="M's" />

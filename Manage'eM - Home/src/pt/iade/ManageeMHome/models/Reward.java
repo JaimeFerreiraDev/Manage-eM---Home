@@ -1,4 +1,4 @@
-package pt.iade.ManageeMHome.models.reward;
+package pt.iade.ManageeMHome.models;
 
 public class Reward {
 	private String name;

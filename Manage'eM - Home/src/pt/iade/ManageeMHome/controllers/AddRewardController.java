@@ -5,8 +5,8 @@ import com.jfoenix.controls.JFXSlider;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import pt.iade.ManageeMHome.Main;
+import pt.iade.ManageeMHome.models.Reward;
 import pt.iade.ManageeMHome.models.DAO.RewardDAO;
-import pt.iade.ManageeMHome.models.reward.Reward;
 
 public class AddRewardController {
 	@FXML

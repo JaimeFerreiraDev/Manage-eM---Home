@@ -14,10 +14,10 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import pt.iade.ManageeMHome.Main;
-import pt.iade.ManageeMHome.models.DAO.KidDAO;
+import pt.iade.ManageeMHome.models.Kid;
+import pt.iade.ManageeMHome.models.Task;
+import pt.iade.ManageeMHome.models.DAO.PersonDAO;
 import pt.iade.ManageeMHome.models.DAO.TaskDAO;
-import pt.iade.ManageeMHome.models.kid.Kid;
-import pt.iade.ManageeMHome.models.task.Task;
 
 public class AddTaskController {
 
@@ -58,7 +58,7 @@ public class AddTaskController {
 
 
 	
-		TaskDAO.getTaskList().add(new Task(nameField.getText(), (int)pointsSilder.getValue(), descriptionArea.getText(), selectedKids));
+		TaskDAO.getTaskList().add(new Task(nameField.getText(), (int)pointsSilder.getValue(), descriptionArea.getText(), selectedKids, false));
 		Main.plusStage.close();
 		
 
@@ -84,7 +84,7 @@ public class AddTaskController {
 		radioWeekly.setToggleGroup(frequency);
 		radioDaily.setToggleGroup(frequency);
 		radioMonthly.setToggleGroup(frequency);
-		for(Kid kid: KidDAO.getKidList()) {
+		for(Kid kid: PersonDAO.getKidList()) {
 			kidOList.add(kid);
 		}
 		kidComboBox.setItems(kidOList);

@@ -7,9 +7,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import pt.iade.ManageeMHome.Main;
-import pt.iade.ManageeMHome.models.DAO.KidDAO;
-import pt.iade.ManageeMHome.models.DAO.ParentDAO;
-import pt.iade.ManageeMHome.models.parent.Parent;
+import pt.iade.ManageeMHome.models.Parent;
+import pt.iade.ManageeMHome.models.DAO.PersonDAO;
+
 
 
 public class ParentViewController {
@@ -54,6 +54,6 @@ public class ParentViewController {
 	private void initialize() {
 		nameColumn.setCellValueFactory(new PropertyValueFactory<String, Parent>("name"));
 		parentList = FXCollections.observableArrayList();
-		ParentTV.setItems(ParentDAO.getParentList());
+		ParentTV.setItems(PersonDAO.getParentList());
 	}
 }

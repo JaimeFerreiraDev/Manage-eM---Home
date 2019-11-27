@@ -1,21 +1,23 @@
-package pt.iade.ManageeMHome.models.task;
+package pt.iade.ManageeMHome.models;
 
 import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import pt.iade.ManageeMHome.models.kid.Kid;
+
 
 public class Task {
 	private String name;
 	private int points;
 	private String details;
+	private boolean isComplete;
 	private static ObservableList<Kid> kidOArrayList = FXCollections.observableArrayList();
-	public Task( String name,int points, String details, ObservableList<Kid> kidOArrayList/*, String username, String password*/) {
+	public Task( String name,int points, String details, ObservableList<Kid> kidOArrayList, boolean isComplete/*, String username, String password*/) {
 		this.kidOArrayList=kidOArrayList;
 		this.name = name;
 		this.points=points;
 		this.details=details;
+		this.isComplete=isComplete;
 	}
 	public String getName() {
 		return name;

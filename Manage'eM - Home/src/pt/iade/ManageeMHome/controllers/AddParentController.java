@@ -10,16 +10,13 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import pt.iade.ManageeMHome.Main;
-import pt.iade.ManageeMHome.models.DAO.KidDAO;
-import pt.iade.ManageeMHome.models.DAO.ParentDAO;
-import pt.iade.ManageeMHome.models.parent.Parent;
 
 public class AddParentController {
 	@FXML
 	private TextField nameField;
 	@FXML
 	public void addButtonOnClick() {
-		ParentDAO.getParentList().add(new Parent(nameField.getText(),2, "bruh"));
+		//SET AOS ATRIBUTOS !! AQUIIIIIII ADICIONAR
 		Main.plusStage.close();
 		
 	}

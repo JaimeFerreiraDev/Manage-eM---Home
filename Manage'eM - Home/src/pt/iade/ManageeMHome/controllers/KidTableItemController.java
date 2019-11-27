@@ -7,8 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
 import pt.iade.ManageeMHome.Main;
-import pt.iade.ManageeMHome.models.DAO.KidDAO;
-import pt.iade.ManageeMHome.models.kid.Kid;
+import pt.iade.ManageeMHome.models.Kid;
 
 public class KidTableItemController {
 	private Kid kid;

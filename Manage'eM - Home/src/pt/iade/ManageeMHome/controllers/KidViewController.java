@@ -9,9 +9,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import pt.iade.ManageeMHome.Main;
-import pt.iade.ManageeMHome.models.DAO.KidDAO;
-import pt.iade.ManageeMHome.models.kid.Kid;
-import pt.iade.ManageeMHome.models.kid.KidListView;
+import pt.iade.ManageeMHome.models.Kid;
+import pt.iade.ManageeMHome.models.DAO.PersonDAO;
+
 
 public class KidViewController {
 	// Paraa apagar quando tivermos BD
@@ -56,7 +56,7 @@ public class KidViewController {
 		nameColumn.setCellValueFactory(new PropertyValueFactory<String, Kid>("name"));
 		ageColumn.setCellValueFactory(new PropertyValueFactory<Integer, Kid>("age"));
 		pointsColumn.setCellValueFactory(new PropertyValueFactory<Integer, Kid>("points"));
-		kidTV.setItems(KidDAO.getKidList());
+		kidTV.setItems(PersonDAO.getKidList());
 		kidTV.getSelectionModel().selectedItemProperty().addListener(
 				(obs,oldVal,newVal)-> {
 					

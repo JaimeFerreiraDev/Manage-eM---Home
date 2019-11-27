@@ -3,19 +3,15 @@ package pt.iade.ManageeMHome;
 import java.io.IOException;
 
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import pt.iade.ManageeMHome.controllers.GiftKidController;
 import pt.iade.ManageeMHome.controllers.KidTableItemController;
 import pt.iade.ManageeMHome.controllers.KidViewController;
-import pt.iade.ManageeMHome.models.kid.Kid;
+import pt.iade.ManageeMHome.models.Kid;
 
 public class Main extends Application {
 	static Scene scene;
@@ -29,16 +25,13 @@ public class Main extends Application {
 	public static Stage notificationStage;
     
 	public static int counter=0;
-
-
-	private static float startTime;
-	private static float currentTime;
-	private int age;
+	public static int kcounter=0;
 
 	@Override
 	public void start(Stage primaryStage) throws IOException {
-		startTime = System.currentTimeMillis();
 		openLogin();
+		openLogin();
+		
 
 
 	}
@@ -60,6 +53,7 @@ public class Main extends Application {
 		}
 
 	}
+
 	//This method allows the counter to be reset
 	public static void setCounter(int counter) {
 		Main.counter = counter;

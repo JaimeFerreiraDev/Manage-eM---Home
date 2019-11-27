@@ -1,16 +1,17 @@
 package pt.iade.ManageeMHome.controllers;
 
-import javafx.collections.FXCollections;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import pt.iade.ManageeMHome.Main;
-import pt.iade.ManageeMHome.models.DAO.TaskDAO;
-import pt.iade.ManageeMHome.models.kid.Kid;
-import pt.iade.ManageeMHome.models.task.Task;
+
+import pt.iade.ManageeMHome.models.Kid;
+import pt.iade.ManageeMHome.models.Task;
+
+
 
 public class NotificationsController {
 

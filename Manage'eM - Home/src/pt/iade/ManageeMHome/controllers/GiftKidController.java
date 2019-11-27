@@ -8,7 +8,7 @@ import javafx.fxml.FXML;
 
 import javafx.scene.control.Label;
 import pt.iade.ManageeMHome.Main;
-import pt.iade.ManageeMHome.models.kid.Kid;
+import pt.iade.ManageeMHome.models.Kid;
 
 public class GiftKidController {
 	private int currentPoints;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -10,41 +10,30 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
-
+<AnchorPane prefHeight="129.0" prefWidth="237.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane prefHeight="174.0" prefWidth="257.0">
+      <Label layoutX="14.0" layoutY="1.0" text="Add Kid:" textFill="#1666c2">
+         <font>
+            <Font size="16.0" />
+         </font>
+         <padding>
+            <Insets top="4.0" />
+         </padding>
+      </Label>
+      <GridPane layoutX="14.0" layoutY="36.0" prefHeight="41.0" prefWidth="218.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.20001220703125" minWidth="10.0" prefWidth="43.999996185302734" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="156.00000381469727" minWidth="10.0" prefWidth="156.00000381469727" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="28.799993896484366" minHeight="10.0" prefHeight="28.000006103515616" vgrow="SOMETIMES" />
+         </rowConstraints>
          <children>
-            <Label layoutX="14.0" layoutY="1.0" text="Add Kid:" textFill="#1666c2">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <GridPane layoutX="14.0" layoutY="35.0" prefHeight="92.0" prefWidth="218.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.20001220703125" minWidth="10.0" prefWidth="43.999996185302734" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="156.00000381469727" minWidth="10.0" prefWidth="156.00000381469727" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="32.799993896484374" minHeight="10.0" prefHeight="32.799993896484374" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="28.799993896484366" minHeight="10.0" prefHeight="28.000006103515616" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <TextField fx:id="nameField" promptText="ex: Jim" GridPane.columnIndex="1" />
-                  <ComboBox fx:id="ageOptions" prefHeight="26.0" prefWidth="171.0" visibleRowCount="20" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label text="Name :" />
-                  <Label text="Age :" GridPane.rowIndex="1" />
-                  <Label text="ID :" GridPane.rowIndex="2" />
-                  <TextField fx:id="IDField" promptText="ex: 132456" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-               </children>
-            </GridPane>
-
-
-            <Button layoutX="172.0" layoutY="139.0" mnemonicParsing="false" onMouseClicked="#addButtonOnClick" prefHeight="26.0" prefWidth="60.0" text="Add" />
-
-            <Button layoutX="103.0" layoutY="139.0" mnemonicParsing="false" onAction="#cancelButtonOnClick" text="Cancel" />
+            <Label text="Code: " />
+            <TextField fx:id="codeField" prefHeight="41.0" prefWidth="157.0" promptText="ex: 132456" GridPane.columnIndex="1" />
          </children>
-      </AnchorPane>
+      </GridPane>
+      <Button layoutX="163.0" layoutY="84.0" mnemonicParsing="false" onMouseClicked="#addButtonOnClick" prefHeight="26.0" prefWidth="60.0" text="Add" />
+      <Button layoutX="87.0" layoutY="84.0" mnemonicParsing="false" onAction="#cancelButtonOnClick" text="Cancel" />
    </children>
 </AnchorPane>

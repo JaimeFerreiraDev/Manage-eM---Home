@@ -2,14 +2,16 @@ package pt.iade.ManageeMHome.controllers;
 
 import java.io.IOException;
 
+import com.jfoenix.controls.JFXDatePicker;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
 import pt.iade.ManageeMHome.Main;
-import pt.iade.ManageeMHome.models.DAO.UserDAO;
-import pt.iade.ManageeMHome.models.users.User;
+import pt.iade.ManageeMHome.models.Kid;
+import pt.iade.ManageeMHome.models.Parent;
+import pt.iade.ManageeMHome.models.DAO.PersonDAO;
 
 public class NewAccController {
 	@FXML
@@ -21,8 +23,14 @@ public class NewAccController {
 	@FXML
 	private TextField confirmPassText;
 	@FXML
+	private TextField nameText;
+	@FXML
+	private JFXDatePicker  datePicker;
+	@FXML
 	private Label errorLabel;
-	public boolean parentBool;
+	
+	
+
 	@FXML 
 	private ComboBox<String> userTypeCombo;
 	@FXML
@@ -35,11 +43,11 @@ public class NewAccController {
 				userTypeCombo.getValue()!=null) {
 			
 			if(userTypeCombo.getValue().equals("Parent")) {
-				parentBool=true;
+				PersonDAO.getPersonList().add(new Parent(nameText.getText(), /*calcular idade apartir da data*/10, null,  userText.getText(), passText.getText(), emailText.getText(),  confirmPassText.getText(), null));
 			}else {
-				parentBool=false;
+				PersonDAO.getPersonList().add(new Kid(nameText.getText(), /*calcular idade apartir da data*/10, null,  userText.getText(), passText.getText(), emailText.getText(),  confirmPassText.getText(),0,true, null));
 			}
-			UserDAO.getUserList().add(new User(userText.getText(), emailText.getText(), passText.getText(), confirmPassText.getText(), parentBool));
+			
 
 			Main.secondaryStage.close();
 			Main.openLogin();
@@ -58,8 +66,11 @@ public class NewAccController {
 				errorLabel.setText("Your passwords must match");
 			}else{if(userTypeCombo.getValue()==null) {
 				errorLabel.setText("Please say if you're a parent or a kid");
-			}}}}}
-			}
+			}else{if(nameText.getText()==null) {
+				errorLabel.setText("Please insert your name");
+			}else{if(datePicker.getValue()==null) {
+				errorLabel.setText("Please insert your date of birth");
+			}}}}}}}}
 				
 			//make red
 			if(userText.getText().isEmpty()) {
@@ -77,6 +88,12 @@ public class NewAccController {
 			if(userTypeCombo.getValue()==null) {
 				userTypeCombo.setStyle("-fx-effect:dropshadow(three-pass-box, rgba(255,0,0,0.5), 10, 0, 0, 0)");
 			}
+			if(nameText.getText()!=null) {
+				nameText.setStyle("-fx-effect:dropshadow(three-pass-box, rgba(255,0,0,0.5), 10, 0, 0, 0)");
+			}
+			if(datePicker.getValue()!=null) {
+				datePicker.setStyle("-fx-effect:dropshadow(three-pass-box, rgba(255,0,0,0.5), 10, 0, 0, 0)");
+			}
 			
 			//make normal
 			if(!userText.getText().isEmpty()) {
@@ -93,6 +110,12 @@ public class NewAccController {
 			}
 			if(userTypeCombo.getValue()!=null) {
 				userTypeCombo.setStyle("-fx-effect:dropshadow(three-pass-box, rgba(0,0,0,0), 10, 0, 0, 0)");
+			}
+			if(nameText.getText()!=null) {
+				nameText.setStyle("-fx-effect:dropshadow(three-pass-box, rgba(0,0,0,0), 10, 0, 0, 0)");
+			}
+			if(datePicker.getValue()!=null) {
+				datePicker.setStyle("-fx-effect:dropshadow(three-pass-box, rgba(0,0,0,0), 10, 0, 0, 0)");
 			}
 		}
 	}

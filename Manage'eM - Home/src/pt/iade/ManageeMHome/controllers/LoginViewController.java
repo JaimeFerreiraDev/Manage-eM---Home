@@ -7,24 +7,26 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import pt.iade.ManageeMHome.Main;
+import pt.iade.ManageeMHome.kidPOV.kcontrollers.K1stTimeController;
 import pt.iade.ManageeMHome.kidPOV.kcontrollers.KtaskController;
-import pt.iade.ManageeMHome.models.DAO.KidDAO;
-import pt.iade.ManageeMHome.models.DAO.UserDAO;
-import pt.iade.ManageeMHome.models.users.User;
+import pt.iade.ManageeMHome.models.Kid;
+import pt.iade.ManageeMHome.models.Parent;
+import pt.iade.ManageeMHome.models.Person;
+import pt.iade.ManageeMHome.models.DAO.PersonDAO;
+
 
 
 
 public class LoginViewController {
-	
+
 	@FXML
 	private TextField userText;
 	private String username;
 	@FXML
 	private TextField passText;
 	private String password;
-	private User user;
-	private ObservableList<User> userList = FXCollections.observableArrayList();
-	
+	private Kid kid;
+
 	@FXML
 	public void newAccButton() {
 		Main.changeTab("views/newAccView.fxml", new NewAccController());
@@ -34,29 +36,33 @@ public class LoginViewController {
 
 	@FXML
 	public void loginButtonOnCLick() {
-	for(User user : userList) {
-		if(User.getUsername().equals(userText.getText())) {
-			if(User.getPassword().equals(passText.getText())) {
-				if(User.isParentBool()==true) {
-					Main.primaryStage.close();
-					Main.changeTab("views/kidView.fxml", new KidViewController());
-				}
-				if(User.isParentBool()==false) {
-					Main.primaryStage.close();
-					Main.changeTab("kidPOV/kviews/ktaskView.fxml", new KtaskController());
+		for(Person person : PersonDAO.getPersonList()) {
+			if(person.getUsername().equals(userText.getText())) {
+				if(person.getPassword().equals(passText.getText())) {
+					if(person instanceof Parent) {
+						PersonDAO.setLoggedPerson(person);
+						Main.primaryStage.close();
+						Main.changeTab("views/kidView.fxml", new KidViewController());
+					}else {
+						Kid kid = (Kid) person;
+						if(kid.is_1stTime()==true) {
+							Main.changeTab("kidPOV/kviews/k1stTimeView.fxml", new K1stTimeController());
+							
+							Main.primaryStage.close();
+						}else {
+							Main.changeTab("kidPOV/kviews/ktaskView.fxml", new KtaskController());
+							
+							Main.primaryStage.close();
+						}
+					}
 				}
 			}
 		}
 	}
-		
-	
-	}
-	
-	
-	
-	
+
+
+
+
 	public void initialize(){
-		
-		userList=UserDAO.userList;
 	}
 }
