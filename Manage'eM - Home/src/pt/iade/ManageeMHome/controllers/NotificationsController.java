@@ -1,6 +1,8 @@
 package pt.iade.ManageeMHome.controllers;
 
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
@@ -10,6 +12,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import pt.iade.ManageeMHome.models.Kid;
 import pt.iade.ManageeMHome.models.Task;
+import pt.iade.ManageeMHome.models.DAO.PersonDAO;
+import pt.iade.ManageeMHome.models.DAO.TaskDAO;
 
 
 
@@ -31,12 +35,25 @@ public class NotificationsController {
 		@FXML
 		private TableColumn<Boolean, Button> yesColumn;
 
+		private ObservableList<Task> completedTasks= FXCollections.observableArrayList();
+		
+		private void findCompletedTasks() {
+			for(Kid kid : PersonDAO.getLoggedParent().getKids()) {
+				for(Task task: kid.getTasks()) {
+					if(task.isComplete()) {
+						completedTasks.add(task);
+					}
+				}
+			}
+		}
 		@FXML
 		private void initialize() {
-
+			
+			findCompletedTasks();
 			taskColumn.setCellValueFactory(new PropertyValueFactory<String, Task>("name"));
 			kidColumnN.setCellValueFactory(new PropertyValueFactory<String, Kid>("name"));
-			System.out.println("HERE");
+			FXCollections.observableArrayList();
+			notificationTV.setItems(completedTasks);
 			noColumn.setCellFactory((tableCol)-> {
 				return new TableCell<Boolean, Button> ()  {
 					@Override

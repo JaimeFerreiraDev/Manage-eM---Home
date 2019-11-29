@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.jfoenix.controls.JFXDatePicker;
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -43,9 +44,9 @@ public class NewAccController {
 				userTypeCombo.getValue()!=null) {
 			
 			if(userTypeCombo.getValue().equals("Parent")) {
-				PersonDAO.getPersonList().add(new Parent(nameText.getText(), /*calcular idade apartir da data*/10, null,  userText.getText(), passText.getText(), emailText.getText(),  confirmPassText.getText(), null));
+				PersonDAO.getPersonList().add(new Parent(nameText.getText(), /*calcular idade apartir da data*/10, null,  userText.getText(), passText.getText(), emailText.getText(),  confirmPassText.getText(), FXCollections.observableArrayList(), FXCollections.observableArrayList()));
 			}else {
-				PersonDAO.getPersonList().add(new Kid(nameText.getText(), /*calcular idade apartir da data*/10, null,  userText.getText(), passText.getText(), emailText.getText(),  confirmPassText.getText(),0,true, null));
+				PersonDAO.getPersonList().add(new Kid(nameText.getText(), /*calcular idade apartir da data*/10, nameText.getText() + Math.random()*10,  userText.getText(), passText.getText(), emailText.getText(),  confirmPassText.getText(),0,true, FXCollections.observableArrayList(), FXCollections.observableArrayList()));
 			}
 			
 

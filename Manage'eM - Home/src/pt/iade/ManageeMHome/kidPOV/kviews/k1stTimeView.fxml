@@ -21,7 +21,7 @@
       <HBox prefHeight="39.0" prefWidth="232.0">
          <children>
             <Label alignment="TOP_LEFT" text="You're code is: " />
-            <Label fx:id="codeLabel" text="Label">
+            <Label fx:id="codeLabel" text="cl">
                <HBox.margin>
                   <Insets left="15.0" />
                </HBox.margin>
@@ -36,7 +36,7 @@
             <Insets />
          </VBox.margin>
       </Label>
-      <Button fx:id="connectClick" mnemonicParsing="false" text="Connect">
+      <Button fx:id="connectClick" mnemonicParsing="false" onAction="#connectClick" text="Connect">
          <VBox.margin>
             <Insets top="10.0" />
          </VBox.margin>

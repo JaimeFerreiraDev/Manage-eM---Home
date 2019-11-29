@@ -14,6 +14,7 @@ import pt.iade.ManageeMHome.controllers.NotificationsController;
 import pt.iade.ManageeMHome.controllers.ParentViewController;
 import pt.iade.ManageeMHome.controllers.RewardViewController;
 import pt.iade.ManageeMHome.models.Task;
+import pt.iade.ManageeMHome.models.DAO.PersonDAO;
 import pt.iade.ManageeMHome.models.DAO.TaskDAO;
 
 
@@ -60,6 +61,8 @@ public class KtaskController {
 				}   
 			}; 
 		});
-
+		FXCollections.observableArrayList();
+		
+		taskTV.setItems(PersonDAO.getLoggedKid().getTasks());//QUERO A LISTA DE TASKS DO KIL LOGGADO
 	}
 }

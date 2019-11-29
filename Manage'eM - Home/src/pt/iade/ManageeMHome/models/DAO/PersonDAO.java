@@ -2,13 +2,15 @@ package pt.iade.ManageeMHome.models.DAO;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import pt.iade.ManageeMHome.controllers.NewAccController;
 import pt.iade.ManageeMHome.models.Kid;
 import pt.iade.ManageeMHome.models.Parent;
 import pt.iade.ManageeMHome.models.Person;
 
 public class PersonDAO {
 	public static ObservableList<Person> personList = FXCollections.observableArrayList();
-	public static Person loggedPerson;
+	public static Parent loggedParent;
+	public static Kid loggedKid;
 	public static ObservableList<Person> getPersonList() {
 		return personList;
 	}
@@ -37,14 +39,27 @@ public class PersonDAO {
 		return kids;
 	}
 	
-	public static Person getLoggedPerson() {
-		return loggedPerson;
+	public static Parent getLoggedParent() {
+		return loggedParent;
 	}
 
-	public static void setLoggedPerson(Person loggedPerson) {
-		PersonDAO.loggedPerson = loggedPerson;
+	public static void setLoggedParent(Parent loggedParent) {
+		PersonDAO.loggedParent = loggedParent;
 	}
+	
+
+	public static Kid getLoggedKid() {
+		return loggedKid;
+	}
+
+	public static void setLoggedKid(Kid loggedKid) {
+		PersonDAO.loggedKid = loggedKid;
+	}
+
 
 	static {
+		personList.add(new Parent("jaime", 23, "aaa", "a", "a", "a", "a", FXCollections.observableArrayList(), FXCollections.observableArrayList()));
+		personList.add(new Kid("aurora", 2, "aurora"+ ((int)(Math.random()*100)+100), "b", "b", "b", "b", 1, true, FXCollections.observableArrayList(), FXCollections.observableArrayList()));
+		
 	}
 }

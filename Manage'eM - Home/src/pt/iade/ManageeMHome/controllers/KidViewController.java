@@ -26,6 +26,7 @@ public class KidViewController {
 
 	@FXML
 	public void onParentButtonClicked() {
+		System.out.println(PersonDAO.getLoggedParent().getName());
 		Main.changeTab("views/parentView.fxml", new ParentViewController());
 	}
 	// Outras tabs
@@ -56,7 +57,7 @@ public class KidViewController {
 		nameColumn.setCellValueFactory(new PropertyValueFactory<String, Kid>("name"));
 		ageColumn.setCellValueFactory(new PropertyValueFactory<Integer, Kid>("age"));
 		pointsColumn.setCellValueFactory(new PropertyValueFactory<Integer, Kid>("points"));
-		kidTV.setItems(PersonDAO.getKidList());
+		kidTV.setItems(PersonDAO.getLoggedParent().getKids());
 		kidTV.getSelectionModel().selectedItemProperty().addListener(
 				(obs,oldVal,newVal)-> {
 					

@@ -29,6 +29,9 @@ public class Person {
 	public String getPassword() {
 		return password;
 	}
+	public void setCode(String code) {
+		this.code = code;
+	}
 	
 
 	

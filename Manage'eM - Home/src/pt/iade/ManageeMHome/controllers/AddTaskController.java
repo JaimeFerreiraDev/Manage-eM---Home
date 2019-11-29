@@ -57,8 +57,13 @@ public class AddTaskController {
 	public void addButtonOnClick() {
 
 
+		Task taskAux= new Task(nameField.getText(), (int)pointsSilder.getValue(), descriptionArea.getText(), selectedKids, false);
+		TaskDAO.getTaskList().add(taskAux);
+		
+		for(Kid kid: selectedKids) {
+		kid.getTasks().add(taskAux);
+		}
 	
-		TaskDAO.getTaskList().add(new Task(nameField.getText(), (int)pointsSilder.getValue(), descriptionArea.getText(), selectedKids, false));
 		Main.plusStage.close();
 		
 
@@ -75,6 +80,7 @@ public class AddTaskController {
 		selectedKids.add(kidComboBox.getSelectionModel().getSelectedItem());
 		kidOList.remove(kidComboBox.getSelectionModel().getSelectedItem());
 		kidComboBox.setItems(kidOList);
+		System.out.println(selectedKids);
 	}
 
 	@FXML
@@ -84,7 +90,7 @@ public class AddTaskController {
 		radioWeekly.setToggleGroup(frequency);
 		radioDaily.setToggleGroup(frequency);
 		radioMonthly.setToggleGroup(frequency);
-		for(Kid kid: PersonDAO.getKidList()) {
+		for(Kid kid: PersonDAO.getLoggedParent().getKids()) {
 			kidOList.add(kid);
 		}
 		kidComboBox.setItems(kidOList);

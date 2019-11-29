@@ -40,18 +40,17 @@ public class LoginViewController {
 			if(person.getUsername().equals(userText.getText())) {
 				if(person.getPassword().equals(passText.getText())) {
 					if(person instanceof Parent) {
-						PersonDAO.setLoggedPerson(person);
+						PersonDAO.setLoggedParent((Parent)person);
 						Main.primaryStage.close();
 						Main.changeTab("views/kidView.fxml", new KidViewController());
 					}else {
-						Kid kid = (Kid) person;
-						if(kid.is_1stTime()==true) {
+						
+						PersonDAO.setLoggedKid((Kid) person);
+						if(PersonDAO.getLoggedKid().is_1stTime()==true) {
 							Main.changeTab("kidPOV/kviews/k1stTimeView.fxml", new K1stTimeController());
-							
 							Main.primaryStage.close();
 						}else {
 							Main.changeTab("kidPOV/kviews/ktaskView.fxml", new KtaskController());
-							
 							Main.primaryStage.close();
 						}
 					}

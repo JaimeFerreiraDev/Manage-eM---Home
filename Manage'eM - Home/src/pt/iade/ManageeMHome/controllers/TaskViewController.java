@@ -9,6 +9,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import pt.iade.ManageeMHome.Main;
 import pt.iade.ManageeMHome.models.Task;
+import pt.iade.ManageeMHome.models.DAO.PersonDAO;
 import pt.iade.ManageeMHome.models.DAO.TaskDAO;
 
 
@@ -85,6 +86,6 @@ public class TaskViewController {
 			}; 
 		});
 		FXCollections.observableArrayList();
-		taskTV.setItems(TaskDAO.getTaskList());
+		taskTV.setItems(PersonDAO.getLoggedParent().getTasks());
 	}
 }

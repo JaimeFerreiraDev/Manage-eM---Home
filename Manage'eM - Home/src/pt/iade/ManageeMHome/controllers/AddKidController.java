@@ -13,9 +13,13 @@ public class AddKidController {
 	
 	@FXML
 	public void addButtonOnClick() {
+		System.out.println(codeField.getText());
 		for(Kid kid : PersonDAO.getKidList()) {
-			if(kid.getCode()== codeField.getText()) {
-				kid.getParents().add((Parent) PersonDAO.getLoggedPerson());
+			if(kid.getCode().equals( codeField.getText())) {
+				kid.getParents().add( PersonDAO.getLoggedParent()); //ERRO
+				PersonDAO.getLoggedParent().getKids().add(kid);
+				kid.setCode(null);
+				kid.set_1stTime(false);
 				Main.plusStage.close();
 			}
 		}
