@@ -62,6 +62,7 @@ public class KidViewController {
 				(obs,oldVal,newVal)-> {
 					
 					Main.openTableItem(this, "views/kidTableItemView.fxml", new KidTableItemController(newVal));
+					
 					});
 
 	}

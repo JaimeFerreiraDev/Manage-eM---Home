@@ -11,5 +11,6 @@ public class TaskDAO {
 		return taskList;
 	}
 
-	static {}
+	static {
+	}
 }

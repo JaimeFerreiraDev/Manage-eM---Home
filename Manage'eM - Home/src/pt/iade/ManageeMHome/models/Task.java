@@ -27,7 +27,7 @@ public class Task {
 	public String getDetails() {
 		return details;
 	}
-	public static ObservableList<Kid> getKidArrayList() {
+	public ObservableList<Kid> getKidArrayList() {
 		return kidOArrayList;
 	}
 	public boolean isComplete() {

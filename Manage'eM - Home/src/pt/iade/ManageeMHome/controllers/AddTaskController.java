@@ -63,6 +63,7 @@ public class AddTaskController {
 		for(Kid kid: selectedKids) {
 		kid.getTasks().add(taskAux);
 		}
+		PersonDAO.getLoggedParent().getTasks().add(taskAux);
 	
 		Main.plusStage.close();
 		

@@ -44,9 +44,9 @@ public class NewAccController {
 				userTypeCombo.getValue()!=null) {
 			
 			if(userTypeCombo.getValue().equals("Parent")) {
-				PersonDAO.getPersonList().add(new Parent(nameText.getText(), /*calcular idade apartir da data*/10, null,  userText.getText(), passText.getText(), emailText.getText(),  confirmPassText.getText(), FXCollections.observableArrayList(), FXCollections.observableArrayList()));
+				PersonDAO.getPersonList().add(new Parent(nameText.getText(), /*calcular idade apartir da data*/10, null,  userText.getText(), passText.getText(),  confirmPassText.getText(), emailText.getText(), FXCollections.observableArrayList(), FXCollections.observableArrayList()));
 			}else {
-				PersonDAO.getPersonList().add(new Kid(nameText.getText(), /*calcular idade apartir da data*/10, nameText.getText() + Math.random()*10,  userText.getText(), passText.getText(), emailText.getText(),  confirmPassText.getText(),0,true, FXCollections.observableArrayList(), FXCollections.observableArrayList()));
+				PersonDAO.getPersonList().add(new Kid(nameText.getText(), /*calcular idade apartir da data*/10, nameText.getText() + ((int)(Math.random()*100)+100),  userText.getText(), passText.getText(),  confirmPassText.getText(),emailText.getText(),0,true, FXCollections.observableArrayList(), FXCollections.observableArrayList()));
 			}
 			
 
