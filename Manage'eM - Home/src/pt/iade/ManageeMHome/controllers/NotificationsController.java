@@ -39,7 +39,7 @@ public class NotificationsController {
 		
 		private void findCompletedTasks() {
 			for(Kid kid : PersonDAO.getLoggedParent().getKids()) {
-				for(Task task: kid.getTasks()) {
+				for(Task task:TaskDAO.getTaskList()) {   // kid.getTasks()
 					if(task.isComplete()) {
 						completedTasks.add(task);
 					}
@@ -62,7 +62,13 @@ public class NotificationsController {
 						if(!empty){
 							Button button = new Button("NO");
 							button.setOnAction((event) -> {
-
+							notificationTV.getSelectionModel().select(getTableRow().getIndex());
+								Task  selectedItem 	=	notificationTV.getSelectionModel().getSelectedItem();
+								for(Kid kid :  selectedItem.getKidArrayList()) {
+                                    kid.setPoints(kid.getPoints()+selectedItem.getPoints());
+                                }
+								notificationTV.getItems().remove(selectedItem);
+								selectedItem.setComplete(false);
 							});
 							setGraphic(button);
 						} else  {
@@ -80,7 +86,7 @@ public class NotificationsController {
 						if(!empty){
 							Button button = new Button("YES");
 							button.setOnAction((event) -> {
-
+									
 							});
 							setGraphic(button);
 						} else  {

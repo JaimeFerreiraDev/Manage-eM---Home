@@ -75,7 +75,7 @@ public class TaskViewController {
 					if(!empty){
 						Button button = new Button("DONE");
 						button.setOnAction((event) -> {
-
+										
 						});
 						setGraphic(button);
 					} else  {

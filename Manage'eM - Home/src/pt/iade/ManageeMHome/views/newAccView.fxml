@@ -50,8 +50,8 @@
             <TextField fx:id="confirmPassText" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label text="Name:" GridPane.rowIndex="4" />
             <Label text="Age:" GridPane.rowIndex="5" />
-            <JFXDatePicker fx:id="datePicker" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <TextField fx:id="nameText" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <JFXDatePicker fx:id="datePicker" GridPane.columnIndex="1" GridPane.rowIndex="5" />
          </children>
       </GridPane>
       <Label fx:id="errorLabel" />

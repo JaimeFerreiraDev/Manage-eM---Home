@@ -11,5 +11,9 @@ public class TaskDAO {
 		return taskList;
 	}
 
-	static {}
+	static {
+		
+		taskList.add(new Task("teste", 5000, "details", FXCollections.observableArrayList(), true));
+		taskList.add(new Task("testeeee", 5000, "details", FXCollections.observableArrayList(), true));
+	}
 }
