@@ -15,10 +15,10 @@ public class AddKidController {
 	public void addButtonOnClick() {
 		System.out.println(codeField.getText());
 		for(Kid kid : PersonDAO.getKidList()) {
-			if(kid.getCode().equals( codeField.getText())) {
+			if((String.valueOf(kid.getId())).equals( codeField.getText())) {
 				kid.getParents().add( PersonDAO.getLoggedParent()); //ERRO
 				PersonDAO.getLoggedParent().getKids().add(kid);
-				kid.setCode(null);
+				kid.setId(0);
 				kid.set_1stTime(false);
 				Main.plusStage.close();
 			}

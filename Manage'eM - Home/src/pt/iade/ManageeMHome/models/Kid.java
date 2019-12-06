@@ -10,9 +10,9 @@ public class Kid extends Person{
 	
 	ObservableList<Parent> parents;
 	ObservableList<Task> tasks;
-	public Kid(String name, int age, String code, String username, String password, String email,
-			String confirmPassword, int points, boolean _1stTime, ObservableList<Parent> parents, ObservableList<Task> tasks) {
-		super(name, age, code, username, password, email, confirmPassword);
+	public Kid(String name, int age,int id, String username, String password,
+			 int points, boolean _1stTime, ObservableList<Parent> parents, ObservableList<Task> tasks) {
+		super(name, age,id, username, password);
 		this.points = points;
 		this._1stTime = _1stTime;
 		this.parents = parents;

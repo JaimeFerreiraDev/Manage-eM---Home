@@ -29,7 +29,7 @@ public class K1stTimeController {
 	private double randomCode;
 	@FXML
 	private void initialize() {
-		codeLabel.setText(PersonDAO.getLoggedKid().getCode());
+		codeLabel.setText(String.valueOf(PersonDAO.getLoggedKid().getId()));
 
 
 	}
