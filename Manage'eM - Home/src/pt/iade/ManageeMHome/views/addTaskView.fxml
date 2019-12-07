@@ -39,7 +39,7 @@
             <Label text="Points:" GridPane.rowIndex="1" />
             <Label text="Start:" GridPane.rowIndex="2" />
             <Label text="End:" GridPane.rowIndex="3" />
-            <JFXSlider fx:id="pointsSilder" value="10.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <JFXSlider fx:id="pointsSlider" value="10.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <JFXTimePicker fx:id="timeStart" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <JFXTimePicker fx:id="timeEnd" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
@@ -62,10 +62,11 @@
             <RadioButton fx:id="radioMonthly" mnemonicParsing="false" text="Monthly" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <Label layoutX="13.0" layoutY="194.0" text="Frequency:" />
+      <Label fx:id="freqLabel" layoutX="13.0" layoutY="194.0" text="Frequency:" />
       <TextArea fx:id="descriptionArea" layoutX="48.0" layoutY="301.0" prefHeight="115.0" prefWidth="200.0" promptText="ex: - The dishes must be well cleaned" wrapText="true" />
       <ComboBox fx:id="kidComboBox" layoutX="19.0" layoutY="457.0" prefHeight="31.0" prefWidth="185.0" />
       <Label layoutX="19.0" layoutY="427.0" text="Who is the task for?" />
       <Button layoutX="211.0" layoutY="457.0" mnemonicParsing="false" onAction="#addKidButtonClick" text="+ Add" />
+      <Label fx:id="errorLabel" layoutX="117.0" layoutY="488.0" />
    </children>
 </AnchorPane>

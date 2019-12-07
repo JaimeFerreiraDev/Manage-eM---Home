@@ -7,12 +7,12 @@ public class Kid extends Person{
 
 	private int points;
 	private boolean _1stTime;
-	
+
 	ObservableList<Parent> parents;
 	ObservableList<Task> tasks;
-	public Kid(String name, int age, String code, String username, String password, String email,
-			String confirmPassword, int points, boolean _1stTime, ObservableList<Parent> parents, ObservableList<Task> tasks) {
-		super(name, age, code, username, password, email);
+
+	public Kid(String name, int age,int id, String username, String password, int points, boolean _1stTime, ObservableList<Parent> parents, ObservableList<Task> tasks) {
+		super(name, age,id, username, password);
 		this.points = points;
 		this._1stTime = _1stTime;
 		this.parents = parents;
@@ -37,7 +37,7 @@ public class Kid extends Person{
 	public boolean is_1stTime() {
 		return _1stTime;
 	}
-	
+
 	public void set_1stTime(boolean _1stTime) {
 		this._1stTime = _1stTime;
 	}
@@ -48,5 +48,5 @@ public class Kid extends Person{
 		return tasks;
 	}
 
-	
+
 }

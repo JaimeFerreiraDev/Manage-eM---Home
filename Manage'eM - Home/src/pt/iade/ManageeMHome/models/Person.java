@@ -4,24 +4,25 @@ package pt.iade.ManageeMHome.models;
 public class Person {
 	protected String name;
 	protected int age;
-	protected String code;
+	protected int id;
 	protected String username;
 	protected String password;
 	protected String email;
 	protected String confirmPassword;
-	public Person(String name, int age, String code, String username, String password, String email
-			) {
+	public Person(String name, int age, int id, String username, String password) {
 		super();
 		this.name = name;
 		this.age = age;
-		this.code = code;
+		this.id = id;
 		this.username = username;
 		this.password = password;
+
 		this.email = email;
+
 		
 	}
-	public String getCode() {
-		return code;
+	public int getId() {
+		return id;
 	}
 	public String getUsername() {
 		return username;
@@ -29,8 +30,8 @@ public class Person {
 	public String getPassword() {
 		return password;
 	}
-	public void setCode(String code) {
-		this.code = code;
+	public void setId(int id) {
+		this.id= id;
 	}
 	
 
