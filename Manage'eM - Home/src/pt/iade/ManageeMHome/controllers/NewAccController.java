@@ -81,6 +81,7 @@ public class NewAccController {
 
 				} catch (SQLException e) {
 					e.printStackTrace();
+					System.out.println(e);
 				} 	
 
 
