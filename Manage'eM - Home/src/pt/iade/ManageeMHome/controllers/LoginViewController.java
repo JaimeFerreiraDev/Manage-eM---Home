@@ -45,7 +45,7 @@ public class LoginViewController {
 
 	@FXML
 	public void loginButtonOnCLick() {
-		Connection conn= JDBC.getCon();
+		Connection conn= JDBC.getCon(); 
 		String sql="Select username, password from Parent where username = ? and password = ?;"; 
 //		String sqlKid = "Select username, password from Kid where username = ? and password = ?;";
 		try {
