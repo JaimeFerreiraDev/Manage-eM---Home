@@ -33,6 +33,10 @@ public class Task {
 	public boolean isComplete() {
 		return isComplete;
 	}
+	public void setComplete(boolean isComplete) {
+		this.isComplete = isComplete;
+	}
+	
 	
 	
 }

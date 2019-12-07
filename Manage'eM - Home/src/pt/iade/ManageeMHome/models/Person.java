@@ -9,7 +9,7 @@ public class Person {
 	protected String password;
 	protected String email;
 	protected String confirmPassword;
-	public Person(String name, int age, String code, String username, String password, String confirmPassword, String email
+	public Person(String name, int age, String code, String username, String password, String email
 			) {
 		super();
 		this.name = name;
@@ -17,7 +17,6 @@ public class Person {
 		this.code = code;
 		this.username = username;
 		this.password = password;
-		this.confirmPassword = confirmPassword;
 		this.email = email;
 		
 	}

@@ -9,9 +9,9 @@ public class Parent extends Person{
 	ObservableList<Kid> kids;
 	ObservableList<Task> tasks;
 	
-	public Parent(String name, int age, String code, String username, String password,String confirmPassword, String email,
+	public Parent(String name, int age, String code, String username, String password, String email,
 			 ObservableList<Kid> kids, ObservableList<Task> tasks) {
-		super(name, age, code, username, password,confirmPassword, email);
+		super(name, age, code, username, password, email);
 		this.kids = kids;
 		this.tasks=tasks;
 	}

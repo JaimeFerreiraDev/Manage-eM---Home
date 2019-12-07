@@ -39,7 +39,7 @@ public class PersonDAO {
 				 ObservableList<Kid> kids = null;
 				 ObservableList<Task> tasks = null;
 				
-				parents.add(new Parent(name, age, code, username, password, confirmPassword,  email,
+				parents.add(new Parent(name, age, code, username, password,  email,
 					kids	 ,tasks  ));
 			}
 		}catch(SQLException e) {
@@ -97,7 +97,7 @@ public class PersonDAO {
 		tasks.add(new Task("nibba", 79000, "", FXCollections.observableArrayList(), true));
 	}
 	static {
-		personList.add(new Parent("jaime", 23, "aaa", "a", "a", "a", "a", FXCollections.observableArrayList(), FXCollections.observableArrayList()));
+		personList.add(new Parent("jaime", 23, "aaa", "a", "a", "a", FXCollections.observableArrayList(), FXCollections.observableArrayList()));
 		personList.add(new Kid("aurora", 2, "aurora"+ ((int)(Math.random()*100)+100), "b", "b", "b", "b", 1, true, FXCollections.observableArrayList(), FXCollections.observableArrayList()));
 		personList.add(new Kid("filhaex", 3, ""+5, "c", "c", "c", "c", 3, true, FXCollections.observableArrayList(), tasks));
 	}

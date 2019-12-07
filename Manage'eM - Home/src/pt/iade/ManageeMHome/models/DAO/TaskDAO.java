@@ -12,5 +12,6 @@ public class TaskDAO {
 	}
 
 	static {
+		taskList.add(new Task("nibba", 79000, "", FXCollections.observableArrayList(), true));
 	}
 }

@@ -39,7 +39,7 @@ public class NotificationsController {
 		
 		private void findCompletedTasks() {
 			for(Kid kid : PersonDAO.getLoggedParent().getKids()) {
-				for(Task task: kid.getTasks() ) {
+				for(Task task: TaskDAO.getTaskList() ) {//kid.getTasks()
 					if(task.isComplete()) {
 						completedTasks.add(task);
 					}
