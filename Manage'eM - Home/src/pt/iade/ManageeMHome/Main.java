@@ -15,7 +15,6 @@ import pt.iade.ManageeMHome.models.Kid;
 
 public class Main extends Application {
 	static Scene scene;
-	public static Stage secondaryStage;
 	public static Stage primaryStage;
 	static Stage terciaryStage;
 
@@ -39,11 +38,11 @@ public class Main extends Application {
 			Pane root = loader.load();
 			scene = new Scene(root);
 			if(counter<1) {
-				secondaryStage = new Stage();
+				primaryStage = new Stage();
 				counter++;
 			}
-			secondaryStage.setScene(scene);
-			secondaryStage.show();
+			primaryStage.setScene(scene);
+			primaryStage.show();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -76,7 +75,7 @@ public class Main extends Application {
 			scene = new Scene(root);
 
 			notificationStage = new Stage();
-			notificationStage.initOwner(secondaryStage);
+			notificationStage.initOwner(primaryStage);
 			notificationStage.initModality(Modality.APPLICATION_MODAL);
 			notificationStage.setScene(scene);
 			notificationStage.showAndWait();
@@ -97,7 +96,7 @@ public class Main extends Application {
 
 
 			tableItemStage = new Stage();
-			tableItemStage.initOwner(secondaryStage);
+			tableItemStage.initOwner(primaryStage);
 			tableItemStage.initModality(Modality.APPLICATION_MODAL);
 			tableItemStage.setScene(scene);
 			tableItemStage.showAndWait();
@@ -118,7 +117,7 @@ public class Main extends Application {
 
 
 			giftOrAllowanceStage = new Stage();
-			giftOrAllowanceStage.initOwner(secondaryStage);
+			giftOrAllowanceStage.initOwner(primaryStage);
 			giftOrAllowanceStage.initModality(Modality.APPLICATION_MODAL);
 			giftOrAllowanceStage.setScene(scene);
 			giftOrAllowanceStage.showAndWait();
@@ -138,7 +137,7 @@ public class Main extends Application {
 			scene = new Scene(root);
 
 			plusStage = new Stage();
-			plusStage.initOwner(secondaryStage);
+			plusStage.initOwner(primaryStage);
 			plusStage.initModality(Modality.APPLICATION_MODAL);
 			plusStage.setScene(scene);
 			plusStage.showAndWait();

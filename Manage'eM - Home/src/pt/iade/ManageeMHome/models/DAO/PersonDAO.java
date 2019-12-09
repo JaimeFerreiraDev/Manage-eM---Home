@@ -33,31 +33,31 @@ public class PersonDAO {
 //		return parents;
 //	}
 //	
-	public static ObservableList<Parent> getParentList() {
-
-        ObservableList<Parent> parents = FXCollections.observableArrayList();
-        Connection conn = JDBC.getCon();
-        String sql = "SELECT id_parent, name, username, age_parent FROM parent ";
-        try(Statement stat = conn.createStatement();
-        		ResultSet rs = stat.executeQuery(sql)){
-            while(rs.next()) {
-                String name = rs.getString("name");
-                int age = rs.getInt("age");
-                int  id= rs.getInt("id");
-                String username= rs.getString("username");
-                String password= rs.getString("password");
-                String email= rs.getString("email");
-                 ObservableList<Kid> kids = null;
-                 ObservableList<Task> tasks = null;
-
-                parents.add(new Parent(name, age, id, username, password,
-                    kids,tasks  ));
-            }
-        }catch(SQLException e) {
-            e.printStackTrace();
-        }
-        return parents;
-}
+//	public static ObservableList<Parent> getParentList() {
+//
+//        ObservableList<Parent> parents = FXCollections.observableArrayList();
+//        Connection conn = JDBC.getCon();
+//        String sql = "SELECT id_parent, name, username, age_parent FROM parent ";
+//        try(Statement stat = conn.createStatement();
+//        		ResultSet rs = stat.executeQuery(sql)){
+//            while(rs.next()) {
+//                String name = rs.getString("name");
+//                int age = rs.getInt("age");
+//                int  id= rs.getInt("id");
+//                String username= rs.getString("username");
+//                String password= rs.getString("password");
+//                String email= rs.getString("email");
+//                 ObservableList<Kid> kids = null;
+//                 ObservableList<Task> tasks = null;
+//
+//                parents.add(new Parent(name, age, id, username, /*password,*/
+//                    kids,tasks  ));
+//            }
+//        }catch(SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return parents;
+//}
 	
 	
 	public static ObservableList<Kid> getKidList() {
@@ -90,11 +90,11 @@ public class PersonDAO {
 	}
 
 
-	static {
-		personList.add(new Parent("Fernando", 24, 34, "f", "f", FXCollections.observableArrayList(), FXCollections.observableArrayList()));
-//		personList.add(new Parent("jaime", 23, "aaa", "a", "a", "a", FXCollections.observableArrayList(), FXCollections.observableArrayList()));
-//		personList.add(new Kid("aurora", 2, "aurora"+ ((int)(Math.random()*100)+100), "b", "b", "b", 1, true, FXCollections.observableArrayList(), FXCollections.observableArrayList()));
-//		personList.add(new Kid("filhaex", 3, ""+5, "c", "c",  "c", 3, true, FXCollections.observableArrayList(), FXCollections.observableArrayList()));
-//		personList.add(new Kid("filHOex", 4, ""+4, "c", "c", "c", 30, true, FXCollections.observableArrayList(), FXCollections.observableArrayList()));
-	}
+//	static {
+////		personList.add(new Parent("Fernando", 24, 34, "f", "f", FXCollections.observableArrayList(), FXCollections.observableArrayList()));
+////		personList.add(new Parent("jaime", 23, "aaa", "a", "a", "a", FXCollections.observableArrayList(), FXCollections.observableArrayList()));
+////		personList.add(new Kid("aurora", 2, "aurora"+ ((int)(Math.random()*100)+100), "b", "b", "b", 1, true, FXCollections.observableArrayList(), FXCollections.observableArrayList()));
+////		personList.add(new Kid("filhaex", 3, ""+5, "c", "c",  "c", 3, true, FXCollections.observableArrayList(), FXCollections.observableArrayList()));
+////		personList.add(new Kid("filHOex", 4, ""+4, "c", "c", "c", 30, true, FXCollections.observableArrayList(), FXCollections.observableArrayList()));
+//	}
 }

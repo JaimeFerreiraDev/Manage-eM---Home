@@ -66,7 +66,7 @@ public class NewAccController {
 				} 
 			}else {
 
-				String sql ="insert into Kid (name, username, password, pts_Kid, age_Kid) values(?,?,?,?,?);";
+				String sql ="insert into Kid (name, username, password, pts_Kid, age_Kid, 1stTime) values(?,?,?,?,?,?);";
 				try (PreparedStatement stat = JDBC.getCon().prepareStatement(sql)){
 //			
 					stat.setString(1,nameText.getText());
@@ -76,6 +76,7 @@ public class NewAccController {
 					SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 					String format = formatter.format(Date.valueOf(datePicker.getValue()));
 					stat.setString(5,format);
+					stat.setBoolean(6, true);
 					System.out.println(stat.toString());
 					stat.execute();
 
@@ -85,7 +86,7 @@ public class NewAccController {
 				} 	
 
 
-				Main.secondaryStage.close();
+				Main.primaryStage.close();
 				Main.openLogin();
 			}
 		}else {
@@ -148,7 +149,7 @@ public class NewAccController {
 		}
 	}
 	public void cancelButtonClick() {
-		Main.secondaryStage.close();
+		Main.primaryStage.close();
 	}
 	@FXML
 	public void initialize(){

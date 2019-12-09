@@ -10,17 +10,16 @@ public final class JDBC {
 	private static final String USER="5C19vZ5lxD";
 	private static final String PASS="5OKyj8g5nV";
 
-	
-	
+
+
 	public static Connection getCon() {
 		try {
 			if(con==null) {
 				con= DriverManager.getConnection(URL, USER, PASS);
-				return con;
-
-			}
+			}		
+			return con;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			System.out.println("foi erro de ligaçao");
 			e.printStackTrace();
 		}
 		return null;

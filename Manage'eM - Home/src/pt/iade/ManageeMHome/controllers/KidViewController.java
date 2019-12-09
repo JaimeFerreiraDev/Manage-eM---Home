@@ -29,7 +29,7 @@ public class KidViewController {
 
 	@FXML
 	public void onParentButtonClicked() {
-		System.out.println(PersonDAO.getLoggedParent().getName());
+		
 		Main.changeTab("views/parentView.fxml", new ParentViewController());
 	}
 	// Outras tabs
@@ -60,7 +60,7 @@ public class KidViewController {
 		nameColumn.setCellValueFactory(new PropertyValueFactory<String, Kid>("name"));
 		ageColumn.setCellValueFactory(new PropertyValueFactory<Integer, Kid>("age"));
 		pointsColumn.setCellValueFactory(new PropertyValueFactory<Integer, Kid>("points"));
-//		kidTV.setItems(PersonDAO.getLoggedParent().getKids());
+	//	kidTV.setItems(PersonDAO.getLoggedParent().getKids()); querry a familyrelation do id do logged paret para buscar kid
 		kidTV.setOnMouseClicked(
 				(event)-> {
 					System.out.println("teste");
