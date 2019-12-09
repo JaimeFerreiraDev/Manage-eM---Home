@@ -32,6 +32,7 @@ public class AddKidController {
 				stat.setInt(2,parent);
 				stat.execute();		
 				Main.plusStage.close();
+				KidViewController.updateKidInfo();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} 

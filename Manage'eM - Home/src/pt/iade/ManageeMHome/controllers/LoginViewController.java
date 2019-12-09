@@ -40,7 +40,7 @@ public class LoginViewController {
 	public void newAccButton() {
 		Main.changeTab("views/newAccView.fxml", new NewAccController());
 		Main.setCounter(0);
-		Main.primaryStage.close();
+	
 	}
 
 	@FXML
