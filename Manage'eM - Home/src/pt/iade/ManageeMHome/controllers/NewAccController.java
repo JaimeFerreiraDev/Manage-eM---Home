@@ -52,8 +52,30 @@ public class NewAccController {
 			if(userTypeCombo.getValue().equals("Parent")) {
 				//PersonDAO.getPersonList().add(new Parent(nameText.getText(), /*calcular idade apartir da data*/10, null,  userText.getText(), passText.getText(),  emailText.getText(), FXCollections.observableArrayList(), FXCollections.observableArrayList()));
 			}else {
-
 				//	PersonDAO.getPersonList().add(new Kid(nameText.getText(), /*calcular idade apartir da data*/10, nameText.getText() + ((int)(Math.random()*100)+100),  userText.getText(), passText.getText(),  confirmPassText.getText(),emailText.getText(),0,true, FXCollections.observableArrayList(), FXCollections.observableArrayList()));
+
+
+				String sql ="insert into Kid (name, username, password, pts_Kid, age_Kid) values(?,?,?,?,?);";
+				try (PreparedStatement stat = JDBC.getCon().prepareStatement(sql)){
+//			
+					stat.setString(1,nameText.getText());
+					stat.setString(2,userText.getText());
+					stat.setString(3,passText.getText());
+					stat.setInt(4,0);
+					SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+					String format = formatter.format(Date.valueOf(datePicker.getValue()));
+					stat.setString(5,format);
+					System.out.println(stat.toString());
+					stat.execute();
+
+				} catch (SQLException e) {
+					e.printStackTrace();
+					System.out.println(e);
+				} 	
+
+
+				Main.primaryStage.close();
+				Main.openLogin();
 
 			}
 
@@ -98,7 +120,7 @@ public class NewAccController {
 					} 	
 
 
-					Main.secondaryStage.close();
+					Main.primaryStage.close();
 					Main.openLogin();
 				}
 			}else {
@@ -161,7 +183,7 @@ public class NewAccController {
 			}}
 		}
 		public void cancelButtonClick() {
-			Main.secondaryStage.close();
+			Main.primaryStage.close();
 		}
 		@FXML
 		public void initialize(){

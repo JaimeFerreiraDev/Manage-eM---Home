@@ -20,7 +20,7 @@ public class K1stTimeController {
 				if(kid==PersonDAO.getLoggedKid()) {
 					PersonDAO.getLoggedKid().getParents().add(parent);
 					Main.changeTab("kidPOV/kviews/ktaskView.fxml", new KtaskController());
-					Main.secondaryStage.close();
+					Main.primaryStage.close();
 				}
 			}
 

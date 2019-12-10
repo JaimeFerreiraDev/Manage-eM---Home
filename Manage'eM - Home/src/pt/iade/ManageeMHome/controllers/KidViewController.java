@@ -58,7 +58,11 @@ public class KidViewController {
 		nameColumn.setCellValueFactory(new PropertyValueFactory<String, Kid>("name"));
 		ageColumn.setCellValueFactory(new PropertyValueFactory<Integer, Kid>("age"));
 		pointsColumn.setCellValueFactory(new PropertyValueFactory<Integer, Kid>("points"));
+
 		kidTV.setItems(PersonDAO.getLoggedParent().getKids());			
+
+//		kidTV.setItems(PersonDAO.getLoggedParent().getKids());
+
 		kidTV.setOnMouseClicked(
 				(event)-> {
 					
