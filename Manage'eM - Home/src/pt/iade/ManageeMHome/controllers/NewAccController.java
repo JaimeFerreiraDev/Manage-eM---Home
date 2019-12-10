@@ -55,7 +55,7 @@ public class NewAccController {
 				//	PersonDAO.getPersonList().add(new Kid(nameText.getText(), /*calcular idade apartir da data*/10, nameText.getText() + ((int)(Math.random()*100)+100),  userText.getText(), passText.getText(),  confirmPassText.getText(),emailText.getText(),0,true, FXCollections.observableArrayList(), FXCollections.observableArrayList()));
 
 
-				String sql ="insert into Kid (name, username, password, pts_Kid, age_Kid) values(?,?,?,?,?);";
+				String sql ="insert into Kid (name, username, password, pts_Kid, age_Kid, 1stTime) values(?,?,?,?,?,?);";
 				try (PreparedStatement stat = JDBC.getCon().prepareStatement(sql)){
 //			
 					stat.setString(1,nameText.getText());
@@ -65,6 +65,7 @@ public class NewAccController {
 					SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 					String format = formatter.format(Date.valueOf(datePicker.getValue()));
 					stat.setString(5,format);
+					stat.setBoolean(6, true);
 					System.out.println(stat.toString());
 					stat.execute();
 
@@ -189,4 +190,8 @@ public class NewAccController {
 		public void initialize(){
 			userTypeCombo.getItems().addAll("Parent", "Kid");
 		}
+
 	}
+
+	
+

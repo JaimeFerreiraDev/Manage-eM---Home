@@ -86,6 +86,6 @@ public class TaskViewController {
 			}; 
 		});
 		FXCollections.observableArrayList();
-		taskTV.setItems(PersonDAO.getLoggedParent().getTasks());
+//		taskTV.setItems(PersonDAO.getLoggedParent().getTasks());
 	}
 }

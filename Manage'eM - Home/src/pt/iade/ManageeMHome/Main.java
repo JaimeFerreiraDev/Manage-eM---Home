@@ -11,6 +11,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import pt.iade.ManageeMHome.controllers.KidTableItemController;
 import pt.iade.ManageeMHome.controllers.KidViewController;
+import pt.iade.ManageeMHome.controllers.ParentViewController;
+import pt.iade.ManageeMHome.controllers.RewardViewController;
+import pt.iade.ManageeMHome.controllers.TaskViewController;
 import pt.iade.ManageeMHome.models.Kid;
 /**
  * This is the class responsible for managing the windows in the project.
@@ -49,6 +52,11 @@ public class Main extends Application {
 			loader.setController(cont);
 			Pane root = loader.load();
 			scene = new Scene(root);
+			if(counter<1) {
+				primaryStage = new Stage();
+				counter++;
+			}
+
 			primaryStage.setScene(scene);
 			primaryStage.show();
 
@@ -117,7 +125,7 @@ public class Main extends Application {
 			tableItemStage.initModality(Modality.APPLICATION_MODAL);
 			tableItemStage.setScene(scene);
 			tableItemStage.showAndWait();
-			kidView.updateKidInfo();
+			kidView.refreshKids();
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -149,7 +157,7 @@ public class Main extends Application {
  * @param FXMLPlusLink
  * @param cont
  */
-	public static void openPlus(String FXMLPlusLink, Object cont) {
+	public static void openPlus(String FXMLPlusLink, Object cont, KidViewController kvc, TaskViewController tvc, RewardViewController rvc, ParentViewController pvc) {
 		try {
 
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource(FXMLPlusLink));
@@ -162,7 +170,7 @@ public class Main extends Application {
 			plusStage.initModality(Modality.APPLICATION_MODAL);
 			plusStage.setScene(scene);
 			plusStage.showAndWait();
-
+			kvc.refreshKids();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -54,6 +54,6 @@ public class ParentViewController {
 	private void initialize() {
 		nameColumn.setCellValueFactory(new PropertyValueFactory<String, Parent>("name"));
 		parentList = FXCollections.observableArrayList();
-		ParentTV.setItems(PersonDAO.getParentList());
+//		ParentTV.setItems(PersonDAO.getParentList());
 	}
 }

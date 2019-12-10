@@ -10,13 +10,13 @@ public class Parent extends Person{
 	ObservableList<Task> tasks;
 	
 
+	public Parent(String name, int age, int id //,String username/* ,String password,*/
+//			, ObservableList<Kid> kids, ObservableList<Task> tasks
+			 ) {
+		super(name, age, id/*, username/* password*/);
+//		this.kids = kids;
+//		this.tasks=tasks;
 
-	public Parent(String name, int age, int id, String username, String password,
-			 ObservableList<Kid> kids, ObservableList<Task> tasks) {
-		super(name, age, id, username, password);
-
-		this.kids = kids;
-		this.tasks=tasks;
 	}
 	public int getAge() {
 		return age;
