@@ -2,6 +2,7 @@ package pt.iade.ManageeMHome.controllers;
 
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -62,31 +63,41 @@ public class AddTaskController {
 
 	@FXML
 	private ComboBox<Kid> kidComboBox;
-	private ObservableList<Kid> selectedKids= FXCollections.observableArrayList();
-
-	ObservableList<Kid> kidOList = FXCollections.observableArrayList();
+//	ObservableList<Kid> kidOList = FXCollections.observableArrayList();
 	@FXML
-	public void addButtonOnClick() {
-
+	public void addButtonOnClick()  {
+		int parent = 0;
 		if(!nameField.getText().isEmpty() 
 				&& !frequency.getToggles().isEmpty()
 				&& String.valueOf(pointsSlider) != null) {
 			//			nameField.setStyle("-fx-effect:dropshadow(three-pass-box, rgba(0,0,0,0), 10, 0, 0, 0)");
 			//			pointsSilder.setStyle("-fx-effect:dropshadow(three-pass-box, rgba(0,0,0,0), 10, 0, 0, 0)");
 
-			String sql ="insert into Task (name, pts_Task, frequency_type, duration, description) values(?,?,?,?,?);";
-			try (PreparedStatement stat = JDBC.getCon().prepareStatement(sql)){	
-				int intSlider= (int)pointsSlider.getValue();
-				stat.setString(1,nameField.getText());
-				stat.setInt(2, intSlider);
-				stat.setString(3,String.valueOf(frequency.toString()));
-				stat.setInt(4, 1000);
-				stat.setString(5, "descricao teste");
-				stat.execute();
-				System.out.println(stat.toString());
-			}catch (SQLException e) {
-				e.printStackTrace();	
-			}
+			String sql ="insert into Task (name, frequency_type, description, duration, pts_Task, completed) values(?,?,?,3600,?,false);";
+				try {
+					PreparedStatement stat = JDBC.getCon().prepareStatement(sql);
+					int intSlider= (int)pointsSlider.getValue();
+					stat.setString(1,nameField.getText());
+					stat.setString(2,"One Time");
+//				stat.setString(2,String.valueOf(frequency.toString()));
+					stat.setString(3,descriptionArea.getText());
+					stat.setInt(4, intSlider);
+					stat.execute();
+					System.out.println(stat.toString());
+					PreparedStatement stmt = JDBC.getCon().prepareStatement("Insert into Parents_Task (parent, Task)"
+							+ " values (?,(select id_Task from Task where name = ? and description = ? and pts_Task = ?))");
+					parent = PersonDAO.getLoggedParent().getId();
+					stmt.setInt(1, parent);
+					stmt.setString(2, nameField.getText());
+					stmt.setString(3, descriptionArea.getText());
+					stmt.setInt(4, intSlider);
+					System.out.println(stmt);
+					stmt.execute();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			
 
 
 			Main.plusStage.close();
@@ -131,13 +142,13 @@ public class AddTaskController {
 		Main.plusStage.close();
 
 	}
-	@FXML
-	public void addKidButtonClick() {
-		selectedKids.add(kidComboBox.getSelectionModel().getSelectedItem());
-		kidOList.remove(kidComboBox.getSelectionModel().getSelectedItem());
-		kidComboBox.setItems(kidOList);
-		System.out.println(selectedKids);
-	}
+//	@FXML
+//	public void addKidButtonClick() {
+//		selectedKids.add(kidComboBox.getSelectionModel().getSelectedItem());
+//		kidOList.remove(kidComboBox.getSelectionModel().getSelectedItem());
+//		kidComboBox.setItems(kidOList);
+//		System.out.println(selectedKids);
+//	}
 
 	@FXML
 	public void initialize() {
@@ -146,11 +157,12 @@ public class AddTaskController {
 		radioWeekly.setToggleGroup(frequency);
 		radioDaily.setToggleGroup(frequency);
 		radioMonthly.setToggleGroup(frequency);
-		for(Kid kid: PersonDAO.getLoggedParent().getKids()) {
-			kidOList.add(kid);
-		}
-		kidComboBox.setItems(kidOList);
+//		for(Kid kid: PersonDAO.getLoggedParent().getKids()) {
+//			kidOList.add(kid);
+//		}
+//		kidComboBox.setItems(kidOList);
 
+		
 	}
 
 	public TextField getNameField() {

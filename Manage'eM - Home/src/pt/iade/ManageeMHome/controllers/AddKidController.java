@@ -22,11 +22,11 @@ public class AddKidController {
 		if(!codeField.getText().isEmpty()){
 			Connection conn= JDBC.getCon(); 
 			int parent = 0;
-			int kid = 0;
+
 			String sql = "Insert into Family_Relation(kid, parent) values (?,?)";
 			try (PreparedStatement stat = JDBC.getCon().prepareStatement(sql)){
 				System.out.println("entrei aqui");
-			
+
 				stat.setInt(1,Integer.valueOf(codeField.getText()));
 				parent = PersonDAO.getLoggedParent().getId();
 				stat.setInt(2,parent);
@@ -39,7 +39,7 @@ public class AddKidController {
 		}
 
 
-		
+
 
 
 	}

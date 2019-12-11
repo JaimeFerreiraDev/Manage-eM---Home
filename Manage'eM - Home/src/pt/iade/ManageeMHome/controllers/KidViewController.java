@@ -69,7 +69,7 @@ public class KidViewController {
 		
 		
 		int parent = 0;
-		String sql ="Select * from Family_Relation, Kid where parent = ? and kid = id_Kid;";
+		String sql ="Select * from Family_Relation, Kid, User where parent = ? and kid = id_Kid and id_Kid = id_User;";
 		try (PreparedStatement stat = JDBC.getCon().prepareStatement(sql)){
 			parent = PersonDAO.getLoggedParent().getId();
 			stat.setInt(1, parent);
@@ -78,10 +78,10 @@ public class KidViewController {
 			ObservableList<Kid> kids = FXCollections.observableArrayList();
 			while(rs.next()) {
 				kids.add(new Kid(rs.getString("name"), 
-						rs.getInt("age_Kid"), 
+						rs.getInt("age"), 
 						rs.getInt("id_Kid"),
 						rs.getInt("pts_Kid"),
-						rs.getBoolean("1stTime"))
+						rs.getBoolean("FirstTime"))
 						);
 			}
 			kidTV.setItems( kids);
@@ -112,7 +112,7 @@ public class KidViewController {
 	
 	
 	public static void updateKidInfo() {
-		kidTV.refresh();
+//		kidTV.refresh();
 		
 	}
 

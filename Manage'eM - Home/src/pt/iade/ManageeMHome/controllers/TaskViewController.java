@@ -1,6 +1,11 @@
 package pt.iade.ManageeMHome.controllers;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
@@ -8,7 +13,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import pt.iade.ManageeMHome.Main;
+import pt.iade.ManageeMHome.models.Kid;
 import pt.iade.ManageeMHome.models.Task;
+import pt.iade.ManageeMHome.models.DAO.JDBC;
 import pt.iade.ManageeMHome.models.DAO.PersonDAO;
 import pt.iade.ManageeMHome.models.DAO.TaskDAO;
 
@@ -26,6 +33,8 @@ public class TaskViewController {
 
 	@FXML
 	private TableColumn<Boolean, Task> statusColumn;
+	
+	int parent = 0;
 
 	// Outras tabs
 	@FXML
@@ -64,7 +73,26 @@ public class TaskViewController {
 
 	@FXML
 	private void initialize() {
+		
+		String sql ="Select * from Parents_Task, Task where parent = ? and id_Task = task;";
+		try (PreparedStatement stat = JDBC.getCon().prepareStatement(sql)){
+			parent = PersonDAO.getLoggedParent().getId();
+			stat.setInt(1, parent);
+			System.out.println(stat);
+			ResultSet rs = stat.executeQuery();	
+			ObservableList<Task> tasks = FXCollections.observableArrayList();
+			while(rs.next()) {
+				tasks.add(new Task(rs.getString("name"),
+						rs.getInt("pts_Task"), 
+						rs.getString("description"), 
+						rs.getBoolean("completed"))
+						);
+			}
+			taskTV.setItems(tasks);
 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} 
 		nameColumn.setCellValueFactory(new PropertyValueFactory<String, Task>("Name"));
 		pointsColumn.setCellValueFactory(new PropertyValueFactory<Integer, Task>("Points"));
 		statusColumn.setCellFactory((tableCol)-> {
@@ -86,6 +114,6 @@ public class TaskViewController {
 			}; 
 		});
 		FXCollections.observableArrayList();
-//		taskTV.setItems(PersonDAO.getLoggedParent().getTasks());
+
 	}
 }
