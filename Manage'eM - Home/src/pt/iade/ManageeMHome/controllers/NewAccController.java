@@ -46,6 +46,7 @@ public class NewAccController {
 				!confirmPassText.getText().isEmpty() &&
 				passText.getText().equals(confirmPassText.getText()) &&
 
+<<<<<<< HEAD
 				userTypeCombo.getValue()!=null &&
 				datePicker.getValue() != null) {
 
@@ -62,19 +63,65 @@ public class NewAccController {
 					stat.setString(2,userText.getText());
 					stat.setString(3,passText.getText());
 					stat.setInt(4,0);
+=======
+			
+			if(userTypeCombo.getValue().equals("Parent")) {
+//				String sql ="insert into User (username, role) values(?,1);"
+//						+ "insert into Parent (id_Parent, name, age) values ((select id_User from User where username = ? ,?, ?;"
+//						+ "insert into Password(id_Password, password) values ((select id_User from User where username = ?), ?);";
+				try {
+					System.out.println("Sou parent");
+					PreparedStatement stat = JDBC.getCon().prepareStatement("insert into User (role, username, name, age) values(1,?,?,?);");
+					stat.setString(1,userText.getText());
+					stat.setString(2,nameText.getText());
 					SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 					String format = formatter.format(Date.valueOf(datePicker.getValue()));
-					stat.setString(5,format);
-					stat.setBoolean(6, true);
-					System.out.println(stat.toString());
-					stat.execute();
-
+					stat.setString(3,format);
+					System.out.println("primeira query: "+stat);
+					stat.execute();	
+					stat.close();
+					stat = JDBC.getCon().prepareStatement("insert into Password(id_Password, password)"
+							+ " values ((select id_User from User where username = ?), ?);");
+					stat.setString(1,userText.getText());
+					stat.setString(2,passText.getText());
+					System.out.println("segunda query: "+stat);
+					stat.execute();	
+					stat.close();
+					
 				} catch (SQLException e) {
 					e.printStackTrace();
-					System.out.println(e);
-				} 	
+				} 
+			}else if(userTypeCombo.getValue().equals("Kid")){
+				try {
+					System.out.println("Sou Kid");
+					PreparedStatement stat = JDBC.getCon().prepareStatement("insert into User(role, username, name, age) values(2,?,?,?);");
+					stat.setString(1,userText.getText());
+					stat.setString(2,nameText.getText());
+>>>>>>> a54b48a2815c5554f7cef9118600a1b44f8b2fbe
+					SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+					String format = formatter.format(Date.valueOf(datePicker.getValue()));
+					stat.setString(3,format);
+					System.out.println("primeira query: "+stat);
+					stat.execute();	
+					stat.close();
+					stat = JDBC.getCon().prepareStatement("insert into Kid (id_Kid, pts_Kid, FirstTime) "
+							+ "values ((select id_User from User where username = ?),0,true);");
+					stat.setString(1,userText.getText());
+					System.out.println("segunda query: "+stat);
+					stat.execute();	
+					stat.close();
+					stat = JDBC.getCon().prepareStatement("insert into Password(id_Password, password) "
+							+ "values ((select id_User from User where username = ?), ?);");
+					stat.setString(1,userText.getText());
+					stat.setString(2,passText.getText());
+					System.out.println("terceirea query: "+stat);
+					stat.execute();	
+					stat.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} 
 
-
+<<<<<<< HEAD
 				Main.primaryStage.close();
 				Main.openLogin();
 
@@ -143,6 +190,16 @@ public class NewAccController {
 				}}}}}}}}
 
 			//make red
+=======
+				System.out.println("consigo fechar");
+			
+//				Main.openLogin();
+//				Main.changeTab("views/LoginView.fxml", new LoginViewController());
+			}
+			Main.primaryStage.close();
+		}else {
+			//errors
+>>>>>>> a54b48a2815c5554f7cef9118600a1b44f8b2fbe
 			if(userText.getText().isEmpty()) {
 				userText.setStyle("-fx-effect:dropshadow(three-pass-box, rgba(255,0,0,0.5), 10, 0, 0, 0)");
 			}

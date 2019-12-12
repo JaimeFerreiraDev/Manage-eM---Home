@@ -33,6 +33,8 @@ public class TaskViewController {
 
 	@FXML
 	private TableColumn<Boolean, Task> statusColumn;
+	
+	int parent = 0;
 
 	// Outras tabs
 	@FXML
@@ -55,7 +57,7 @@ public class TaskViewController {
 	// Botão de adicionar
 	@FXML
 	public void onPlusTaskButtonClicked() {
-		Main.openPlus("views/addTaskView.fxml", new AddTaskController());
+		Main.openPlus(null, this, null, null, "views/addTaskView.fxml", new AddTaskController());
 		System.out.println("PLUS CLICKED");
 	}
 	@FXML
@@ -71,7 +73,12 @@ public class TaskViewController {
 
 	@FXML
 	private void initialize() {
+<<<<<<< HEAD
 		refreshTasks();
+=======
+		
+		updateTaskInfo();
+>>>>>>> a54b48a2815c5554f7cef9118600a1b44f8b2fbe
 		nameColumn.setCellValueFactory(new PropertyValueFactory<String, Task>("Name"));
 		pointsColumn.setCellValueFactory(new PropertyValueFactory<Integer, Task>("Points"));
 		statusColumn.setCellFactory((tableCol)-> {
@@ -91,9 +98,39 @@ public class TaskViewController {
 					}
 				}   
 			}; 
+//			taskTV.setOnMouseClicked(
+//					(event)-> {
+//						System.out.println("cliquei na TV");
+//						Task task = taskTV.getSelectionModel().getSelectedItem();
+//						taskTV.getSelectionModel().clearSelection();
+//					//	if (task != null)
+//					//	Main.openTableItem(this, "views/kidTableItemView.fxml", new KidTableItemController(kid));
+//						}
+//					);
 		});
 		FXCollections.observableArrayList();
-//		taskTV.setItems(PersonDAO.getLoggedParent().getTasks());
+
+	}
+	public void updateTaskInfo() {
+		String sql ="Select * from Parents_Task, Task where parent = ? and id_Task = task;";
+		try (PreparedStatement stat = JDBC.getCon().prepareStatement(sql)){
+			parent = PersonDAO.getLoggedParent().getId();
+			stat.setInt(1, parent);
+			System.out.println(stat);
+			ResultSet rs = stat.executeQuery();	
+			ObservableList<Task> tasks = FXCollections.observableArrayList();
+			while(rs.next()) {
+				tasks.add(new Task(rs.getString("name"),
+						rs.getInt("pts_Task"), 
+						rs.getString("description"),
+						false)
+						);
+			}
+			taskTV.setItems(tasks);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} 
 	}
 	public void refreshTasks() {
 		int parent = 0;

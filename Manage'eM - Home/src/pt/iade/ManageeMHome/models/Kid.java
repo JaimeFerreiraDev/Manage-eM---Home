@@ -17,6 +17,7 @@ public class Kid extends Person{
 		this._1stTime = _1stTime;
 
 	}
+	
 	public int getAge() {
 		return age;
 	}

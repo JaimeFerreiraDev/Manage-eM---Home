@@ -3,7 +3,6 @@ package pt.iade.ManageeMHome;
 import java.io.IOException;
 
 import javafx.application.Application;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -152,12 +151,18 @@ public class Main extends Application {
 			System.out.println(e);
 		}
 	}
+<<<<<<< HEAD
 /**
  * this method opens all the adding windows for 
  * @param FXMLPlusLink
  * @param cont
  */
 	public static void openPlus(String FXMLPlusLink, Object cont, KidViewController kvc, TaskViewController tvc, RewardViewController rvc, ParentViewController pvc) {
+=======
+
+	public static void openPlus(KidViewController kidController,TaskViewController taskController,
+			RewardViewController rewardController, ParentViewController parentController, String FXMLPlusLink, Object cont) {
+>>>>>>> a54b48a2815c5554f7cef9118600a1b44f8b2fbe
 		try {
 
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource(FXMLPlusLink));
@@ -169,9 +174,18 @@ public class Main extends Application {
 			plusStage.initOwner(primaryStage);
 			plusStage.initModality(Modality.APPLICATION_MODAL);
 			plusStage.setScene(scene);
+			
 			plusStage.showAndWait();
+<<<<<<< HEAD
 			kvc.refreshKids();
 			
+=======
+			if(kidController != null)
+			kidController.updateKidInfo();
+			else if (taskController!=null )taskController.updateTaskInfo();
+			else if (rewardController!=null )rewardController.updateRewardInfo();
+			else if (parentController!=null )parentController.updateParentInfo();
+>>>>>>> a54b48a2815c5554f7cef9118600a1b44f8b2fbe
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -41,7 +41,7 @@ public class ParentViewController {
 	// Botao de adicionar
 	@FXML
 	public void onPlusButtonClicked() {
-		Main.openPlus("views/addParentView.fxml", new AddParentController());
+		Main.openPlus(null, null, null, this,"views/addParentView.fxml", new AddParentController());
 		System.out.println("PLUS CLICKED");
 	}
 
@@ -55,5 +55,8 @@ public class ParentViewController {
 		nameColumn.setCellValueFactory(new PropertyValueFactory<String, Parent>("name"));
 		parentList = FXCollections.observableArrayList();
 //		ParentTV.setItems(PersonDAO.getParentList());
+	}
+	public void updateParentInfo() {
+		
 	}
 }

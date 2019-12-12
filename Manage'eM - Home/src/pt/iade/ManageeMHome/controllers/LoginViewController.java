@@ -39,91 +39,78 @@ public class LoginViewController {
 	@FXML
 	public void newAccButton() {
 		Main.changeTab("views/newAccView.fxml", new NewAccController());
+<<<<<<< HEAD
 		
+=======
+>>>>>>> a54b48a2815c5554f7cef9118600a1b44f8b2fbe
 	
+
 	}
 
 	@FXML
-	public void loginButtonOnCLick() {
+	public void loginButtonOnCLick() throws SQLException {
 		Connection conn= JDBC.getCon(); 
-		String tableName = null;
+		//		String tableName = null;
 
-//		String sqlParent = "SELECT username, password FROM Parent where username = ? and password = ?";
-//		String sqlKid =  "SELECT username, password FROM Kid where username = ? and password = ?";
-		String sql="SELECT name, age_parent as age, id_parent as id,0 as 1stTime,0 as points ,'Parent' as Role FROM Parent where username = ? and password = ? "
-				+ "UNION"
-				+ " SELECT name, age_kid as age, id_kid as id, 1stTime, pts_kid as points ,'Kid' as Role FROM Kid where username = ? and password = ?;"; 
 
-// "SELECT id_parent, name, username, password, age_parent,  'Parent' as Role
-// "SELECT id_Kid, name, username, password, pts_Kid, age_kid, 'Kid' as Role
-		try {
-			PreparedStatement stat = conn.prepareStatement(sql); // erro aqui 		
-			stat.setString(1, userText.getText());
-			stat.setString(2, passText.getText());
-			stat.setString(3, userText.getText());
-			stat.setString(4, passText.getText());
-			System.out.println(stat.toString());
-			ResultSet rs = stat.executeQuery();
-//			ResultSetMetaData resultSetMetaData = rs.getMetaData(); //usado para buscar o nome da tabela
-			if(rs.next()) {// vai para a primeira row
-	
-//				tableName = resultSetMetaData.getTableName(1);// guarda o nome da tabela 
+		//		String sql="SELECT name, age_parent as age, id_parent as id,0 as 1stTime,0 as points ,'Parent' as Role FROM Parent where username = ? and password = ? "
+		//				+ "UNION"
+		//				+ " SELECT name, age_kid as age, id_kid as id, 1stTime, pts_kid as points ,'Kid' as Role FROM Kid where username = ? and password = ?;"; 
 
-				tableName = rs.getString("Role");
-				if(tableName.equals("Parent")) {
-					System.out.println("sou parent");
-					PersonDAO.setLoggedParent(new Parent(
-							rs.getString("name"),
-							rs.getInt("age"),
-							rs.getInt("id")));
-//							rs.getString("username")
-//							rs.getString("password"),
-//							FXCollections.observableArrayList(),
-//							FXCollections.observableArrayList()));
-					Main.primaryStage.close();
-					Main.changeTab("views/kidView.fxml", new KidViewController());
-					
-				}else if(tableName.equals("Kid")) {
-					System.out.println("sou Kid");
-					PersonDAO.setLoggedKid(new Kid(
-							rs.getString("name"),
-							rs.getInt("age"),
-							rs.getInt("id"), 
-							rs.getInt("points"), 
-							rs.getBoolean("1stTime")
-							));
-					System.out.println(PersonDAO.getLoggedKid().getId());
-					Main.primaryStage.close();
-					Main.changeTab("kidPOV/kviews/k1stTimeView.fxml", new K1stTimeController());
-				}
+
+		int role = 0;
+
+		String sql = "select * from User, Password where username = ? and password = ? and id_User = id_Password;";
+		PreparedStatement stat = conn.prepareStatement(sql); // erro aqui 		
+		stat.setString(1, userText.getText());
+		stat.setString(2, passText.getText());
+		System.out.println(stat);
+		ResultSet rs = stat.executeQuery();
+		if(rs.next()) {
+			role = rs.getInt("role");
+			if (role ==1) {
+				PersonDAO.setLoggedParent(new Parent(
+						rs.getString("name"),
+						rs.getInt("age"),
+						rs.getInt("id_User")));
+				Main.primaryStage.close();
+				Main.changeTab("views/kidView.fxml", new KidViewController());
 			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			else if(role == 2) {
+				PreparedStatement statement = conn.prepareStatement("Select * from Kid , User where username = ? and Kid.id_Kid = User.id_User");
+				statement.setString(1, userText.getText());
+				ResultSet kids = statement.executeQuery();
+				System.out.println(statement);
+				if(kids.next()) {
+					PersonDAO.setLoggedKid(new Kid(
+							kids.getString("name"),
+							kids.getInt("age"),
+							kids.getInt("id_Kid"),
+							kids.getInt("pts_Kid"),
+							kids.getBoolean("FirstTime")
+							));
+					System.out.println(PersonDAO.getLoggedKid().toString());
+					Main.primaryStage.close();
+					
+					if(kids.getBoolean("FirstTime")) {
+						System.out.println("sou firstTime");
+						Main.changeTab("kidPOV/kviews/k1stTimeView.fxml", new K1stTimeController());
+					
+					}
+					else if(!kids.getBoolean("FirstTime")) {
+						System.out.println("nao sou firstTime");
+						Main.changeTab("kidPOV/kviews/ktaskView.fxml", new KtaskController());
+					}
+					
+					
+				}
+
+			}
 		}
 
-		//		for(Person person : PersonDAO.getPersonList()) {
-		//			if(person.getUsername().equals(userText.getText())) {
-		//				if(person.getPassword().equals(passText.getText())) {
-		//					if(person instanceof Parent) {
-		//						PersonDAO.setLoggedParent((Parent)person);
-		//						Main.primaryStage.close();
-		//						Main.changeTab("views/kidView.fxml", new KidViewController());
-		//					}else {
-		//						
-		//						PersonDAO.setLoggedKid((Kid) person);
-		//						if(PersonDAO.getLoggedKid().is_1stTime()==true) {
-		//							Main.changeTab("kidPOV/kviews/k1stTimeView.fxml", new K1stTimeController());
-		//							Main.primaryStage.close();
-		//						}else {
-		//							Main.changeTab("kidPOV/kviews/ktaskView.fxml", new KtaskController());
-		//							Main.primaryStage.close();
-		//						}
-		//					}
-		//				}
-		//			}
-		//		}
 	}
+
+
 
 
 

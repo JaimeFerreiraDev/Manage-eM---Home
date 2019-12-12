@@ -2,7 +2,9 @@ package pt.iade.ManageeMHome.controllers;
 
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.jfoenix.controls.JFXSlider;
@@ -54,38 +56,65 @@ public class AddTaskController {
 
 	@FXML
 	private TextArea descriptionArea;
-	
-    @FXML
-    private Label freqLabel;
+
+	@FXML
+	private Label freqLabel;
 
 	ToggleGroup frequency = new ToggleGroup();
 
+	private ObservableList<Kid> selectedKids= FXCollections.observableArrayList();
+	private ObservableList<Kid> kids = FXCollections.observableArrayList();
+
 	@FXML
 	private ComboBox<Kid> kidComboBox;
-	private ObservableList<Kid> selectedKids= FXCollections.observableArrayList();
-
 	ObservableList<Kid> kidOList = FXCollections.observableArrayList();
 	@FXML
-	public void addButtonOnClick() {
-
+	public void addButtonOnClick()  {
+		int parent = 0;
 		if(!nameField.getText().isEmpty() 
 				&& !frequency.getToggles().isEmpty()
-				&& String.valueOf(pointsSlider) != null) {
+				&& String.valueOf(pointsSlider) != null
+				&& selectedKids != null) {
 			//			nameField.setStyle("-fx-effect:dropshadow(three-pass-box, rgba(0,0,0,0), 10, 0, 0, 0)");
 			//			pointsSilder.setStyle("-fx-effect:dropshadow(three-pass-box, rgba(0,0,0,0), 10, 0, 0, 0)");
 
-			String sql ="insert into Task (name, pts_Task, frequency_type, duration, description) values(?,?,?,?,?);";
-			try (PreparedStatement stat = JDBC.getCon().prepareStatement(sql)){	
+			String sql ="insert into Task (name, frequency_type, description, duration, pts_Task) values(?,?,?,3600,?);";
+			try {
+				PreparedStatement stat = JDBC.getCon().prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
 				int intSlider= (int)pointsSlider.getValue();
 				stat.setString(1,nameField.getText());
-				stat.setInt(2, intSlider);
-				stat.setString(3,String.valueOf(frequency.toString()));
-				stat.setInt(4, 1000);
-				stat.setString(5, "descricao teste");
+				stat.setString(2,"One Time");
+				stat.setString(3,descriptionArea.getText());
+				stat.setInt(4, intSlider);
+				System.out.println(stat);		
 				stat.execute();
+				ResultSet rs = stat.getGeneratedKeys();
+			
+				rs.next();
+				int id_Task = rs.getInt(1);
+
 				System.out.println(stat.toString());
-			}catch (SQLException e) {
-				e.printStackTrace();	
+				PreparedStatement stmt = JDBC.getCon().prepareStatement("Insert into Parents_Task (parent, Task)"
+						+ " values (?,?);");
+					
+				parent = PersonDAO.getLoggedParent().getId();
+				stmt.setInt(1, parent);
+				stmt.setInt(2, id_Task);
+				System.out.println("cheguei aqui??????"+stmt);
+				stmt.execute();
+
+				for (Kid kid : selectedKids) {
+
+					PreparedStatement kidstask = JDBC.getCon().prepareStatement("Insert into Kids_Task (kid, Task,start_time ,completed)"
+							+ " values (?,?,1000,false)");
+					kidstask.setInt(1, kid.getId());
+					kidstask.setInt(2, id_Task);
+					kidstask.execute();
+				}
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 
 
@@ -97,7 +126,7 @@ public class AddTaskController {
 				errorLabel.setText("Please choose a frequency");
 			}
 			}
-			
+
 			if(nameField.getText().isEmpty()) {
 				nameField.setStyle("-fx-effect:dropshadow(three-pass-box, rgba(255,0,0,0.5), 10, 0, 0, 0)");;
 			}else{ if(frequency.getToggles().isEmpty()) {
@@ -107,6 +136,25 @@ public class AddTaskController {
 		}
 
 
+<<<<<<< HEAD
+=======
+
+
+
+
+		//
+		//				Task taskAux= new Task(nameField.getText(), (int)pointsSilder.getValue(), descriptionArea.getText(), selectedKids, false);
+		//				TaskDAO.getTaskList().add(taskAux);
+		//				
+		//				for(Kid kid: selectedKids) {
+		//				kid.getTasks().add(taskAux);
+		//				}
+		//				PersonDAO.getLoggedParent().getTasks().add(taskAux);
+		//
+
+
+
+>>>>>>> a54b48a2815c5554f7cef9118600a1b44f8b2fbe
 	}
 
 	@FXML
@@ -118,9 +166,9 @@ public class AddTaskController {
 	@FXML
 	public void addKidButtonClick() {
 		selectedKids.add(kidComboBox.getSelectionModel().getSelectedItem());
-		kidOList.remove(kidComboBox.getSelectionModel().getSelectedItem());
-		kidComboBox.setItems(kidOList);
-		System.out.println(selectedKids);
+		kids.remove(kidComboBox.getSelectionModel().getSelectedItem());
+		kidComboBox.setItems(kids);
+
 	}
 
 	@FXML
@@ -130,10 +178,29 @@ public class AddTaskController {
 		radioWeekly.setToggleGroup(frequency);
 		radioDaily.setToggleGroup(frequency);
 		radioMonthly.setToggleGroup(frequency);
-		for(Kid kid: PersonDAO.getLoggedParent().getKids()) {
-			kidOList.add(kid);
-		}
-		kidComboBox.setItems(kidOList);
+		int parent = 0;
+		String sql ="Select * from Family_Relation, Kid, User where parent = ? and kid = id_Kid and id_Kid = id_User;";
+		try (PreparedStatement stat = JDBC.getCon().prepareStatement(sql)){
+			parent = PersonDAO.getLoggedParent().getId();
+			stat.setInt(1, parent);
+			System.out.println(stat);
+			ResultSet rs = stat.executeQuery();	
+
+			while(rs.next()) {
+				kids.add(new Kid(
+						rs.getString("name"), 
+						rs.getInt("age"), 
+						rs.getInt("id_Kid"),
+						rs.getInt("pts_Kid"),
+						rs.getBoolean("FirstTime"))
+						);
+			}
+			System.out.println(kids.toString());
+			kidComboBox.setItems(kids);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} 
+
 
 	}
 
@@ -145,5 +212,12 @@ public class AddTaskController {
 		return descriptionArea;
 	}
 
+	public ObservableList<Kid> getKidList() {
+		ObservableList<Kid> kidList = FXCollections.observableArrayList();
+
+
+		return kidList;
+
+	}
 
 }
