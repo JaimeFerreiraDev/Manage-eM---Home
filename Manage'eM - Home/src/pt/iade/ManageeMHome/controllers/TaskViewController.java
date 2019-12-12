@@ -73,12 +73,9 @@ public class TaskViewController {
 
 	@FXML
 	private void initialize() {
-<<<<<<< HEAD
-		refreshTasks();
-=======
+
 		
 		updateTaskInfo();
->>>>>>> a54b48a2815c5554f7cef9118600a1b44f8b2fbe
 		nameColumn.setCellValueFactory(new PropertyValueFactory<String, Task>("Name"));
 		pointsColumn.setCellValueFactory(new PropertyValueFactory<Integer, Task>("Points"));
 		statusColumn.setCellFactory((tableCol)-> {

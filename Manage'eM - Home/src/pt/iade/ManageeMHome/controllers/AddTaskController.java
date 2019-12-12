@@ -134,27 +134,6 @@ public class AddTaskController {
 			}
 			}
 		}
-
-
-<<<<<<< HEAD
-=======
-
-
-
-
-		//
-		//				Task taskAux= new Task(nameField.getText(), (int)pointsSilder.getValue(), descriptionArea.getText(), selectedKids, false);
-		//				TaskDAO.getTaskList().add(taskAux);
-		//				
-		//				for(Kid kid: selectedKids) {
-		//				kid.getTasks().add(taskAux);
-		//				}
-		//				PersonDAO.getLoggedParent().getTasks().add(taskAux);
-		//
-
-
-
->>>>>>> a54b48a2815c5554f7cef9118600a1b44f8b2fbe
 	}
 
 	@FXML

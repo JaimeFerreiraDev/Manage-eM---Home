@@ -54,11 +54,8 @@ public class KidViewController {
 	// Botao de adicionar
 	@FXML
 	public void onPlusButtonClicked() {
-<<<<<<< HEAD
-		Main.openPlus("views/addKidView.fxml", new AddKidController(), this, null, null, null);
-=======
 		Main.openPlus(this,null, null, null, "views/addKidView.fxml", new AddKidController());
->>>>>>> a54b48a2815c5554f7cef9118600a1b44f8b2fbe
+
 	}
 
 	@FXML
@@ -69,25 +66,12 @@ public class KidViewController {
 
 	@FXML
 	private void initialize() {
-<<<<<<< HEAD
-		refreshKids();
-		nameColumn.setCellValueFactory(new PropertyValueFactory<String, Kid>("name"));
-		ageColumn.setCellValueFactory(new PropertyValueFactory<Integer, Kid>("age"));
-		pointsColumn.setCellValueFactory(new PropertyValueFactory<Integer, Kid>("points"));
-
-
-
-		//		kidTV.setItems(PersonDAO.getLoggedParent().getKids());
-
-=======
-		
 		updateKidInfo();
 		nameColumn.setCellValueFactory(new PropertyValueFactory<String, Kid>("name"));
 		ageColumn.setCellValueFactory(new PropertyValueFactory<Integer, Kid>("age"));
 		pointsColumn.setCellValueFactory(new PropertyValueFactory<Integer, Kid>("points"));
 		
 //		kidTV.setItems(PersonDAO.getLoggedParent().getKids()); querry a familyrelation do id do logged paret para buscar kid
->>>>>>> a54b48a2815c5554f7cef9118600a1b44f8b2fbe
 		kidTV.setOnMouseClicked(
 				(event)-> {
 					System.out.println("cliquei na TV");
@@ -98,11 +82,7 @@ public class KidViewController {
 					});
 
 	}
-<<<<<<< HEAD
-	public void refreshKids() {
-		int parent = 0;
-		String sql ="Select * from Family_Relation, Kid where parent = ? and kid = id_Kid;";
-=======
+
 	
 	
 	
@@ -112,7 +92,6 @@ public class KidViewController {
 	public void updateKidInfo() {
 		int parent = 0;
 		String sql ="Select * from Family_Relation, Kid, User where parent = ? and kid = id_Kid and id_Kid = id_User;";
->>>>>>> a54b48a2815c5554f7cef9118600a1b44f8b2fbe
 		try (PreparedStatement stat = JDBC.getCon().prepareStatement(sql)){
 			parent = PersonDAO.getLoggedParent().getId();
 			stat.setInt(1, parent);
@@ -121,19 +100,7 @@ public class KidViewController {
 			ObservableList<Kid> kids = FXCollections.observableArrayList();
 			while(rs.next()) {
 				kids.add(new Kid(rs.getString("name"), 
-<<<<<<< HEAD
-						rs.getInt("age_Kid"), 
-						rs.getInt("id_Kid"),
-						rs.getInt("pts_Kid"),
-						rs.getBoolean("1stTime"))
-						);
-				System.out.println(kids.toString());
-			}
-		kidTV.setItems(kids);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} 
-=======
+
 						rs.getInt("age"), 
 						rs.getInt("id_Kid"),
 						rs.getInt("pts_Kid"),
@@ -145,8 +112,6 @@ public class KidViewController {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} 
-
->>>>>>> a54b48a2815c5554f7cef9118600a1b44f8b2fbe
 	}
 
 }

@@ -36,19 +36,10 @@ public class NotificationsController {
 
 	@FXML
 	private TableColumn<Boolean, Button> noColumn;
+	@FXML
+	private TableColumn<Boolean, Button> yesColumn;
 
-<<<<<<< HEAD
-		private ObservableList<Task> completedTasks= FXCollections.observableArrayList();
-		
-		private void findCompletedTasks() {
-			for(Kid kid : PersonDAO.getLoggedParent().getKids()) {
-				for(Task task: TaskDAO.getTaskList() ) {//kid.getTasks()
-					if(task.isComplete()) {
-						completedTasks.add(task);
-					}
-				}
-			}
-		}
+	private ObservableList<Task> completedTasks = FXCollections.observableArrayList();
 		@FXML
 		private void initialize() {
 			
@@ -68,9 +59,6 @@ public class NotificationsController {
 								
                                 notificationTV.getSelectionModel().select(getTableRow().getIndex());
                                 Task  selectedItem     =    notificationTV.getSelectionModel().getSelectedItem();
-                                for(Kid kid :  selectedItem.getKidArrayList()) {
-                                	kid.setPoints(kid.getPoints()+selectedItem.getPoints());
-                                }
                                 notificationTV.getItems().remove(selectedItem);
                                 notificationTV.setItems(completedTasks);
 							});
@@ -106,11 +94,6 @@ public class NotificationsController {
 			});
 			
 		}
-=======
-	@FXML
-	private TableColumn<Boolean, Button> yesColumn;
-
-	private ObservableList<Task> completedTasks= FXCollections.observableArrayList();
 
 	private void findCompletedTasks() {
 		int parent = 0;
@@ -136,59 +119,7 @@ public class NotificationsController {
 			e.printStackTrace();
 		} 
 	}
-	@FXML
-	private void initialize() {
-
-		findCompletedTasks();
-		taskColumn.setCellValueFactory(new PropertyValueFactory<String, Task>("name"));
-		kidColumnN.setCellValueFactory(new PropertyValueFactory<String, Kid>("kidName"));
-		FXCollections.observableArrayList();
-		notificationTV.setItems(completedTasks);
-		noColumn.setCellFactory((tableCol)-> {
-			return new TableCell<Boolean, Button> ()  {
-				@Override
-				protected void updateItem(Button b1, boolean empty) {
-					super.updateItem(b1, empty);
-					if(!empty){
-						Button button = new Button("NO");
-						button.setOnAction((event) -> {
-							notificationTV.getSelectionModel().select(getTableRow().getIndex());
-							Task  selectedItem 	=	notificationTV.getSelectionModel().getSelectedItem();
-//							for(Kid kid :  selectedItem.getKidArrayList()) {
-//								kid.setPoints(kid.getPoints()+selectedItem.getPoints());
-//							}
-							notificationTV.getItems().remove(selectedItem);
-							selectedItem.setComplete(false);
-						});
-						setGraphic(button);
-					} else  {
-						setGraphic(null);
-
-					}}
-
-			}; 
-		});
-		yesColumn.setCellFactory((tableCol)-> {
-			return new TableCell<Boolean, Button> ()  {
-				@Override
-				protected void updateItem(Button b1, boolean empty) {
-					super.updateItem(b1, empty);
-					if(!empty){
-						Button button = new Button("YES");
-						button.setOnAction((event) -> {
-
-						});
-						setGraphic(button);
-					} else  {
-						setGraphic(null);
-
-					}
-				}   
-			}; 
-		});
-
->>>>>>> a54b48a2815c5554f7cef9118600a1b44f8b2fbe
-	}
+	
 }
 
 

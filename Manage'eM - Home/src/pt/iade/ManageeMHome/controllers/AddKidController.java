@@ -36,10 +36,6 @@ public class AddKidController {
 				stmt.setInt(1,parent);
 				stmt.execute();
 				Main.plusStage.close();
-<<<<<<< HEAD
-=======
-
->>>>>>> a54b48a2815c5554f7cef9118600a1b44f8b2fbe
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} 
