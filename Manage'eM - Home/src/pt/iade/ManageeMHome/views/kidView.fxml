@@ -48,21 +48,21 @@
             <Font size="25.0" />
          </font>
       </Label>
-      <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="223.0" layoutY="432.0" onMouseClicked="#onPlusButtonClicked" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="224.0" layoutY="432.0" onMouseClicked="#onPlusButtonClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/plus.png" />
          </image>
       </ImageView>
-      <TableView fx:id="kidTV" layoutX="26.0" layoutY="62.0" prefHeight="353.0" prefWidth="242.0">
+      <TableView fx:id="kidTV" layoutX="14.0" layoutY="69.0" prefHeight="353.0" prefWidth="266.0">
         <columns>
-          <TableColumn fx:id="nameColumn" prefWidth="110.0" text="Name" />
-          <TableColumn fx:id="ageColumn" prefWidth="59.0" text="Age" />
-            <TableColumn fx:id="pointsColumn" maxWidth="50000.0" prefWidth="74.0" text="M's" />
+          <TableColumn fx:id="nameColumn" prefWidth="131.0" text="Name" />
+          <TableColumn fx:id="ageColumn" prefWidth="56.0" text="Age" />
+            <TableColumn fx:id="pointsColumn" maxWidth="50000.0" prefWidth="78.0" text="M's" />
         </columns>
       </TableView>
-      <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="234.0" layoutY="12.0" onMouseClicked="#notificationClick" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="60.0" fitWidth="56.0" layoutX="218.0" layoutY="6.0" onMouseClicked="#notificationClick" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/coin.png" />
+            <Image url="@../../../../../bin/pt/iade/ManageeMHome/images/notifications.png" />
          </image>
       </ImageView>
    </children>

@@ -10,8 +10,4 @@ public class TaskDAO {
 	public static ObservableList<Task> getTaskList() {
 		return taskList;
 	}
-
-	static {
-		taskList.add(new Task("nibba", 79000, "", FXCollections.observableArrayList(), true));
-	}
 }

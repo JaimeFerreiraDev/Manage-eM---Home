@@ -171,6 +171,7 @@ public class Main extends Application {
 			plusStage.setScene(scene);
 			plusStage.showAndWait();
 			kvc.refreshKids();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
