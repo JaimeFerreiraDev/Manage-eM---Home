@@ -36,7 +36,7 @@ public class K1stTimeController {
 	private void initialize() {
 		Connection conn= JDBC.getCon(); 
 		int id = 0;
-		String sql = "Select * from Kid where id_Kid = ?";
+		String sql = "";
 		try (PreparedStatement stat = JDBC.getCon().prepareStatement(sql)){
 			id = PersonDAO.getLoggedKid().getId();
 			stat.setInt(1,id);

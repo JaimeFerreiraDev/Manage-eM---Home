@@ -72,10 +72,11 @@ public class NewAccController {
 					System.out.println("segunda query: "+stat);
 					stat.execute();	
 					stat.close();
+					
 				} catch (SQLException e) {
 					e.printStackTrace();
 				} 
-			}else {
+			}else if(userTypeCombo.getValue().equals("Kid")){
 				try {
 					System.out.println("Sou Kid");
 					PreparedStatement stat = JDBC.getCon().prepareStatement("insert into User(role, username, name, age) values(2,?,?,?);");
@@ -104,10 +105,12 @@ public class NewAccController {
 					e.printStackTrace();
 				} 
 
-
-				Main.primaryStage.close();
-				Main.openLogin();
+				System.out.println("consigo fechar");
+			
+//				Main.openLogin();
+//				Main.changeTab("views/LoginView.fxml", new LoginViewController());
 			}
+			Main.primaryStage.close();
 		}else {
 			//errors
 			if(userText.getText().isEmpty()) {

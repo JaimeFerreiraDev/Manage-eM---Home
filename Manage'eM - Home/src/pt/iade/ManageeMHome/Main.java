@@ -3,7 +3,6 @@ package pt.iade.ManageeMHome;
 import java.io.IOException;
 
 import javafx.application.Application;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -11,6 +10,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import pt.iade.ManageeMHome.controllers.KidTableItemController;
 import pt.iade.ManageeMHome.controllers.KidViewController;
+import pt.iade.ManageeMHome.controllers.ParentViewController;
+import pt.iade.ManageeMHome.controllers.RewardViewController;
+import pt.iade.ManageeMHome.controllers.TaskViewController;
 import pt.iade.ManageeMHome.models.Kid;
 
 public class Main extends Application {
@@ -128,7 +130,8 @@ public class Main extends Application {
 		}
 	}
 
-	public static void openPlus(String FXMLPlusLink, Object cont) {
+	public static void openPlus(KidViewController kidController,TaskViewController taskController,
+			RewardViewController rewardController, ParentViewController parentController, String FXMLPlusLink, Object cont) {
 		try {
 
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource(FXMLPlusLink));
@@ -140,8 +143,13 @@ public class Main extends Application {
 			plusStage.initOwner(primaryStage);
 			plusStage.initModality(Modality.APPLICATION_MODAL);
 			plusStage.setScene(scene);
+			
 			plusStage.showAndWait();
-
+			if(kidController != null)
+			kidController.updateKidInfo();
+			else if (taskController!=null )taskController.updateTaskInfo();
+			else if (rewardController!=null )rewardController.updateRewardInfo();
+			else if (parentController!=null )parentController.updateParentInfo();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

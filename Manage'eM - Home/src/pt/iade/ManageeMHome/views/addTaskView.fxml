@@ -66,7 +66,7 @@
       <TextArea fx:id="descriptionArea" layoutX="48.0" layoutY="301.0" prefHeight="115.0" prefWidth="200.0" promptText="ex: - The dishes must be well cleaned" wrapText="true" />
       <ComboBox fx:id="kidComboBox" layoutX="19.0" layoutY="457.0" prefHeight="31.0" prefWidth="185.0" />
       <Label layoutX="19.0" layoutY="427.0" text="Who is the task for?" />
-
+      <Button layoutX="211.0" layoutY="457.0" mnemonicParsing="false" onAction="#addKidButtonClick" text="+ Add" />
       <Label fx:id="errorLabel" layoutX="117.0" layoutY="488.0" />
    </children>
 </AnchorPane>

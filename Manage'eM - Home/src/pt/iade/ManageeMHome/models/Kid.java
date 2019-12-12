@@ -20,6 +20,7 @@ public class Kid extends Person{
 //		this.parents = parents;
 //		this.tasks=tasks;
 	}
+	
 	public int getAge() {
 		return age;
 	}

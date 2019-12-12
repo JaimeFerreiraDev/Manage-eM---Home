@@ -38,7 +38,7 @@ public class RewardViewController {
 	// Botao de adicionar
 		@FXML
 		public void onPlusButtonClicked() {
-			Main.openPlus("views/addRewardView.fxml", new AddRewardController());
+			Main.openPlus(null, null, this, null, "views/addRewardView.fxml", new AddRewardController());
 			System.out.println("PLUS CLICKED");
 		}
 		@FXML
@@ -54,5 +54,7 @@ public class RewardViewController {
 		     FXCollections.observableArrayList();
 		     rewardTV.setItems(RewardDAO.getRewardList());
 		    }
-		
+		public void updateRewardInfo() {
+			
+		}
 }

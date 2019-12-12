@@ -10,7 +10,8 @@ public class Task {
 	private int points;
 	private String details;
 	private boolean isComplete;
-	private static ObservableList<Kid> kidOArrayList ;
+	private Kid kid;
+
 	public Task( String name,int points, String details, //ObservableList<Kid> kidOArrayList,
 			boolean isComplete/*, String username, String password*/) {
 	//	Task.kidOArrayList=kidOArrayList;
@@ -19,6 +20,12 @@ public class Task {
 		this.details=details;
 		this.isComplete=isComplete;
 	}
+	public Task( String name,int points, String details, 
+			boolean isComplete, Kid kid) {
+		this(name, points, details, isComplete);
+		this.kid= kid;
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -28,9 +35,7 @@ public class Task {
 	public String getDetails() {
 		return details;
 	}
-	public ObservableList<Kid> getKidArrayList() {
-		return kidOArrayList;
-	}
+
 	public boolean isComplete() {
 		return isComplete;
 	}
@@ -38,6 +43,8 @@ public class Task {
 		this.isComplete = isComplete;
 	}
 	
-	
+	public String getKidName() {
+		return kid.getName();
+	}
 	
 }

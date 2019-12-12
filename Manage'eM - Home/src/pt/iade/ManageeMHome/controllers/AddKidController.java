@@ -20,7 +20,7 @@ public class AddKidController {
 	public void addButtonOnClick() {
 
 		if(!codeField.getText().isEmpty()){
-			Connection conn= JDBC.getCon(); 
+	
 			int parent = 0;
 
 			String sql = "Insert into Family_Relation(kid, parent) values (?,?)";
@@ -31,8 +31,12 @@ public class AddKidController {
 				parent = PersonDAO.getLoggedParent().getId();
 				stat.setInt(2,parent);
 				stat.execute();		
+				PreparedStatement stmt = JDBC.getCon().prepareStatement(" UPDATE Kid SET FirstTime = false WHERE id_Kid = (SELECT kid FROM" + 
+						" Family_Relation WHERE Family_Relation.parent = ? and Family_Relation.kid = Kid.id_Kid);");
+				stmt.setInt(1,parent);
+				stmt.execute();
 				Main.plusStage.close();
-				KidViewController.updateKidInfo();
+
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} 

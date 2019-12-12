@@ -39,7 +39,7 @@ public class LoginViewController {
 	@FXML
 	public void newAccButton() {
 		Main.changeTab("views/newAccView.fxml", new NewAccController());
-		Main.setCounter(0);
+	
 
 	}
 
@@ -56,10 +56,10 @@ public class LoginViewController {
 
 		int role = 0;
 
-		String sql = "select * from User, Password where username = ? and id_User = id_Password;";
+		String sql = "select * from User, Password where username = ? and password = ? and id_User = id_Password;";
 		PreparedStatement stat = conn.prepareStatement(sql); // erro aqui 		
-		//		PreparedStatement stat = conn.prepareStatement("Select * from User where username = ?");
 		stat.setString(1, userText.getText());
+		stat.setString(2, passText.getText());
 		System.out.println(stat);
 		ResultSet rs = stat.executeQuery();
 		if(rs.next()) {
@@ -73,7 +73,7 @@ public class LoginViewController {
 				Main.changeTab("views/kidView.fxml", new KidViewController());
 			}
 			else if(role == 2) {
-				PreparedStatement statement = conn.prepareStatement("Select * from Kid , User where username = ?");
+				PreparedStatement statement = conn.prepareStatement("Select * from Kid , User where username = ? and Kid.id_Kid = User.id_User");
 				statement.setString(1, userText.getText());
 				ResultSet kids = statement.executeQuery();
 				System.out.println(statement);
@@ -85,60 +85,24 @@ public class LoginViewController {
 							kids.getInt("pts_Kid"),
 							kids.getBoolean("FirstTime")
 							));
+					System.out.println(PersonDAO.getLoggedKid().toString());
 					Main.primaryStage.close();
-					Main.changeTab("kidPOV/kviews/k1stTimeView.fxml", new K1stTimeController());
+					
+					if(kids.getBoolean("FirstTime")) {
+						System.out.println("sou firstTime");
+						Main.changeTab("kidPOV/kviews/k1stTimeView.fxml", new K1stTimeController());
+					
+					}
+					else if(!kids.getBoolean("FirstTime")) {
+						System.out.println("nao sou firstTime");
+						Main.changeTab("kidPOV/kviews/ktaskView.fxml", new KtaskController());
+					}
+					
+					
 				}
 
 			}
 		}
-
-		//			PreparedStatement stat = conn.prepareStatement(sql); // erro aqui 		
-		//		PreparedStatement stat = conn.prepareStatement("Select * from User where username = ?");
-		//		stat.setString(1, userText.getText());
-		//		System.out.println(stat);
-		//		ResultSet rs = stat.executeQuery();
-		//		if(rs.next())
-		//		{
-		//			role = rs.getInt("role");
-		//			System.out.println("a role é " +role);
-		//			PreparedStatement stmt = conn.prepareStatement("Select * from Password, User where username = ? and id_User = id_Password ");
-		//			stmt.setString(1, userText.getText());
-		//			ResultSet rspw = stmt.executeQuery();
-		//			System.out.println(stmt);
-		//			if(rspw.next()) {
-		//				
-		//				if(role == 1) /*se for parent*/{
-		//					System.out.println("entrei no if da role");
-		//					PreparedStatement statement = conn.prepareStatement("Select * from Parent , User where username = ? and id_User = id_Parent");
-		//					statement.setString(1, userText.getText());
-		//					ResultSet parents = statement.executeQuery();
-		//					System.out.println("esta é a result set" + parents);
-		//					System.out.println(statement);
-		//					PersonDAO.setLoggedParent(new Parent(
-		//							parents.getString("name"),
-		//							parents.getInt("age"),
-		//							parents.getInt("id_Parent")));
-		//					System.out.println(statement);
-		//					Main.primaryStage.close();
-		//					Main.changeTab("views/kidView.fxml", new KidViewController());
-		//				}else if(role == 2) /*se for kid*/{
-		//					PreparedStatement statement = conn.prepareStatement("Select * from Kid , User where username = ?");
-		//					statement.setString(1, userText.getText());
-		//					ResultSet kids = statement.executeQuery();
-		//					PersonDAO.setLoggedKid(new Kid(
-		//							kids.getString("name"),
-		//							kids.getInt("age"),
-		//							kids.getInt("id"),
-		//							kids.getInt("points"),
-		//							kids.getBoolean("FirstTime")
-		//							));
-		//
-		//					System.out.println(statement);
-
-
-		//		
-		//					Main.primaryStage.close();
-		//					Main.changeTab("kidPOV/kviews/k1stTimeView.fxml", new K1stTimeController());
 
 	}
 

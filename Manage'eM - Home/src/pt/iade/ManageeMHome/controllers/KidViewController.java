@@ -55,7 +55,7 @@ public class KidViewController {
 	// Botao de adicionar
 	@FXML
 	public void onPlusButtonClicked() {
-		Main.openPlus("views/addKidView.fxml", new AddKidController());
+		Main.openPlus(this,null, null, null, "views/addKidView.fxml", new AddKidController());
 	}
 	
 	@FXML
@@ -67,29 +67,7 @@ public class KidViewController {
 	@FXML
 	private void initialize() {
 		
-		
-		int parent = 0;
-		String sql ="Select * from Family_Relation, Kid, User where parent = ? and kid = id_Kid and id_Kid = id_User;";
-		try (PreparedStatement stat = JDBC.getCon().prepareStatement(sql)){
-			parent = PersonDAO.getLoggedParent().getId();
-			stat.setInt(1, parent);
-			System.out.println(stat);
-			ResultSet rs = stat.executeQuery();	
-			ObservableList<Kid> kids = FXCollections.observableArrayList();
-			while(rs.next()) {
-				kids.add(new Kid(rs.getString("name"), 
-						rs.getInt("age"), 
-						rs.getInt("id_Kid"),
-						rs.getInt("pts_Kid"),
-						rs.getBoolean("FirstTime"))
-						);
-			}
-			kidTV.setItems( kids);
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} 
-
+		updateKidInfo();
 		nameColumn.setCellValueFactory(new PropertyValueFactory<String, Kid>("name"));
 		ageColumn.setCellValueFactory(new PropertyValueFactory<Integer, Kid>("age"));
 		pointsColumn.setCellValueFactory(new PropertyValueFactory<Integer, Kid>("points"));
@@ -111,9 +89,29 @@ public class KidViewController {
 	
 	
 	
-	public static void updateKidInfo() {
-//		kidTV.refresh();
-		
+	public void updateKidInfo() {
+		int parent = 0;
+		String sql ="Select * from Family_Relation, Kid, User where parent = ? and kid = id_Kid and id_Kid = id_User;";
+		try (PreparedStatement stat = JDBC.getCon().prepareStatement(sql)){
+			parent = PersonDAO.getLoggedParent().getId();
+			stat.setInt(1, parent);
+			System.out.println(stat);
+			ResultSet rs = stat.executeQuery();	
+			ObservableList<Kid> kids = FXCollections.observableArrayList();
+			while(rs.next()) {
+				kids.add(new Kid(rs.getString("name"), 
+						rs.getInt("age"), 
+						rs.getInt("id_Kid"),
+						rs.getInt("pts_Kid"),
+						rs.getBoolean("FirstTime"))
+						);
+			}
+			kidTV.setItems( kids);
+			System.out.println(kids);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} 
+
 	}
 
 }
