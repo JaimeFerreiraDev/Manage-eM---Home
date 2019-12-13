@@ -60,15 +60,17 @@ public class KtaskController {
 						Button button = new Button("DONE");
 						button.setOnAction((event) -> {
 							try {
-							 kid =	PersonDAO.getLoggedKid().getId();
-								PreparedStatement stmt = JDBC.getCon().prepareStatement(" UPDATE Kids_Task, Task SET completed = true WHERE Kids_Task.kid ="
-										+ "? and Task.id_Task = Kids_Task.Task;");
-								stmt.setInt(1,kid);
-								stmt.execute();
-								taskTV.getSelectionModel().select(getTableRow().getIndex());
-								tasks.remove(taskTV.getSelectionModel().getSelectedItem());
-								
-								taskTV.setItems(tasks);
+								kid =    PersonDAO.getLoggedKid().getId();
+                                PreparedStatement stmt = JDBC.getCon().prepareStatement(" UPDATE Kids_Task, Task SET completed = true WHERE Kids_Task.kid ="
+                                        + "? and Task.id_Task = Kids_Task.Task and Task.name = ?;");
+                                stmt.setInt(1,kid);
+                                taskTV.getSelectionModel().select(getTableRow().getIndex());
+                                String nome = taskTV.getSelectionModel().getSelectedItem().getName();
+                                System.out.println(nome);
+                                stmt.setString(2, nome);
+                                stmt.execute();
+                                tasks.remove(taskTV.getSelectionModel().getSelectedItem());
+                                taskTV.setItems(tasks);
 							} catch (SQLException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
