@@ -15,10 +15,12 @@ import pt.iade.ManageeMHome.models.DAO.PersonDAO;
 public class AddKidController {
 	@FXML
 	private TextField codeField;
-
+	/**
+	 * This method completes the process of linking 
+	 */
 	@FXML
 	public void addButtonOnClick() {
-
+		
 		if(!codeField.getText().isEmpty()){
 	
 			int parent = 0;
@@ -30,7 +32,8 @@ public class AddKidController {
 				stat.setInt(1,Integer.valueOf(codeField.getText()));
 				parent = PersonDAO.getLoggedParent().getId();
 				stat.setInt(2,parent);
-				stat.execute();		
+				stat.execute();
+				
 				PreparedStatement stmt = JDBC.getCon().prepareStatement(" UPDATE Kid SET FirstTime = false WHERE id_Kid = (SELECT kid FROM" + 
 						" Family_Relation WHERE Family_Relation.parent = ? and Family_Relation.kid = Kid.id_Kid);");
 				stmt.setInt(1,parent);

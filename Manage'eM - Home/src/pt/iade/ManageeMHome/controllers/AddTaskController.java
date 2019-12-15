@@ -92,8 +92,6 @@ public class AddTaskController {
 			
 				rs.next();
 				int id_Task = rs.getInt(1);
-
-				System.out.println(stat.toString());
 				PreparedStatement stmt = JDBC.getCon().prepareStatement("Insert into Parents_Task (parent, Task)"
 						+ " values (?,?);");
 					
@@ -107,6 +105,7 @@ public class AddTaskController {
 
 					PreparedStatement kidstask = JDBC.getCon().prepareStatement("Insert into Kids_Task (kid, Task,start_time ,completed)"
 							+ " values (?,?,1000,false)");
+					System.out.println(kidstask);
 					kidstask.setInt(1, kid.getId());
 					kidstask.setInt(2, id_Task);
 					kidstask.execute();

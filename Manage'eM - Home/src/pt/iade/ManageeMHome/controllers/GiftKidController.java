@@ -1,5 +1,8 @@
 package pt.iade.ManageeMHome.controllers;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 import com.jfoenix.controls.JFXSlider;
 
 import javafx.fxml.FXML;
@@ -9,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import pt.iade.ManageeMHome.Main;
 import pt.iade.ManageeMHome.models.Kid;
+import pt.iade.ManageeMHome.models.DAO.JDBC;
 
 public class GiftKidController {
 	private int currentPoints;
@@ -36,14 +40,25 @@ public class GiftKidController {
 	@FXML
 	private void giftButtonClick() {
 		int intSlider = (int)slider.getValue();
-		newPoints = currentPoints+intSlider;
-		kid.setPoints(newPoints);
+
+	try {
+		String sql ="UPDATE Kid SET pts_Kid = pts_Kid + ? WHERE id_Kid = ?;";
+		
+		PreparedStatement stmt = JDBC.getCon().prepareStatement(sql);
+		stmt.setInt(1,intSlider);
+		stmt.setInt(2, kid.getId());
+		stmt.execute();
+		System.out.println(stmt);
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 		Main.giftOrAllowanceStage.close();
 		
 	}
 	public void initialize(){	
 		
-		currentPoints=kid.getPoints();
+//		currentPoints=kid.getPoints();
 		kidNameLabel.setText(kid.getName()+":");
 	}
 }
