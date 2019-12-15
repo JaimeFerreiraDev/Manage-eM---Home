@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="288.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="295.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ToolBar layoutX="-3.0" layoutY="483.0" prefHeight="44.0" prefWidth="288.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="-3.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="483.0">
          <items>
@@ -43,25 +43,25 @@
             <Insets left="10.0" top="-3.0" />
          </padding>
       </ToolBar>
-      <Label alignment="CENTER" layoutX="78.0" layoutY="14.0" text="Manage'eM">
+      <Label alignment="CENTER" layoutX="78.0" layoutY="15.0" text="Manage'eM">
          <font>
-            <Font size="25.0" />
+            <Font name="System Bold" size="25.0" />
          </font>
       </Label>
-      <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="223.0" layoutY="432.0" onMouseClicked="#onPlusButtonClicked" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="236.0" layoutY="432.0" onMouseClicked="#onPlusButtonClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/plus.png" />
          </image>
       </ImageView>
-      <TableView fx:id="rewardTV" layoutX="29.0" layoutY="73.0" prefHeight="359.0" prefWidth="231.0">
+      <TableView fx:id="rewardTV" layoutX="15.0" layoutY="72.0" prefHeight="353.0" prefWidth="266.0">
         <columns>
-          <TableColumn fx:id="nameColumn" prefWidth="164.0" text="Name" />
-          <TableColumn fx:id="pointsColumn" prefWidth="72.0" text="M's" />
+          <TableColumn fx:id="nameColumn" prefWidth="198.0" text="Name" />
+          <TableColumn fx:id="pointsColumn" prefWidth="67.0" text="M's" />
         </columns>
       </TableView>
-      <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="230.0" layoutY="14.0" onMouseClicked="#notificationClick" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="44.0" fitWidth="37.0" layoutX="243.0" layoutY="14.0" onMouseClicked="#notificationClick" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/coin.png" />
+            <Image url="@../../../../../bin/pt/iade/ManageeMHome/images/notifications.png" />
          </image>
       </ImageView>
    </children>

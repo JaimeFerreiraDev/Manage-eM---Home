@@ -73,6 +73,7 @@ public class TaskViewController {
 
 	@FXML
 	private void initialize() {
+
 		
 		updateTaskInfo();
 		nameColumn.setCellValueFactory(new PropertyValueFactory<String, Task>("Name"));
@@ -124,6 +125,27 @@ public class TaskViewController {
 			}
 			taskTV.setItems(tasks);
 			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} 
+	}
+	public void refreshTasks() {
+		int parent = 0;
+		String sql ="Select * from Parents_Task, Task where parent = ? and Task = id_Task;";
+		try (PreparedStatement stat = JDBC.getCon().prepareStatement(sql)){
+			parent = PersonDAO.getLoggedParent().getId();
+			stat.setInt(1, parent);
+			System.out.println(stat);
+			ResultSet rs = stat.executeQuery();	
+			ObservableList<Task> tasks = FXCollections.observableArrayList();
+			while(rs.next()) {
+				tasks.add(new Task(rs.getString("name"), 
+						rs.getInt("pts_Task"),
+						rs.getString("description"), 
+						rs.getBoolean("is_complete")));
+				System.out.println(tasks.toString());
+			}
+		taskTV.setItems(tasks);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} 

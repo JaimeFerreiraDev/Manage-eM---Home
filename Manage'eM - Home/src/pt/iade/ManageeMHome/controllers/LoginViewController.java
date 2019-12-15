@@ -39,6 +39,7 @@ public class LoginViewController {
 	@FXML
 	public void newAccButton() {
 		Main.changeTab("views/newAccView.fxml", new NewAccController());
+
 	
 
 	}

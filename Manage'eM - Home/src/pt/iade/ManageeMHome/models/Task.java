@@ -11,10 +11,8 @@ public class Task {
 	private String details;
 	private boolean isComplete;
 	private Kid kid;
-
-	public Task( String name,int points, String details, //ObservableList<Kid> kidOArrayList,
-			boolean isComplete/*, String username, String password*/) {
-	//	Task.kidOArrayList=kidOArrayList;
+	public Task( String name,int points, String details,
+			boolean isComplete) {
 		this.name = name;
 		this.points=points;
 		this.details=details;
@@ -35,7 +33,6 @@ public class Task {
 	public String getDetails() {
 		return details;
 	}
-
 	public boolean isComplete() {
 		return isComplete;
 	}

@@ -14,7 +14,11 @@ import pt.iade.ManageeMHome.controllers.ParentViewController;
 import pt.iade.ManageeMHome.controllers.RewardViewController;
 import pt.iade.ManageeMHome.controllers.TaskViewController;
 import pt.iade.ManageeMHome.models.Kid;
-
+/**
+ * This is the class responsible for managing the windows in the project.
+ * @author jaime
+ *
+ */
 public class Main extends Application {
 	static Scene scene;
 	public static Stage primaryStage;
@@ -27,12 +31,20 @@ public class Main extends Application {
 
 	public static int counter=0;
 	public static int kcounter=0;
-
+	/**
+	 * This method starts the program by opening the login window
+	 * {@link #openLogin()}
+	 */
 	@Override
 	public void start(Stage primaryStage) throws IOException {
 		openLogin();
+
 	}
-	
+	/**
+	 * This method is responsible for changing the scene betweenkids,parents to tasks and rewards
+	 * @param FXMLTabLink is the fxml link 
+	 * @param cont is the controller for the window that is oppened
+	 */
 	public static void changeTab(String FXMLTabLink, Object cont) {
 		try {
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource(FXMLTabLink));
@@ -43,6 +55,7 @@ public class Main extends Application {
 				primaryStage = new Stage();
 				counter++;
 			}
+
 			primaryStage.setScene(scene);
 			primaryStage.show();
 
@@ -51,11 +64,11 @@ public class Main extends Application {
 		}
 
 	}
-
-	//This method allows the counter to be reset
-	public static void setCounter(int counter) {
-		Main.counter = counter;
-	}
+	
+	/**
+	 * This method opens the 1st window of the program: the login window
+	 * @throws IOException
+	 */
 	public static void openLogin() throws IOException {
 		try {
 			Pane root = FXMLLoader.load(Main.class.getResource("views/LoginView.fxml"));
@@ -68,7 +81,11 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-
+	/**
+	 * this method is responsible for opening the notifications.
+	 * @param FXMLTabLink
+	 * @param cont
+	 */
 	public static void openNotifications(String FXMLTabLink, Object cont) {
 		try {
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource(FXMLTabLink));
@@ -87,7 +104,12 @@ public class Main extends Application {
 		}
 
 	}
-
+/**
+ * 
+ * @param kidView
+ * @param FXMLItemLink
+ * @param cont
+ */
 	public static void openTableItem(KidViewController kidView,String FXMLItemLink, KidTableItemController cont) {
 		try {
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource(FXMLItemLink));
@@ -129,7 +151,11 @@ public class Main extends Application {
 			System.out.println(e);
 		}
 	}
-
+/**
+ * this method opens all the adding windows for 
+ * @param FXMLPlusLink
+ * @param cont
+ */
 	public static void openPlus(KidViewController kidController,TaskViewController taskController,
 			RewardViewController rewardController, ParentViewController parentController, String FXMLPlusLink, Object cont) {
 		try {
@@ -143,8 +169,8 @@ public class Main extends Application {
 			plusStage.initOwner(primaryStage);
 			plusStage.initModality(Modality.APPLICATION_MODAL);
 			plusStage.setScene(scene);
-			
 			plusStage.showAndWait();
+			
 			if(kidController != null)
 			kidController.updateKidInfo();
 			else if (taskController!=null )taskController.updateTaskInfo();

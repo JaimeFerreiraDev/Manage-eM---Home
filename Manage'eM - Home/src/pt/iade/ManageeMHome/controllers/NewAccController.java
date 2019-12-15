@@ -39,6 +39,13 @@ public class NewAccController {
 
 	@FXML 
 	private ComboBox<String> userTypeCombo;
+	/**
+	 * This method completes the process of creating a new User. 
+	 * <p> If the user fills all the fields:
+	 * <p> {@link #nameText} {@link #passText} {@link #userText} {@link #confirmPassText} {@link #datePicker} {@link #userTypeCombo}
+	 * <p> A new user is added to the database.
+	 * @throws IOException
+	 */
 	@FXML
 	public void okButtonClick() throws IOException {
 		if( !userText.getText().isEmpty() &&

@@ -1,13 +1,15 @@
 package pt.iade.ManageeMHome.models.DAO;
 
+
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import java.sql.Connection;
-import java.sql.Statement;
 
+import java.sql.Statement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import pt.iade.ManageeMHome.controllers.NewAccController;
 import pt.iade.ManageeMHome.models.Kid;
 import pt.iade.ManageeMHome.models.Parent;
 import pt.iade.ManageeMHome.models.Person;
@@ -15,8 +17,8 @@ import pt.iade.ManageeMHome.models.Task;
 
 public class PersonDAO {
 	public static ObservableList<Person> personList = FXCollections.observableArrayList();
-	public static Parent loggedParent;
-	public static Kid loggedKid;
+	private static Parent loggedParent;
+	private static Kid loggedKid;
 	public static ObservableList<Person> getPersonList() {
 		return personList;
 	}
@@ -33,6 +35,9 @@ public class PersonDAO {
 //		return parents;
 //	}
 //	
+
+
+
 //	public static ObservableList<Parent> getParentList() {
 //
 //        ObservableList<Parent> parents = FXCollections.observableArrayList();
@@ -58,7 +63,12 @@ public class PersonDAO {
 //        }
 //        return parents;
 //}
+
 	
+	public static ObservableList<Kid> getKids(int id){
+		String sql = "SELECT * FROM kids WHERE";
+		return null;
+	}
 	
 	public static ObservableList<Kid> getKidList() {
 
@@ -89,12 +99,7 @@ public class PersonDAO {
 		PersonDAO.loggedKid = loggedKid;
 	}
 
-
-//	static {
-////		personList.add(new Parent("Fernando", 24, 34, "f", "f", FXCollections.observableArrayList(), FXCollections.observableArrayList()));
-////		personList.add(new Parent("jaime", 23, "aaa", "a", "a", "a", FXCollections.observableArrayList(), FXCollections.observableArrayList()));
-////		personList.add(new Kid("aurora", 2, "aurora"+ ((int)(Math.random()*100)+100), "b", "b", "b", 1, true, FXCollections.observableArrayList(), FXCollections.observableArrayList()));
-////		personList.add(new Kid("filhaex", 3, ""+5, "c", "c",  "c", 3, true, FXCollections.observableArrayList(), FXCollections.observableArrayList()));
-////		personList.add(new Kid("filHOex", 4, ""+4, "c", "c", "c", 30, true, FXCollections.observableArrayList(), FXCollections.observableArrayList()));
-//	}
-}
+	static ObservableList<Task> tasks= FXCollections.observableArrayList();
+	void initialize() {
+		
+	}}

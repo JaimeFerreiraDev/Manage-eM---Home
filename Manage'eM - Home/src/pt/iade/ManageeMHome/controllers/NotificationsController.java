@@ -36,42 +36,18 @@ public class NotificationsController {
 
 	@FXML
 	private TableColumn<Boolean, Button> noColumn;
-
 	@FXML
 	private TableColumn<Boolean, Button> yesColumn;
+
 	private  static int parent = 0;
 	private ObservableList<Task> completedTasks= FXCollections.observableArrayList();
 
-	private void findCompletedTasks() {
-		
-		String sql ="Select User.name as Filho, Task.name as Task_Name from User, Task, Kids_Task, Family_Relation"
-				+ " where Family_Relation.kid = Kids_Task.kid and Family_Relation.parent = ? and"
-				+ " Task.id_Task = Kids_Task.Task AND Kids_Task.completed = true and User.id_User = Kids_Task.kid ";
-			try (PreparedStatement stat = JDBC.getCon().prepareStatement(sql)){
-			parent = PersonDAO.getLoggedParent().getId();
-			stat.setInt(1, parent);
-			
-			stat.executeQuery();
-			ResultSet rs = stat.executeQuery();	
-			while(rs.next()) {
-				completedTasks.add(new Task(rs.getString("Task_Name"),
-						0, 
-						null,
-						false,
-						new Kid(rs.getString("Filho"), 0, 0, 0, false)
-						)
-						);
-			}
-		}catch (SQLException e) {
-			e.printStackTrace();
-		} 
-	}
 	@FXML
 	private void initialize() {
 
 		findCompletedTasks();
 		taskColumn.setCellValueFactory(new PropertyValueFactory<String, Task>("name"));
-		kidColumnN.setCellValueFactory(new PropertyValueFactory<String, Kid>("kidName"));
+		kidColumnN.setCellValueFactory(new PropertyValueFactory<String, Kid>("name"));
 		FXCollections.observableArrayList();
 		notificationTV.setItems(completedTasks);
 		noColumn.setCellFactory((tableCol)-> {
@@ -81,26 +57,12 @@ public class NotificationsController {
 					super.updateItem(b1, empty);
 					if(!empty){
 						Button button = new Button("NO");
-						
 						button.setOnAction((event) -> {
-							int  person = PersonDAO.getLoggedParent().getId();
-//								PreparedStatement stmt = JDBC.getCon().prepareStatement(
-//										" UPDATE Kids_Task, Task SET completed = false WHERE Family_Relation.and Task.id_Task = Kids_Task.Task;");
-//								stmt.setInt(1,kid);
-//								stmt.execute();
-//								taskTV.getSelectionModel().select(getTableRow().getIndex());
-//								tasks.remove(taskTV.getSelectionModel().getSelectedItem());
-//								
-//								taskTV.setItems(tasks);
-//							
-							
-//							notificationTV.getSelectionModel().select(getTableRow().getIndex());
-//							Task  selectedItem 	=	notificationTV.getSelectionModel().getSelectedItem();
-////							for(Kid kid :  selectedItem.getKidArrayList()) {
-////								kid.setPoints(kid.getPoints()+selectedItem.getPoints());
-////							}
-//							notificationTV.getItems().remove(selectedItem);
-//							selectedItem.setComplete(false);
+
+							notificationTV.getSelectionModel().select(getTableRow().getIndex());
+							Task  selectedItem     =    notificationTV.getSelectionModel().getSelectedItem();
+							notificationTV.getItems().remove(selectedItem);
+							notificationTV.setItems(completedTasks);
 						});
 						setGraphic(button);
 					} else  {
@@ -119,6 +81,10 @@ public class NotificationsController {
 						Button button = new Button("YES");
 						button.setOnAction((event) -> {
 
+							notificationTV.getSelectionModel().select(getTableRow().getIndex());
+							Task  selectedItem     =    notificationTV.getSelectionModel().getSelectedItem();
+							notificationTV.getItems().remove(selectedItem);
+							notificationTV.setItems(completedTasks);
 						});
 						setGraphic(button);
 					} else  {
@@ -129,6 +95,32 @@ public class NotificationsController {
 			}; 
 		});
 
+	}
+
+
+	private void findCompletedTasks() {
+
+		String sql ="Select User.name as Filho, Task.name as Task_Name from User, Task, Kids_Task, Family_Relation"
+				+ " where Family_Relation.kid = Kids_Task.kid and Family_Relation.parent = ? and"
+				+ " Task.id_Task = Kids_Task.Task AND Kids_Task.completed = true and User.id_User = Kids_Task.kid ";
+		try (PreparedStatement stat = JDBC.getCon().prepareStatement(sql)){
+			parent = PersonDAO.getLoggedParent().getId();
+			stat.setInt(1, parent);
+
+			stat.executeQuery();
+			ResultSet rs = stat.executeQuery();	
+			while(rs.next()) {
+				completedTasks.add(new Task(rs.getString("Task_Name"),
+						0, 
+						null,
+						false,
+						new Kid(rs.getString("Filho"), 0, 0, 0, false)
+						)
+						);
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		} 
 	}
 }
 

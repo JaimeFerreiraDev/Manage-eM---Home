@@ -10,6 +10,4 @@ public class TaskDAO {
 	public static ObservableList<Task> getTaskList() {
 		return taskList;
 	}
-
-
 }

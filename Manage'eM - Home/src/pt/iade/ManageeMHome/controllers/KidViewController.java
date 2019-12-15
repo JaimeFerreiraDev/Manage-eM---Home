@@ -12,9 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableCell;
+
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -28,6 +26,7 @@ import pt.iade.ManageeMHome.models.DAO.PersonDAO;
 
 public class KidViewController {
 	// Paraa apagar quando tivermos BD
+	public static KidViewController kvc = new KidViewController();
 	@FXML
 	public TableView<Kid> kidTV;
 	@FXML
@@ -39,7 +38,7 @@ public class KidViewController {
 
 	@FXML
 	public void onParentButtonClicked() {
-		
+
 		Main.changeTab("views/parentView.fxml", new ParentViewController());
 	}
 	// Outras tabs
@@ -56,8 +55,9 @@ public class KidViewController {
 	@FXML
 	public void onPlusButtonClicked() {
 		Main.openPlus(this,null, null, null, "views/addKidView.fxml", new AddKidController());
+
 	}
-	
+
 	@FXML
 	private void notificationClick() {
 		Main.openNotifications("views/notificationsView.fxml", new NotificationsController());
@@ -66,7 +66,6 @@ public class KidViewController {
 
 	@FXML
 	private void initialize() {
-		
 		updateKidInfo();
 		nameColumn.setCellValueFactory(new PropertyValueFactory<String, Kid>("name"));
 		ageColumn.setCellValueFactory(new PropertyValueFactory<Integer, Kid>("age"));
@@ -83,6 +82,7 @@ public class KidViewController {
 					});
 
 	}
+
 	
 	
 	
@@ -100,6 +100,7 @@ public class KidViewController {
 			ObservableList<Kid> kids = FXCollections.observableArrayList();
 			while(rs.next()) {
 				kids.add(new Kid(rs.getString("name"), 
+
 						rs.getInt("age"), 
 						rs.getInt("id_Kid"),
 						rs.getInt("pts_Kid"),
@@ -111,7 +112,6 @@ public class KidViewController {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} 
-
 	}
 
 }
