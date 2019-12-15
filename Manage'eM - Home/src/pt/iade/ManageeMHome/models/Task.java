@@ -4,7 +4,11 @@ import java.util.ArrayList;
 
 import javafx.collections.ObservableList;
 
-
+/**
+ * This class is what we use to represent tasks.
+ * @author jaime
+ *
+ */
 public class Task {
 	private String name;
 	private int points;

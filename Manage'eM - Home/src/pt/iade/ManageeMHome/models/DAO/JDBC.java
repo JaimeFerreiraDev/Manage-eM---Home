@@ -3,7 +3,11 @@ package pt.iade.ManageeMHome.models.DAO;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
+/**
+ * This class connects the program to the SQL sever.
+ * @author jaime
+ *
+ */
 public final class JDBC {
 	private static Connection con;
 	private static final String URL = "jdbc:mysql://remotemysql.com:3306/5C19vZ5lxD?useSSL=false" ;

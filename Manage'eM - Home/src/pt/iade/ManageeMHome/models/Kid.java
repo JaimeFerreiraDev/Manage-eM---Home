@@ -2,7 +2,11 @@ package pt.iade.ManageeMHome.models;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-
+/**
+ * This class is what we use to represent kids.
+ * @author jaime
+ *
+ */
 public class Kid extends Person{
 
 	private int points;

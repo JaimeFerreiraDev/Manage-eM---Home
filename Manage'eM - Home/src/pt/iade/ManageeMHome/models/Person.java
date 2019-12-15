@@ -1,7 +1,11 @@
 package pt.iade.ManageeMHome.models;
 
-
-public class Person {
+/**
+ * This class is what we use to represent kids.
+ * @author jaime
+ *
+ */
+public abstract class Person {
 	protected String name;
 	protected int age;
 	protected int id;

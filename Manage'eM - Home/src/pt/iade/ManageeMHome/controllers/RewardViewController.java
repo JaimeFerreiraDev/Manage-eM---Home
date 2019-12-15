@@ -7,8 +7,27 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import pt.iade.ManageeMHome.Main;
 import pt.iade.ManageeMHome.models.Reward;
-import pt.iade.ManageeMHome.models.DAO.RewardDAO;
-
+/**
+ * This class is the controller for the "reward tab" that has:
+ * <p>
+ * <p> a table view {@link #rewardTV}, that displays the rewards that the logged parent, returned by the method:
+ * <p>{@link pt.iade.ManageeMHome.models.DAO.PersonDAO#getLoggedParent()}
+* <p>
+ * <p>a "plus button" that opens the "add reward window", managed by:
+ * <p>{@link pt.iade.ManageeMHome.controllers.AddRewardController.java}
+ * <p>
+ * <p>a "notifications button" that opens the "notifications window" managed by:
+ * <p>{@link pt.iade.ManageeMHome.controllers.NotificationsController.java}
+ * <p>
+ * <p>buttons to the other tabs: parents, tasks and kids:
+ * <p>{@link pt.iade.ManageeMHome.controllers.ParentViewController.java}
+ * <p>{@link pt.iade.ManageeMHome.controllers.TaskViewController.java}
+ * <p>{@link pt.iade.ManageeMHome.controllers.KidViewController.java}
+ * <p>
+ * <p>The "reward tab" is in this fxml file: {@link pt.iade.ManageeMHome.views#rewardView.fxml}.
+ * @author jaime
+ *
+ */
 public class RewardViewController {
 	@FXML
 	private TableView<Reward> rewardTV;
@@ -52,7 +71,7 @@ public class RewardViewController {
 			 nameColumn.setCellValueFactory(new PropertyValueFactory<String, Reward>("Name"));
 			 pointsColumn.setCellValueFactory(new PropertyValueFactory<Integer, Reward>("Points"));
 		     FXCollections.observableArrayList();
-		     rewardTV.setItems(RewardDAO.getRewardList());
+		     //set items here using the database
 		    }
 		public void updateRewardInfo() {
 			

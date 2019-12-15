@@ -21,9 +21,14 @@ import pt.iade.ManageeMHome.controllers.RewardViewController;
 import pt.iade.ManageeMHome.models.Task;
 import pt.iade.ManageeMHome.models.DAO.JDBC;
 import pt.iade.ManageeMHome.models.DAO.PersonDAO;
-import pt.iade.ManageeMHome.models.DAO.TaskDAO;
 
-
+/**
+This class is a controller to the "kid tasks window".
+ * <p>The "kid tasks window" is in this fxml file: {@link pt.iade.ManageeMHome.kidPOV.kviews#kktaskView.fxml}.
+ * <p> This class displays all the currently available tasks to complete in a table view: #taskTV.
+ * @author jaime
+ *
+ */
 public class KtaskController {
 	@FXML
 	private void rewardsClick() {

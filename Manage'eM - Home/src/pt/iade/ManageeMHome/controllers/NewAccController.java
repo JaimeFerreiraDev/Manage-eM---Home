@@ -20,7 +20,12 @@ import pt.iade.ManageeMHome.models.Kid;
 import pt.iade.ManageeMHome.models.Parent;
 import pt.iade.ManageeMHome.models.DAO.JDBC;
 import pt.iade.ManageeMHome.models.DAO.PersonDAO;
-
+/**
+ * This class is a controller to the "new account window" which allows the user to create a new account.
+ * <p>The "new account window" is in this fxml file: {@link pt.iade.ManageeMHome.views#newAccView.fxml}.
+ * @author jaime
+ *
+ */
 public class NewAccController {
 	@FXML
 	private TextField userText;

@@ -23,8 +23,13 @@ import pt.iade.ManageeMHome.models.Kid;
 import pt.iade.ManageeMHome.models.Task;
 import pt.iade.ManageeMHome.models.DAO.JDBC;
 import pt.iade.ManageeMHome.models.DAO.PersonDAO;
-import pt.iade.ManageeMHome.models.DAO.TaskDAO;
-
+/**
+ * This class is a controller to the "Add task window" that pops up when the user clicks in the plus button in the task tab, managed
+ * <p> by the {@link pt.iade.ManageeMHome.controllers.taskViewController.java} class.
+ * <p>The add Reward window is in this fxml file: {@link pt.iade.ManageeMHome.views#addTaskView.fxml}.
+ * @author jaime
+ *
+ */
 public class AddTaskController {
 
 	@FXML
@@ -75,8 +80,6 @@ public class AddTaskController {
 				&& !frequency.getToggles().isEmpty()
 				&& String.valueOf(pointsSlider) != null
 				&& selectedKids != null) {
-			//			nameField.setStyle("-fx-effect:dropshadow(three-pass-box, rgba(0,0,0,0), 10, 0, 0, 0)");
-			//			pointsSilder.setStyle("-fx-effect:dropshadow(three-pass-box, rgba(0,0,0,0), 10, 0, 0, 0)");
 
 			String sql ="insert into Task (name, frequency_type, description, duration, pts_Task) values(?,?,?,3600,?);";
 			try {
@@ -117,7 +120,7 @@ public class AddTaskController {
 			}
 
 
-			Main.plusStage.close();
+			Main.secondaryStage.close();
 		} else {
 			if(nameField.getText().isEmpty()) {
 				errorLabel.setText("Please insert an username");
@@ -138,7 +141,7 @@ public class AddTaskController {
 	@FXML
 	public void cancelButtonOnClick() {
 
-		Main.plusStage.close();
+		Main.secondaryStage.close();
 
 	}
 	@FXML

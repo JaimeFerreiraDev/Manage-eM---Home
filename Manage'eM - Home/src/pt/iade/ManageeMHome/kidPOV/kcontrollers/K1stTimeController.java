@@ -14,25 +14,26 @@ import pt.iade.ManageeMHome.models.Parent;
 import pt.iade.ManageeMHome.models.DAO.JDBC;
 import pt.iade.ManageeMHome.models.DAO.PersonDAO;
 
-
+/**
+This class is a controller to the "Kid 1st time login window" that pops up when a kid logs in for the 1st time.
+ * <p>The "Kid 1st time login window" is in this fxml file: {@link pt.iade.ManageeMHome.kidPOV.kviews#kid1stTimeView.fxml}.
+ * @author jaime
+ *
+ */
 public class K1stTimeController {
 	@FXML
 	private Label codeLabel;
+	/**
+	 * This method is not complete.
+	 */
 	@FXML
 	private void connectClick() {
-		////		for(Parent parent : PersonDAO.getParentList()) {
-		////			for(Kid kid : parent.getKids()) {
-		////				if(kid==PersonDAO.getLoggedKid()) {
-		////					PersonDAO.getLoggedKid().getParents().add(parent);
-		////					Main.changeTab("kidPOV/kviews/ktaskView.fxml", new KtaskController());
-		////					Main.secondaryStage.close();
-		////				}
-		////			}
-		//
-		//		}
 
 	}
-	private double randomCode;
+	/**
+	 * this method gets the logged kid's ID from the database
+	 * <p>{@link pt.iade.ManageeMHome.models.DAO.PersonDAO#getLoggedKid()}
+	 */
 	@FXML
 	private void initialize() {
 		Connection conn= JDBC.getCon(); 

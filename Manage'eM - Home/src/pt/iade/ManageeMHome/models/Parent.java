@@ -4,7 +4,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 
-
+/**
+ * This class is what we use to represent Parents.
+ * @author jaime
+ *
+ */
 public class Parent extends Person{
 
 	

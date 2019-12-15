@@ -25,7 +25,13 @@ import pt.iade.ManageeMHome.models.DAO.PersonDAO;
 
 
 
-
+/**
+ * This class is a controller to the "login window" which is the 1st window of the program, and allows
+ * <p>the user to log in, with a previously created account, or create a new one.
+ * <p>The "login window" is in this fxml file: {@link pt.iade.ManageeMHome.views#LoginView.fxml}.
+ * @author jaime
+ *
+ */
 public class LoginViewController {
 
 	@FXML

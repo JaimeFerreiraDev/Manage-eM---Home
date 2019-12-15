@@ -2,7 +2,11 @@ package pt.iade.ManageeMHome.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
-
+/**
+ * This class is in early stages.
+ * @author jaime
+ *
+ */
 public class TaskTableItemController {
 
 	@FXML

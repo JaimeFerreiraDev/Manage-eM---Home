@@ -17,9 +17,28 @@ import pt.iade.ManageeMHome.models.Kid;
 import pt.iade.ManageeMHome.models.Task;
 import pt.iade.ManageeMHome.models.DAO.JDBC;
 import pt.iade.ManageeMHome.models.DAO.PersonDAO;
-import pt.iade.ManageeMHome.models.DAO.TaskDAO;
 
-
+/**
+ * This class is the controller for the "task tab" that has:
+ * <p>
+ * <p> a table view {@link #taskTV}, that displays the tasks that the logged parent, returned by the method:
+ * <p>{@link pt.iade.ManageeMHome.models.DAO.PersonDAO#getLoggedParent()}
+* <p>
+ * <p>a "plus button" that opens the "add task window", managed by:
+ * <p>{@link pt.iade.ManageeMHome.controllers.AddTaskController.java}
+ * <p>
+ * <p>a "notifications button" that opens the "notifications window" managed by:
+ * <p>{@link pt.iade.ManageeMHome.controllers.NotificationsController.java}
+ * <p>
+ * <p>buttons to the other tabs: parents, kids and rewards:
+ * <p>{@link pt.iade.ManageeMHome.controllers.ParentViewController.java}
+ * <p>{@link pt.iade.ManageeMHome.controllers.KidViewController.java}
+ * <p>{@link pt.iade.ManageeMHome.controllers.RewardViewController.java}
+ * <p>
+ * <p>The "task tab" is in this fxml file: {@link pt.iade.ManageeMHome.views#taskView.fxml}.
+ * @author jaime
+ *
+ */
 public class TaskViewController {
 
 	@FXML

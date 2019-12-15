@@ -22,13 +22,8 @@ import pt.iade.ManageeMHome.models.Kid;
 public class Main extends Application {
 	static Scene scene;
 	public static Stage primaryStage;
+	public static Stage secondaryStage;
 	static Stage terciaryStage;
-
-	public static Stage plusStage;
-	public static Stage tableItemStage;
-	public static Stage giftOrAllowanceStage;
-	public static Stage notificationStage;
-
 	public static int counter=0;
 	public static int kcounter=0;
 	/**
@@ -82,7 +77,8 @@ public class Main extends Application {
 		}
 	}
 	/**
-	 * this method is responsible for opening the notifications.
+	 * this method is responsible for opening the notifications's tab, which is reachable from
+	 * <p>any of the tabs: kid, parent, task, reward.
 	 * @param FXMLTabLink
 	 * @param cont
 	 */
@@ -93,11 +89,11 @@ public class Main extends Application {
 			Pane root = loader.load();
 			scene = new Scene(root);
 
-			notificationStage = new Stage();
-			notificationStage.initOwner(primaryStage);
-			notificationStage.initModality(Modality.APPLICATION_MODAL);
-			notificationStage.setScene(scene);
-			notificationStage.showAndWait();
+			secondaryStage = new Stage();
+			secondaryStage.initOwner(primaryStage);
+			secondaryStage.initModality(Modality.APPLICATION_MODAL);
+			secondaryStage.setScene(scene);
+			secondaryStage.showAndWait();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -105,7 +101,7 @@ public class Main extends Application {
 
 	}
 /**
- * 
+ * This method is used to open table views's items respective windows, for all the tabs: kid, parent, task and reward.
  * @param kidView
  * @param FXMLItemLink
  * @param cont
@@ -119,17 +115,22 @@ public class Main extends Application {
 			scene = new Scene(root);
 
 
-			tableItemStage = new Stage();
-			tableItemStage.initOwner(primaryStage);
-			tableItemStage.initModality(Modality.APPLICATION_MODAL);
-			tableItemStage.setScene(scene);
-			tableItemStage.showAndWait();
+			secondaryStage = new Stage();
+			secondaryStage.initOwner(primaryStage);
+			secondaryStage.initModality(Modality.APPLICATION_MODAL);
+			secondaryStage.setScene(scene);
+			secondaryStage.showAndWait();
 			kidView.updateKidInfo();
 		} catch (Exception e) {
 			System.out.println(e);
 		}
 	}
-
+/**
+ * @param itemKid
+ * @param kid
+ * @param FXMLLink
+ * @param cont
+ */
 	public static void openGiftOrAllowance(KidTableItemController itemKid, Kid kid, String FXMLLink,  Object cont) {
 		try {
 
@@ -140,11 +141,11 @@ public class Main extends Application {
 			scene = new Scene(root);
 
 
-			giftOrAllowanceStage = new Stage();
-			giftOrAllowanceStage.initOwner(primaryStage);
-			giftOrAllowanceStage.initModality(Modality.APPLICATION_MODAL);
-			giftOrAllowanceStage.setScene(scene);
-			giftOrAllowanceStage.showAndWait();
+			terciaryStage = new Stage();
+			terciaryStage.initOwner(primaryStage);
+			terciaryStage.initModality(Modality.APPLICATION_MODAL);
+			terciaryStage.setScene(scene);
+			terciaryStage.showAndWait();
 			itemKid.updateKidInfo();
 
 		} catch (Exception e) {
@@ -152,7 +153,7 @@ public class Main extends Application {
 		}
 	}
 /**
- * this method opens all the adding windows for 
+ * this method opens all the adding windows for all the tabs: kid, parent, task and reward.
  * @param FXMLPlusLink
  * @param cont
  */
@@ -165,11 +166,11 @@ public class Main extends Application {
 			Pane root = loader.load();	
 			scene = new Scene(root);
 
-			plusStage = new Stage();
-			plusStage.initOwner(primaryStage);
-			plusStage.initModality(Modality.APPLICATION_MODAL);
-			plusStage.setScene(scene);
-			plusStage.showAndWait();
+			secondaryStage = new Stage();
+			secondaryStage.initOwner(primaryStage);
+			secondaryStage.initModality(Modality.APPLICATION_MODAL);
+			secondaryStage.setScene(scene);
+			secondaryStage.showAndWait();
 			
 			if(kidController != null)
 			kidController.updateKidInfo();

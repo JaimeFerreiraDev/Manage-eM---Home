@@ -6,14 +6,17 @@ import java.sql.SQLException;
 import com.jfoenix.controls.JFXSlider;
 
 import javafx.fxml.FXML;
-
-
-
 import javafx.scene.control.Label;
 import pt.iade.ManageeMHome.Main;
 import pt.iade.ManageeMHome.models.Kid;
 import pt.iade.ManageeMHome.models.DAO.JDBC;
-
+/**
+ * This class is the controller to "gift kid window" that allows the user to select an amount of points, using
+ * <p>the {@link #slider}, to gift the kid that was selected in the kid tab:
+ * <p>{@link pt.iade.ManageeMHome.controllers.KidViewController#kidTV.java}.
+ * @author jaime
+ *
+ */
 public class GiftKidController {
 	private int currentPoints;
 	@FXML
@@ -35,7 +38,7 @@ public class GiftKidController {
 
 	@FXML
 	private void cancelButtonClick() {
-		Main.giftOrAllowanceStage.close();
+		Main.secondaryStage.close();
 	}
 	@FXML
 	private void giftButtonClick() {
@@ -53,7 +56,7 @@ public class GiftKidController {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-		Main.giftOrAllowanceStage.close();
+		Main.secondaryStage.close();
 		
 	}
 	public void initialize(){	

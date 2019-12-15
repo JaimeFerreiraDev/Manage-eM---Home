@@ -18,10 +18,16 @@ import pt.iade.ManageeMHome.models.Kid;
 import pt.iade.ManageeMHome.models.Task;
 import pt.iade.ManageeMHome.models.DAO.JDBC;
 import pt.iade.ManageeMHome.models.DAO.PersonDAO;
-import pt.iade.ManageeMHome.models.DAO.TaskDAO;
 
 
-
+/**
+ * This class is a controller for the "notifications Window", wich displays all the completed tasks from all the
+ * <p>kids respective to the logged parent: {@link pt.iade.ManageeMHome.models.DAO.PersonDAO#getLoggedParent()},
+ * <p> allowing the parents to confirm if the task has been completed successfully or not.
+ * <p>The "new account window" is in this fxml file: {@link pt.iade.ManageeMHome.views#notificationsView.fxml}.
+ * @author jaime
+ *
+ */
 public class NotificationsController {
 
 

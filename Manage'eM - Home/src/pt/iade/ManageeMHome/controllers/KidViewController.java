@@ -23,7 +23,27 @@ import pt.iade.ManageeMHome.models.Reward;
 import pt.iade.ManageeMHome.models.DAO.JDBC;
 import pt.iade.ManageeMHome.models.DAO.PersonDAO;
 
-
+/**
+ * This class is the controller for the "kid tab" that has:
+ * <p>
+ * <p> a table view {@link #kidTV}, that displays the kids that the logged parent, returned by the method:
+ * <p>{@link pt.iade.ManageeMHome.models.DAO.PersonDAO#getLoggedParent()}
+ * <p>
+ * <p>a "plus button" that opens the "add kid window", managed by:
+ * <p>{@link pt.iade.ManageeMHome.controllers.AddKidController.java}
+ * <p>
+ * <p>a "notifications button" that opens the "notifications window" managed by:
+ * <p>{@link pt.iade.ManageeMHome.controllers.NotificationsController.java}
+ * <p>
+ * <p>buttons to the other tabs: parents, tasks and rewards:
+ * <p>{@link pt.iade.ManageeMHome.controllers.ParentViewController.java}
+ * <p>{@link pt.iade.ManageeMHome.controllers.TaskViewController.java}
+ * <p>{@link pt.iade.ManageeMHome.controllers.RewardViewController.java}
+ * <p>
+ * <p>The "kid tab" is in this fxml file: {@link pt.iade.ManageeMHome.views#kidView.fxml}.
+ * @author jaime
+ *
+ */
 public class KidViewController {
 	// Paraa apagar quando tivermos BD
 	public static KidViewController kvc = new KidViewController();
@@ -70,8 +90,6 @@ public class KidViewController {
 		nameColumn.setCellValueFactory(new PropertyValueFactory<String, Kid>("name"));
 		ageColumn.setCellValueFactory(new PropertyValueFactory<Integer, Kid>("age"));
 		pointsColumn.setCellValueFactory(new PropertyValueFactory<Integer, Kid>("points"));
-		
-//		kidTV.setItems(PersonDAO.getLoggedParent().getKids()); querry a familyrelation do id do logged paret para buscar kid
 		kidTV.setOnMouseClicked(
 				(event)-> {
 					System.out.println("cliquei na TV");

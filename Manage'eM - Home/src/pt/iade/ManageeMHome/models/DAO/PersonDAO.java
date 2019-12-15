@@ -14,7 +14,11 @@ import pt.iade.ManageeMHome.models.Kid;
 import pt.iade.ManageeMHome.models.Parent;
 import pt.iade.ManageeMHome.models.Person;
 import pt.iade.ManageeMHome.models.Task;
-
+/**
+ * This class is currently being only used to set and get the currently logged parent or kid
+ * @author jaime
+ *
+ */
 public class PersonDAO {
 	public static ObservableList<Person> personList = FXCollections.observableArrayList();
 	private static Parent loggedParent;
@@ -22,48 +26,6 @@ public class PersonDAO {
 	public static ObservableList<Person> getPersonList() {
 		return personList;
 	}
-
-//	public static ObservableList<Parent> getParentList() {
-//
-//		ObservableList<Parent> parents = FXCollections.observableArrayList();
-//		for (Person person : personList) {
-//			if (person instanceof Parent) {
-//				parents.add((Parent) person);
-//			}
-//
-//		}
-//		return parents;
-//	}
-//	
-
-
-
-//	public static ObservableList<Parent> getParentList() {
-//
-//        ObservableList<Parent> parents = FXCollections.observableArrayList();
-//        Connection conn = JDBC.getCon();
-//        String sql = "SELECT id_parent, name, username, age_parent FROM parent ";
-//        try(Statement stat = conn.createStatement();
-//        		ResultSet rs = stat.executeQuery(sql)){
-//            while(rs.next()) {
-//                String name = rs.getString("name");
-//                int age = rs.getInt("age");
-//                int  id= rs.getInt("id");
-//                String username= rs.getString("username");
-//                String password= rs.getString("password");
-//                String email= rs.getString("email");
-//                 ObservableList<Kid> kids = null;
-//                 ObservableList<Task> tasks = null;
-//
-//                parents.add(new Parent(name, age, id, username, /*password,*/
-//                    kids,tasks  ));
-//            }
-//        }catch(SQLException e) {
-//            e.printStackTrace();
-//        }
-//        return parents;
-//}
-
 	
 	public static ObservableList<Kid> getKids(int id){
 		String sql = "SELECT * FROM kids WHERE";

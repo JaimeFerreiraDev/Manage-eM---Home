@@ -11,12 +11,19 @@ import pt.iade.ManageeMHome.models.Kid;
 import pt.iade.ManageeMHome.models.Parent;
 import pt.iade.ManageeMHome.models.DAO.JDBC;
 import pt.iade.ManageeMHome.models.DAO.PersonDAO;
-
+/**
+ * This class is a controller to the "Add Kid window" that pops up when the user clicks in the plus button in the kid tab, managed
+ * <p> by the {@link pt.iade.ManageeMHome.controllers.KidViewController.java} class.
+ * <p>The add "Add Kid window" is in this fxml file: {@link pt.iade.ManageeMHome.views#addKidView.fxml}.
+ * @author jaime
+ *
+ */
 public class AddKidController {
 	@FXML
 	private TextField codeField;
 	/**
-	 * This method completes the process of linking 
+	 * This method adds a kid to the kid table, by checking if the code the user wrote in the
+	 * <p>{@link #codeField} matches any ID that is currently in the database.
 	 */
 	@FXML
 	public void addButtonOnClick() {
@@ -38,7 +45,7 @@ public class AddKidController {
 						" Family_Relation WHERE Family_Relation.parent = ? and Family_Relation.kid = Kid.id_Kid);");
 				stmt.setInt(1,parent);
 				stmt.execute();
-				Main.plusStage.close();
+				Main.secondaryStage.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} 
@@ -49,9 +56,12 @@ public class AddKidController {
 
 
 	}
+	/**
+	 * This method closes the window.
+	 */
 	@FXML
 	public void cancelButtonOnClick() {
-		Main.plusStage.close();
+		Main.secondaryStage.close();
 	}	
 
 	@FXML
