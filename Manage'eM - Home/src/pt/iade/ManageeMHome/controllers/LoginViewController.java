@@ -53,15 +53,7 @@ public class LoginViewController {
 	@FXML
 	public void loginButtonOnCLick() throws SQLException {
 		Connection conn= JDBC.getCon(); 
-		//		String tableName = null;
-
-
-		//		String sql="SELECT name, age_parent as age, id_parent as id,0 as 1stTime,0 as points ,'Parent' as Role FROM Parent where username = ? and password = ? "
-		//				+ "UNION"
-		//				+ " SELECT name, age_kid as age, id_kid as id, 1stTime, pts_kid as points ,'Kid' as Role FROM Kid where username = ? and password = ?;"; 
-
-
-		int role = 0;
+			int role = 0;
 
 		String sql = "select * from User, Password where username = ? and password = ? and id_User = id_Password;";
 		PreparedStatement stat = conn.prepareStatement(sql); // erro aqui 		

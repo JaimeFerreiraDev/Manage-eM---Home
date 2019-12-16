@@ -1,7 +1,7 @@
 package pt.iade.ManageeMHome.models;
 
 /**
- * This class is what we use to represent kids.
+ * This an abstract that both kids and parent inherit from.
  * @author jaime
  *
  */
