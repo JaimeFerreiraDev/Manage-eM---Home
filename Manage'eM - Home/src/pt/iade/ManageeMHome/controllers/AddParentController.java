@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 import pt.iade.ManageeMHome.Main;
 /**
  * This class is a controller to the "Add Parent window" that pops up when the user clicks in the plus button in the parent tab, managed
- * <p> by the {@link pt.iade.ManageeMHome.controllers.ParentViewController.java} class.
+ * <p> by the {@link pt.iade.ManageeMHome.controllers.ParentViewController} class.
  * <p>The "add parent window" is in this fxml file: {@link pt.iade.ManageeMHome.views#addParentView.fxml}.
  * @author jaime
  *

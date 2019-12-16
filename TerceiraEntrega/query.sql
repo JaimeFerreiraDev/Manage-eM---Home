@@ -38,7 +38,7 @@ update Kid, Kids_Task, Task set pts_Kid = pts_Kid + pts_Task where Kid.id_Kid=Ki
  DELETE FROM Kids_Task WHERE Kids_Task.Task= 1 and Kids_Task.kid= 3;
  
  ## filhos a gastar pontos em rewards
- UPDATE Kid, Reward set pts_Kid = pts_Kid - Reward.pts_required where Kid.id_Kid = 9 and Reward.id_Reward = 1 ;
+ UPDATE Kid, Reward set pts_Kid = pts_Kid - Reward.pts_required where Kid.id_Kid = 3 and Reward.id_Reward = 1 ;
  
  
  ####Indexes

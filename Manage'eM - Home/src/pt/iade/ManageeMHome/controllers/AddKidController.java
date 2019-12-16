@@ -13,7 +13,7 @@ import pt.iade.ManageeMHome.models.DAO.JDBC;
 import pt.iade.ManageeMHome.models.DAO.PersonDAO;
 /**
  * This class is a controller to the "Add Kid window" that pops up when the user clicks in the plus button in the kid tab, managed
- * <p> by the {@link pt.iade.ManageeMHome.controllers.KidViewController.java} class.
+ * <p> by the {@link pt.iade.ManageeMHome.controllers.KidViewController} class.
  * <p>The add "Add Kid window" is in this fxml file: {@link pt.iade.ManageeMHome.views#addKidView.fxml}.
  * @author jaime
  *

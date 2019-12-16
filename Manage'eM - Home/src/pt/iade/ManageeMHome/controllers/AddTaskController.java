@@ -25,7 +25,7 @@ import pt.iade.ManageeMHome.models.DAO.JDBC;
 import pt.iade.ManageeMHome.models.DAO.PersonDAO;
 /**
  * This class is a controller to the "Add task window" that pops up when the user clicks in the plus button in the task tab, managed
- * <p> by the {@link pt.iade.ManageeMHome.controllers.taskViewController.java} class.
+ * <p> by the {@link pt.iade.ManageeMHome.controllers.TaskViewController} class.
  * <p>The add Reward window is in this fxml file: {@link pt.iade.ManageeMHome.views#addTaskView.fxml}.
  * @author jaime
  *

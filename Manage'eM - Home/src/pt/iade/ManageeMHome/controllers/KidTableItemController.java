@@ -17,7 +17,7 @@ import pt.iade.ManageeMHome.models.DAO.JDBC;
 import pt.iade.ManageeMHome.models.DAO.PersonDAO;
 /**
  * This class is the controller to "kid table item window" that shows info related to the kid selected in the
- * <p>table view in the kid tab: {@link pt.iade.ManageeMHome.controllers.KidViewController#kidTV.java}.
+ * <p>table view in the kid tab: {@link pt.iade.ManageeMHome.controllers.KidViewController#kidTV}.
  * <p>Allowing the user to gift the kid or giving him an allowance.
  * <p>The "kid table item window" is in this fxml file: {@link pt.iade.ManageeMHome.views#kidTableItemView.fxml}.
  * @author jaime

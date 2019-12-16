@@ -64,7 +64,6 @@ public class NotificationsController {
 					if(!empty){
 						Button button = new Button("NO");
 						button.setOnAction((event) -> {
-
 							notificationTV.getSelectionModel().select(getTableRow().getIndex());
 							Task  selectedItem     =    notificationTV.getSelectionModel().getSelectedItem();
 							notificationTV.getItems().remove(selectedItem);

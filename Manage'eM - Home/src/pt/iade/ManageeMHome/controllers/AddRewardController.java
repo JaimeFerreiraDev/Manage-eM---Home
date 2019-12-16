@@ -18,7 +18,7 @@ import pt.iade.ManageeMHome.models.Reward;
 import pt.iade.ManageeMHome.models.DAO.JDBC;
 /**
  * This class is a controller to the "Add Reward window" that pops up when the user clicks in the plus button in the Reward tab, managed
- * <p> by the {@link pt.iade.ManageeMHome.controllers.rewardViewController.java} class.
+ * <p> by the {@link pt.iade.ManageeMHome.controllers.RewardViewController} class.
  * <p>The add Reward window is in this fxml file: {@link pt.iade.ManageeMHome.views#addRewardView.fxml}.
  * @author jaime
  *

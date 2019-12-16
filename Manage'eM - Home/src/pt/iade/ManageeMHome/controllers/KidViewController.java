@@ -30,15 +30,15 @@ import pt.iade.ManageeMHome.models.DAO.PersonDAO;
  * <p>{@link pt.iade.ManageeMHome.models.DAO.PersonDAO#getLoggedParent()}
  * <p>
  * <p>a "plus button" that opens the "add kid window", managed by:
- * <p>{@link pt.iade.ManageeMHome.controllers.AddKidController.java}
+ * <p>{@link pt.iade.ManageeMHome.controllers.AddKidController}
  * <p>
  * <p>a "notifications button" that opens the "notifications window" managed by:
- * <p>{@link pt.iade.ManageeMHome.controllers.NotificationsController.java}
+ * <p>{@link pt.iade.ManageeMHome.controllers.NotificationsController}
  * <p>
  * <p>buttons to the other tabs: parents, tasks and rewards:
- * <p>{@link pt.iade.ManageeMHome.controllers.ParentViewController.java}
- * <p>{@link pt.iade.ManageeMHome.controllers.TaskViewController.java}
- * <p>{@link pt.iade.ManageeMHome.controllers.RewardViewController.java}
+ * <p>{@link pt.iade.ManageeMHome.controllers.ParentViewController}
+ * <p>{@link pt.iade.ManageeMHome.controllers.TaskViewController}
+ * <p>{@link pt.iade.ManageeMHome.controllers.RewardViewController}
  * <p>
  * <p>The "kid tab" is in this fxml file: {@link pt.iade.ManageeMHome.views#kidView.fxml}.
  * @author jaime
