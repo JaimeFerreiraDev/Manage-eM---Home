@@ -21,6 +21,7 @@ import pt.iade.ManageeMHome.Main;
 import pt.iade.ManageeMHome.models.Kid;
 import pt.iade.ManageeMHome.models.Reward;
 import pt.iade.ManageeMHome.models.DAO.JDBC;
+import pt.iade.ManageeMHome.models.DAO.KidDAO;
 import pt.iade.ManageeMHome.models.DAO.PersonDAO;
 
 /**
@@ -102,34 +103,12 @@ public class KidViewController {
 	}
 
 	
-	
-	
-	
-	
-	
 	public void updateKidInfo() {
-		int parent = 0;
-		String sql ="Select * from Family_Relation, Kid, User where parent = ? and kid = id_Kid and id_Kid = id_User;";
-		try (PreparedStatement stat = JDBC.getCon().prepareStatement(sql)){
-			parent = PersonDAO.getLoggedParent().getId();
-			stat.setInt(1, parent);
-			System.out.println(stat);
-			ResultSet rs = stat.executeQuery();	
-			ObservableList<Kid> kids = FXCollections.observableArrayList();
-			while(rs.next()) {
-				kids.add(new Kid(rs.getString("name"), 
-
-						rs.getInt("age"), 
-						rs.getInt("id_Kid"),
-						rs.getInt("pts_Kid"),
-						rs.getBoolean("FirstTime"))
-						);
-			}
-			kidTV.setItems( kids);
-			System.out.println(kids);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} 
+		kidTV.setItems( KidDAO.getKidsBD());
 	}
-
+	
+	
+	
+	
+	
 }

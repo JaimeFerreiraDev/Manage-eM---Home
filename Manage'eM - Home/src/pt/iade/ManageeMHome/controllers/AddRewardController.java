@@ -16,6 +16,7 @@ import javafx.scene.control.TextField;
 import pt.iade.ManageeMHome.Main;
 import pt.iade.ManageeMHome.models.Reward;
 import pt.iade.ManageeMHome.models.DAO.JDBC;
+import pt.iade.ManageeMHome.models.DAO.RewardDAO;
 /**
  * This class is a controller to the "Add Reward window" that pops up when the user clicks in the plus button in the Reward tab, managed
  * <p> by the {@link pt.iade.ManageeMHome.controllers.RewardViewController} class.
@@ -25,9 +26,9 @@ import pt.iade.ManageeMHome.models.DAO.JDBC;
  */
 public class AddRewardController {
 	@FXML
-	private TextField nameField;
+	public static TextField nameField;
 	@FXML
-	private JFXSlider slider;
+	public static JFXSlider slider;
 	@FXML
 	private Label errorLabel;
 	/**
@@ -39,16 +40,7 @@ public class AddRewardController {
 			nameField.setStyle("-fx-effect:dropshadow(three-pass-box, rgba(0,0,0,0), 10, 0, 0, 0)");
 			
 			
-			String sql ="insert into Reward (name, pts_required) values(?,?);";
-			try (PreparedStatement stat = JDBC.getCon().prepareStatement(sql)){	
-				int intSlider= (int)slider.getValue();
-				stat.setString(1,nameField.getText());
-				stat.setInt(2, intSlider);
-				stat.execute();
-				System.out.println(stat.toString());
-			}catch (SQLException e) {
-				e.printStackTrace();	
-			}
+			RewardDAO.addRewardBD((int)slider.getValue(), nameField.getText());
 			
 			
 			Main.secondaryStage.close();

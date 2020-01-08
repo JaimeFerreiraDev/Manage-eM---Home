@@ -14,6 +14,7 @@ import pt.iade.ManageeMHome.Main;
 import pt.iade.ManageeMHome.models.Kid;
 import pt.iade.ManageeMHome.models.Parent;
 import pt.iade.ManageeMHome.models.DAO.JDBC;
+import pt.iade.ManageeMHome.models.DAO.KidDAO;
 import pt.iade.ManageeMHome.models.DAO.PersonDAO;
 /**
  * This class is the controller to "kid table item window" that shows info related to the kid selected in the
@@ -66,34 +67,21 @@ public class KidTableItemController {
 
 	@FXML
 	public void initialize() {
-		updateKidInfo();
+		updateTableKidInfo();
+		
 
 	}
+	
 	/**
 	 * This method is called whenever there is the need to update the content in this window.
 	 * <p>This being when the window opens, and when the gift or allowance windows close:
 	 * <p>{@link #initialize()}
 	 * <p>{@link pt.iade.ManageeMHome.Main#openGiftOrAllowance(KidTableItemController, Kid, String, Object)}
 	 */
-	public void updateKidInfo() {
-		String sql = "select pts_Kid as points from Kid where id_Kid = ?;";
-		try {
-			PreparedStatement stat = JDBC.getCon().prepareStatement(sql); // erro aqui 		
-			stat.setInt(1,kid.getId());
-			System.out.println(stat);
-			ResultSet rs = stat.executeQuery();
-			if(rs.next()) {
-				points=rs.getInt("points");
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-
-
+	public void updateTableKidInfo(){
 		kidNameLabel.setText(kid.getName()+":");
 		kidAgeLabel.setText("Age: "+Integer.toString(kid.getAge()));
-		kidPointsLabel.setText("M's: "+points);
+		kidPointsLabel.setText("M's: "+ KidDAO.kidPoints(kid));
 	}
+	
 }

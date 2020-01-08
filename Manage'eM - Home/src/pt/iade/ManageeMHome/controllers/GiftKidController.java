@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import pt.iade.ManageeMHome.Main;
 import pt.iade.ManageeMHome.models.Kid;
 import pt.iade.ManageeMHome.models.DAO.JDBC;
+import pt.iade.ManageeMHome.models.DAO.KidDAO;
 /**
  * This class is the controller to "gift kid window" that allows the user to select an amount of points, using
  * <p>the {@link #slider}, to gift the kid that was selected in the kid tab:
@@ -42,21 +43,9 @@ public class GiftKidController {
 	}
 	@FXML
 	private void giftButtonClick() {
-		int intSlider = (int)slider.getValue();
 
-	try {
-		String sql ="UPDATE Kid SET pts_Kid = pts_Kid + ? WHERE id_Kid = ?;";
-		
-		PreparedStatement stmt = JDBC.getCon().prepareStatement(sql);
-		stmt.setInt(1,intSlider);
-		stmt.setInt(2, kid.getId());
-		stmt.execute();
-		System.out.println(stmt);
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-		Main.secondaryStage.close();
+		KidDAO.giftKidBD((int)slider.getValue(), kid); 
+		Main.terciaryStage.close();
 		
 	}
 	public void initialize(){	

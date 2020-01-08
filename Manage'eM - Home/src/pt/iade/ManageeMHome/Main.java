@@ -23,7 +23,7 @@ public class Main extends Application {
 	static Scene scene;
 	public static Stage primaryStage;
 	public static Stage secondaryStage;
-	static Stage terciaryStage;
+	public static Stage terciaryStage;
 	public static int counter=0;
 	public static int kcounter=0;
 	/**
@@ -146,7 +146,7 @@ public class Main extends Application {
 			terciaryStage.initModality(Modality.APPLICATION_MODAL);
 			terciaryStage.setScene(scene);
 			terciaryStage.showAndWait();
-			itemKid.updateKidInfo();
+			itemKid.updateTableKidInfo();
 
 		} catch (Exception e) {
 			System.out.println(e);

@@ -1,7 +1,8 @@
 
 
 create database ManageeMHome;
-use manage_em_home;
+use ManageeMHome;
+
 
 
 drop table Parents_Reward;
@@ -16,7 +17,6 @@ drop table Kid;
 drop table Password;
 drop table User;
 drop table Relationship_Role;
-
 
 create table Relationship_Role(id_role int not null, name_role varchar(10),
 			CONSTRAINT Relationship_RolePK PRIMARY KEY (id_role));

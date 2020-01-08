@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.time.Year;
+import java.util.Calendar;
 
 import com.jfoenix.controls.JFXDatePicker;
 
@@ -60,7 +62,7 @@ public class NewAccController {
 				userTypeCombo.getValue()!=null && 
 				!nameText.getText().isEmpty() &&
 				Date.valueOf(datePicker.getValue()) != null) {
-
+			
 			
 			if(userTypeCombo.getValue().equals("Parent")) {
 //				String sql ="insert into User (username, role) values(?,1);"
@@ -72,8 +74,8 @@ public class NewAccController {
 					stat.setString(1,userText.getText());
 					stat.setString(2,nameText.getText());
 					SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-					String format = formatter.format(Date.valueOf(datePicker.getValue()));
-					stat.setString(3,format);
+					String format =  formatter.format(Date.valueOf(datePicker.getValue()));
+					stat.setString(3, format);
 					System.out.println("primeira query: "+stat);
 					stat.execute();	
 					stat.close();

@@ -23,6 +23,7 @@ import pt.iade.ManageeMHome.models.Kid;
 import pt.iade.ManageeMHome.models.Task;
 import pt.iade.ManageeMHome.models.DAO.JDBC;
 import pt.iade.ManageeMHome.models.DAO.PersonDAO;
+import pt.iade.ManageeMHome.models.DAO.TaskDAO;
 /**
  * This class is a controller to the "Add task window" that pops up when the user clicks in the plus button in the task tab, managed
  * <p> by the {@link pt.iade.ManageeMHome.controllers.TaskViewController} class.
@@ -81,43 +82,7 @@ public class AddTaskController {
 				&& String.valueOf(pointsSlider) != null
 				&& selectedKids != null) {
 
-			String sql ="insert into Task (name, frequency_type, description, duration, pts_Task) values(?,?,?,3600,?);";
-			try {
-				PreparedStatement stat = JDBC.getCon().prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
-				int intSlider= (int)pointsSlider.getValue();
-				stat.setString(1,nameField.getText());
-				stat.setString(2,"One Time");
-				stat.setString(3,descriptionArea.getText());
-				stat.setInt(4, intSlider);
-				System.out.println(stat);		
-				stat.execute();
-				ResultSet rs = stat.getGeneratedKeys();
-			
-				rs.next();
-				int id_Task = rs.getInt(1);
-				PreparedStatement stmt = JDBC.getCon().prepareStatement("Insert into Parents_Task (parent, Task)"
-						+ " values (?,?);");
-					
-				parent = PersonDAO.getLoggedParent().getId();
-				stmt.setInt(1, parent);
-				stmt.setInt(2, id_Task);
-				System.out.println("cheguei aqui??????"+stmt);
-				stmt.execute();
-
-				for (Kid kid : selectedKids) {
-
-					PreparedStatement kidstask = JDBC.getCon().prepareStatement("Insert into Kids_Task (kid, Task,start_time ,completed)"
-							+ " values (?,?,1000,false)");
-					System.out.println(kidstask);
-					kidstask.setInt(1, kid.getId());
-					kidstask.setInt(2, id_Task);
-					kidstask.execute();
-				}
-
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			TaskDAO.addTaskBD((int)pointsSlider.getValue(), nameField.getText(), descriptionArea.getText(), selectedKids);
 
 
 			Main.secondaryStage.close();
@@ -148,7 +113,6 @@ public class AddTaskController {
 	public void addKidButtonClick() {
 		selectedKids.add(kidComboBox.getSelectionModel().getSelectedItem());
 		kids.remove(kidComboBox.getSelectionModel().getSelectedItem());
-		kidComboBox.setItems(kids);
 
 	}
 

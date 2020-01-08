@@ -1,4 +1,4 @@
-use manage_em_home;
+use ManageeMHome;
 
 #criar dois tipos de roles, pais e filhos
 insert into Relationship_Role(id_role,name_role) values (1,"Parent");
