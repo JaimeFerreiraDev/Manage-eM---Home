@@ -127,6 +127,7 @@ public class TaskViewController {
 		FXCollections.observableArrayList();
 
 	}
+	
 	public void updateTaskInfo() {
 		String sql ="Select * from Parents_Task, Task where parent = ? and id_Task = task;";
 		try (PreparedStatement stat = JDBC.getCon().prepareStatement(sql)){

@@ -14,6 +14,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -65,6 +66,9 @@ public class AddTaskController {
 
 	@FXML
 	private Label freqLabel;
+	
+	@FXML
+	private ListView<Kid> listView;
 
 	ToggleGroup frequency = new ToggleGroup();
 
@@ -73,7 +77,7 @@ public class AddTaskController {
 
 	@FXML
 	private ComboBox<Kid> kidComboBox;
-	ObservableList<Kid> kidOList = FXCollections.observableArrayList();
+
 	@FXML
 	public void addButtonOnClick()  {
 		int parent = 0;
@@ -109,42 +113,26 @@ public class AddTaskController {
 		Main.secondaryStage.close();
 
 	}
+	
+	ObservableList<Kid> notSelectedKids  = FXCollections.observableArrayList();
 	@FXML
 	public void addKidButtonClick() {
+		
 		selectedKids.add(kidComboBox.getSelectionModel().getSelectedItem());
-		kids.remove(kidComboBox.getSelectionModel().getSelectedItem());
-
+		
+		notSelectedKids.remove(kidComboBox.getSelectionModel().getSelectedItem());
+		kidComboBox.setItems(notSelectedKids);
+		listView.setItems(selectedKids);
 	}
 
 	@FXML
 	public void initialize() {
-
+		notSelectedKids=TaskDAO.getTaskKidsBD();
 		radioOneTime.setToggleGroup(frequency);
 		radioWeekly.setToggleGroup(frequency);
 		radioDaily.setToggleGroup(frequency);
 		radioMonthly.setToggleGroup(frequency);
-		int parent = 0;
-		String sql ="Select * from Family_Relation, Kid, User where parent = ? and kid = id_Kid and id_Kid = id_User;";
-		try (PreparedStatement stat = JDBC.getCon().prepareStatement(sql)){
-			parent = PersonDAO.getLoggedParent().getId();
-			stat.setInt(1, parent);
-			System.out.println(stat);
-			ResultSet rs = stat.executeQuery();	
-
-			while(rs.next()) {
-				kids.add(new Kid(
-						rs.getString("name"), 
-						rs.getInt("age"), 
-						rs.getInt("id_Kid"),
-						rs.getInt("pts_Kid"),
-						rs.getBoolean("FirstTime"))
-						);
-			}
-			System.out.println(kids.toString());
-			kidComboBox.setItems(kids);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} 
+		kidComboBox.setItems(notSelectedKids);
 
 
 	}

@@ -1,12 +1,20 @@
 package pt.iade.ManageeMHome.controllers;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import pt.iade.ManageeMHome.Main;
 import pt.iade.ManageeMHome.models.Reward;
+import pt.iade.ManageeMHome.models.Task;
+import pt.iade.ManageeMHome.models.DAO.JDBC;
+import pt.iade.ManageeMHome.models.DAO.PersonDAO;
 /**
  * This class is the controller for the "reward tab" that has:
  * <p>
@@ -71,9 +79,28 @@ public class RewardViewController {
 			 nameColumn.setCellValueFactory(new PropertyValueFactory<String, Reward>("Name"));
 			 pointsColumn.setCellValueFactory(new PropertyValueFactory<Integer, Reward>("Points"));
 		     FXCollections.observableArrayList();
+		     updateRewardInfo();
 		     //set items here using the database
 		    }
+		int parent = 0;
 		public void updateRewardInfo() {
-			
+
+			String sql ="Select * from Parents_Reward, Reward where parent = ? and id_Reward = reward;";
+			try (PreparedStatement stat = JDBC.getCon().prepareStatement(sql)){
+				parent = PersonDAO.getLoggedParent().getId();
+				stat.setInt(1, parent);
+				System.out.println(stat);
+				ResultSet rs = stat.executeQuery();	
+				ObservableList<Reward> rewards= FXCollections.observableArrayList();
+				while(rs.next()) {
+					rewards.add(new Reward(rs.getString("name"),
+							rs.getInt("pts_required"))
+							);
+				}
+				rewardTV.setItems(rewards);
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} 
 		}
 }

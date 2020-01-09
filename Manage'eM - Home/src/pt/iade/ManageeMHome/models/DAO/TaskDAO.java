@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import pt.iade.ManageeMHome.models.Kid;
 
@@ -47,4 +48,30 @@ public static void addTaskBD(int sliderValue, String nameText, String descriptio
 		e.printStackTrace();
 	}
 }
+	public static ObservableList<Kid> getTaskKidsBD() {
+		ObservableList<Kid> kids  = FXCollections.observableArrayList();
+		int parent = 0;
+		String sql ="Select * from Family_Relation, Kid, User where parent = ? and kid = id_Kid and id_Kid = id_User;";
+		try (PreparedStatement stat = JDBC.getCon().prepareStatement(sql)){
+			parent = PersonDAO.getLoggedParent().getId();
+			stat.setInt(1, parent);
+			System.out.println(stat);
+			ResultSet rs = stat.executeQuery();	
+
+			while(rs.next()) {
+				kids.add(new Kid(
+						rs.getString("name"), 
+						rs.getInt("age"), 
+						rs.getInt("id_Kid"),
+						rs.getInt("pts_Kid"),
+						rs.getBoolean("FirstTime"))
+						);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} 
+		return kids;
+	}
+
 }
