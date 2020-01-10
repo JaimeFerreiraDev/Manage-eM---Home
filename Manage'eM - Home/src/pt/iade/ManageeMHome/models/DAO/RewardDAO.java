@@ -61,7 +61,7 @@ public static ObservableList<Kid> getRewardsBD() {
 						rs.getInt("age"), 
 						rs.getInt("id_Kid"),
 						rs.getInt("pts_Kid"),
-						rs.getBoolean("FirstTime"))
+						rs.getBoolean("Connected"))
 						);
 			}
 			
@@ -70,4 +70,7 @@ public static ObservableList<Kid> getRewardsBD() {
 		} 
 		return kids;
 	}
+
+
+
 }

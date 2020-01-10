@@ -55,6 +55,7 @@ public class KtaskController {
 
 	@FXML
 	private void initialize() {
+		kid =    PersonDAO.getLoggedKid().getId();
 		updateKidPOVTask();
 		nameColumn.setCellValueFactory(new PropertyValueFactory<String, Task>("Name"));
 		pointsColumn.setCellValueFactory(new PropertyValueFactory<Integer, Task>("Points"));
@@ -68,7 +69,7 @@ public class KtaskController {
 						button.setOnAction((event) -> {
 							try {
 
-								kid =    PersonDAO.getLoggedKid().getId();
+								
                                 PreparedStatement stmt = JDBC.getCon().prepareStatement(" UPDATE Kids_Task, Task SET completed = true WHERE Kids_Task.kid ="
                                         + "? and Task.id_Task = Kids_Task.Task and Task.name = ?;");
                                 stmt.setInt(1,kid);

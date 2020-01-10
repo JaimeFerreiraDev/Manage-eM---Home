@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import pt.iade.ManageeMHome.Main;
 import pt.iade.ManageeMHome.models.Kid;
+import pt.iade.ManageeMHome.models.Reward;
 import pt.iade.ManageeMHome.models.Task;
 
 public class KidDAO {
@@ -25,7 +26,7 @@ public static void addKidBD(int parentID, int kidID) {
 		stat.setInt(2,parentID);
 		stat.execute();
 		
-		PreparedStatement stmt = JDBC.getCon().prepareStatement(" UPDATE Kid SET FirstTime = false WHERE id_Kid = (SELECT kid FROM" + 
+		PreparedStatement stmt = JDBC.getCon().prepareStatement(" UPDATE Kid SET Connected = true WHERE id_Kid = (SELECT kid FROM" + 
 				" Family_Relation WHERE Family_Relation.parent = ? and Family_Relation.kid = Kid.id_Kid);");
 		stmt.setInt(1,parentID);
 		stmt.execute();
@@ -89,7 +90,7 @@ public static ObservableList<Kid> getKidsBD() {
 					, 
 					rs.getInt("id_Kid"),
 					rs.getInt("pts_Kid"),
-					rs.getBoolean("FirstTime"))
+					rs.getBoolean("Connected"))
 					);
 		}
 		
@@ -101,6 +102,24 @@ public static ObservableList<Kid> getKidsBD() {
 	
 }
 
+public static  ObservableList<Reward> updateKidPOVRewardBD(int kid) {
+	ObservableList<Reward> rewards = FXCollections.observableArrayList();
+	String sql ="Select * from Kids_Reward, Reward where kid = ? and id_Reward = reward;";
+	try (PreparedStatement stat = JDBC.getCon().prepareStatement(sql)){
+		stat.setInt(1, kid);
+		System.out.println(stat);
+		ResultSet rs = stat.executeQuery();	
+	
+		while(rs.next()) {
+			rewards.add(new Reward(rs.getString("name"), rs.getInt("pts_required"),rs.getInt("Id_Reward"))
+					);
+		}
+		
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} 
+	return rewards;
+}
 public static  ObservableList<Task> updateKidPOVTaskBD(int kid) {
 	ObservableList<Task> tasks = FXCollections.observableArrayList();
 	String sql ="Select * from Kids_Task, Task where kid = ? and id_Task = task and completed = false;";
@@ -122,5 +141,24 @@ public static  ObservableList<Task> updateKidPOVTaskBD(int kid) {
 		e.printStackTrace();
 	} 
 	return tasks;
+}
+
+
+public static void buyReward(int pts,int kid) {
+	
+	try {
+		String sql ="UPDATE Kid SET pts_Kid = pts_Kid - ? WHERE id_Kid = ?;";
+		
+		PreparedStatement stmt = JDBC.getCon().prepareStatement(sql);
+		stmt.setInt(1,pts);
+		stmt.setInt(2, kid);
+		stmt.execute();
+		System.out.println(stmt);
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	
 }
 }

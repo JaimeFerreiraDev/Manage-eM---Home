@@ -15,6 +15,7 @@ import pt.iade.ManageeMHome.Main;
 import pt.iade.ManageeMHome.models.Reward;
 import pt.iade.ManageeMHome.models.Task;
 import pt.iade.ManageeMHome.models.DAO.JDBC;
+import pt.iade.ManageeMHome.models.DAO.KidDAO;
 import pt.iade.ManageeMHome.models.DAO.PersonDAO;
 /**
  * This class is not functional yet.
@@ -29,7 +30,7 @@ public class KrewardController {
 		Main.changeTab("kidPOV/kviews/ktaskView.fxml", new KtaskController());
 	}
 	@FXML
-	private TableView<Reward> taskTV;
+	private TableView<Reward> rewardTV;
 	private ObservableList<Reward> rewards = FXCollections.observableArrayList();
 	@FXML
 	private TableColumn<String, Reward> nameColumn;
@@ -39,10 +40,16 @@ public class KrewardController {
 
 	@FXML
 	private TableColumn<Boolean, Reward> getColumn;
+	private int kid = 0;
+	private Reward selectedItem;
+	private int points = 0;
 
 	@FXML
 	private void initialize() {
+		kid = PersonDAO.getLoggedKid().getId();
 		updateKidPOVReward();
+		
+
 		nameColumn.setCellValueFactory(new PropertyValueFactory<String, Reward>("Name"));
 		pointsColumn.setCellValueFactory(new PropertyValueFactory<Integer,  Reward>("Points"));
 		getColumn.setCellFactory((tableCol)-> {
@@ -53,8 +60,12 @@ public class KrewardController {
 					if(!empty){
 						Button button = new Button("GET");
 						button.setOnAction((event) -> {
+							 rewardTV.getSelectionModel().select(getTableRow().getIndex());
+                             
+							points = rewardTV.getSelectionModel().getSelectedItem().getPoints();
+							System.out.println("é isto: " +points);
 							//mandar notificação de reward ao pai
-
+							KidDAO.buyReward(points, kid);
 						});
 						setGraphic(button);
 					} else  {
@@ -64,9 +75,9 @@ public class KrewardController {
 				}   
 			}; 
 		});
-		
+	
 	}
-	private void updateKidPOVReward(){
-		
+	public void updateKidPOVReward(){
+		rewardTV.setItems(KidDAO.updateKidPOVRewardBD(kid));
 	}
 }

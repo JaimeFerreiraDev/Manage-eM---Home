@@ -94,7 +94,8 @@ public class RewardViewController {
 				ObservableList<Reward> rewards= FXCollections.observableArrayList();
 				while(rs.next()) {
 					rewards.add(new Reward(rs.getString("name"),
-							rs.getInt("pts_required"))
+							rs.getInt("pts_required"),
+							rs.getInt("Id_Reward"))
 							);
 				}
 				rewardTV.setItems(rewards);

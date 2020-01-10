@@ -13,7 +13,7 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-
+import pt.iade.ManageeMHome.Main;
 import pt.iade.ManageeMHome.models.Kid;
 import pt.iade.ManageeMHome.models.Task;
 import pt.iade.ManageeMHome.models.DAO.JDBC;
@@ -68,8 +68,10 @@ public class NotificationsController {
 						button.setOnAction((event) -> {
 							notificationTV.getSelectionModel().select(getTableRow().getIndex());
 							Task  selectedItem     =    notificationTV.getSelectionModel().getSelectedItem();
+							TaskDAO.taskIsNotCompletedBD(selectedItem.getKid().getId(), selectedItem.getId());
 							notificationTV.getItems().remove(selectedItem);
 							notificationTV.setItems(completedTasks);
+						
 						});
 						setGraphic(button);
 					} else  {

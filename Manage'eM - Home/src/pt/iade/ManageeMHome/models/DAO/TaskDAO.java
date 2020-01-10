@@ -65,7 +65,7 @@ public static void addTaskBD(int sliderValue, String nameText, String descriptio
 						rs.getInt("age"), 
 						rs.getInt("id_Kid"),
 						rs.getInt("pts_Kid"),
-						rs.getBoolean("FirstTime"))
+						rs.getBoolean("Connected"))
 						);
 			}
 			
@@ -89,5 +89,19 @@ public static void addTaskBD(int sliderValue, String nameText, String descriptio
 			e.printStackTrace(); 
 		}
 	}
+	
+	public static void taskIsNotCompletedBD(int kid, int task) {
+        try {
+            String sql = "UPDATE Kids_Task SET completed = false WHERE kid=? and Task = ?;";
+            PreparedStatement stmt = JDBC.getCon().prepareStatement(sql);
+            stmt.setInt(1, kid);
+            stmt.setInt(2, task);
+            stmt.execute();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+    }
 
 }

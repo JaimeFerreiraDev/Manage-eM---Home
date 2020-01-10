@@ -102,8 +102,8 @@ public class NewAccController {
 					System.out.println("primeira query: "+stat);
 					stat.execute();	
 					stat.close();
-					stat = JDBC.getCon().prepareStatement("insert into Kid (id_Kid, pts_Kid, FirstTime) "
-							+ "values ((select id_User from User where username = ?),0,true);");
+					stat = JDBC.getCon().prepareStatement("insert into Kid (id_Kid, pts_Kid, Connected) "
+							+ "values ((select id_User from User where username = ?),0,false);");
 					stat.setString(1,userText.getText());
 					System.out.println("segunda query: "+stat);
 					stat.execute();	

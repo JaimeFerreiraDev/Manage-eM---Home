@@ -83,18 +83,16 @@ public class LoginViewController {
 							kids.getInt("age"),
 							kids.getInt("id_Kid"),
 							kids.getInt("pts_Kid"),
-							kids.getBoolean("FirstTime")
+							kids.getBoolean("Connected")
 							));
 					System.out.println(PersonDAO.getLoggedKid().toString());
 					Main.primaryStage.close();
 					
-					if(kids.getBoolean("FirstTime")) {
-						System.out.println("sou firstTime");
+					if(!kids.getBoolean("Connected")) {
 						Main.changeTab("kidPOV/kviews/k1stTimeView.fxml", new K1stTimeController());
 					
 					}
-					else if(!kids.getBoolean("FirstTime")) {
-						System.out.println("nao sou firstTime");
+					else if(kids.getBoolean("Connected")) {
 						Main.changeTab("kidPOV/kviews/ktaskView.fxml", new KtaskController());
 					}
 					
