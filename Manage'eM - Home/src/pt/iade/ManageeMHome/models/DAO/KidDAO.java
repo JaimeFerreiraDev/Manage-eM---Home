@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import pt.iade.ManageeMHome.Main;
 import pt.iade.ManageeMHome.models.Kid;
+import pt.iade.ManageeMHome.models.Task;
 
 public class KidDAO {
 public static void addKidBD(int parentID, int kidID) {
@@ -34,13 +35,13 @@ public static void addKidBD(int parentID, int kidID) {
 	} 
 }
 
-public static void giftKidBD(int intSlider, Kid kid) {
+public static void giftKidBD(int intSlider, int id) {
 	try {
 		String sql ="UPDATE Kid SET pts_Kid = pts_Kid + ? WHERE id_Kid = ?;";
 		
 		PreparedStatement stmt = JDBC.getCon().prepareStatement(sql);
 		stmt.setInt(1,intSlider);
-		stmt.setInt(2, kid.getId());
+		stmt.setInt(2, id);
 		stmt.execute();
 		System.out.println(stmt);
 	} catch (SQLException e) {
@@ -100,4 +101,26 @@ public static ObservableList<Kid> getKidsBD() {
 	
 }
 
+public static  ObservableList<Task> updateKidPOVTaskBD(int kid) {
+	ObservableList<Task> tasks = FXCollections.observableArrayList();
+	String sql ="Select * from Kids_Task, Task where kid = ? and id_Task = task and completed = false;";
+	try (PreparedStatement stat = JDBC.getCon().prepareStatement(sql)){
+		kid = PersonDAO.getLoggedKid().getId();
+		stat.setInt(1, kid);
+		System.out.println(stat);
+		ResultSet rs = stat.executeQuery();	
+	
+		while(rs.next()) {
+			tasks.add(new Task(rs.getString("name"),
+					rs.getInt("pts_Task"), rs.getInt("id_Task"),
+					rs.getString("description"),
+					false)
+					);
+		}
+		
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} 
+	return tasks;
+}
 }

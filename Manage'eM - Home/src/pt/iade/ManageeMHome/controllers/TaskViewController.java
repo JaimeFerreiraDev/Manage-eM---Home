@@ -81,7 +81,7 @@ public class TaskViewController {
 	}
 	@FXML
 	private void notificationClick() {
-		Main.openNotifications("views/notificationsView.fxml", new NotificationsController());
+		Main.openNotifications(null, "views/notificationsView.fxml", new NotificationsController());
 	}
 
 
@@ -138,7 +138,7 @@ public class TaskViewController {
 			ObservableList<Task> tasks = FXCollections.observableArrayList();
 			while(rs.next()) {
 				tasks.add(new Task(rs.getString("name"),
-						rs.getInt("pts_Task"), 
+						rs.getInt("pts_Task"), rs.getInt("id_Task"),
 						rs.getString("description"),
 						false)
 						);
@@ -160,7 +160,7 @@ public class TaskViewController {
 			ObservableList<Task> tasks = FXCollections.observableArrayList();
 			while(rs.next()) {
 				tasks.add(new Task(rs.getString("name"), 
-						rs.getInt("pts_Task"),
+						rs.getInt("pts_Task"),rs.getInt("id_Task"),
 						rs.getString("description"), 
 						rs.getBoolean("is_complete")));
 				System.out.println(tasks.toString());

@@ -68,7 +68,7 @@ public class ParentViewController {
 
 	@FXML
 	private void notificationClick() {
-		Main.openNotifications("views/notificationsView.fxml", new NotificationsController());
+		Main.openNotifications(null, "views/notificationsView.fxml", new NotificationsController());
 	}
 
 	@FXML

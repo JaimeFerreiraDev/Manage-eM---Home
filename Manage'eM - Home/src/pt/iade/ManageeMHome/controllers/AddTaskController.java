@@ -87,7 +87,7 @@ public class AddTaskController {
 				&& selectedKids != null) {
 
 			TaskDAO.addTaskBD((int)pointsSlider.getValue(), nameField.getText(), descriptionArea.getText(), selectedKids);
-
+			System.out.println((int)pointsSlider.getValue());
 
 			Main.secondaryStage.close();
 		} else {

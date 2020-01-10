@@ -17,7 +17,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import pt.iade.ManageeMHome.models.Kid;
 import pt.iade.ManageeMHome.models.Task;
 import pt.iade.ManageeMHome.models.DAO.JDBC;
+import pt.iade.ManageeMHome.models.DAO.KidDAO;
 import pt.iade.ManageeMHome.models.DAO.PersonDAO;
+import pt.iade.ManageeMHome.models.DAO.TaskDAO;
 
 
 /**
@@ -38,7 +40,7 @@ public class NotificationsController {
 	private TableColumn<String, Task> taskColumn;
 
 	@FXML
-	private TableColumn<String, Kid> kidColumnN;
+	private TableColumn<String, Task> kidColumnN;
 
 	@FXML
 	private TableColumn<Boolean, Button> noColumn;
@@ -53,7 +55,7 @@ public class NotificationsController {
 
 		findCompletedTasks();
 		taskColumn.setCellValueFactory(new PropertyValueFactory<String, Task>("name"));
-		kidColumnN.setCellValueFactory(new PropertyValueFactory<String, Kid>("name"));
+		kidColumnN.setCellValueFactory(new PropertyValueFactory<String, Task>("kid"));
 		FXCollections.observableArrayList();
 		notificationTV.setItems(completedTasks);
 		noColumn.setCellFactory((tableCol)-> {
@@ -84,12 +86,16 @@ public class NotificationsController {
 					super.updateItem(b1, empty);
 					if(!empty){
 						Button button = new Button("YES");
-						button.setOnAction((event) -> {
-
+						button.setOnAction((event) -> { 
 							notificationTV.getSelectionModel().select(getTableRow().getIndex());
 							Task  selectedItem     =    notificationTV.getSelectionModel().getSelectedItem();
+							
+						KidDAO.giftKidBD(selectedItem.getPoints(), selectedItem.getKid().getId());
+							TaskDAO.removeNotificationBD(selectedItem, selectedItem.getKid());
 							notificationTV.getItems().remove(selectedItem);
 							notificationTV.setItems(completedTasks);
+							
+										
 						});
 						setGraphic(button);
 					} else  {
@@ -105,9 +111,9 @@ public class NotificationsController {
 
 	private void findCompletedTasks() {
 
-		String sql ="Select User.name as Filho, Task.name as Task_Name from User, Task, Kids_Task, Family_Relation"
-				+ " where Family_Relation.kid = Kids_Task.kid and Family_Relation.parent = ? and"
-				+ " Task.id_Task = Kids_Task.Task AND Kids_Task.completed = true and User.id_User = Kids_Task.kid ";
+		String sql ="Select Task.id_Task, Kid.id_Kid as IdKid,Task.pts_Task as pts_Task ,User.name as Filho, Task.name as Task_Name from User, Task,"
+				+ " Kids_Task, Family_Relation, Kid where Family_Relation.kid = Kids_Task.kid and Family_Relation.parent = ? and Task.id_Task = Kids_Task.Task "
+				+ "AND Kids_Task.completed = true and User.id_User = Kids_Task.kid and Kid.id_Kid = Family_Relation.kid and Kid.id_Kid = Kids_Task.kid";
 		try (PreparedStatement stat = JDBC.getCon().prepareStatement(sql)){
 			parent = PersonDAO.getLoggedParent().getId();
 			stat.setInt(1, parent);
@@ -116,12 +122,12 @@ public class NotificationsController {
 			ResultSet rs = stat.executeQuery();	
 			while(rs.next()) {
 				completedTasks.add(new Task(rs.getString("Task_Name"),
-						0, 
+						rs.getInt("pts_Task"), 
+						rs.getInt("id_Task"),
 						null,
 						false,
-						new Kid(rs.getString("Filho"), 0, 0, 0, false)
-						)
-						);
+						new Kid(rs.getString("Filho"), 0, rs.getInt("IdKid"), 0, false)
+						));
 			}
 		}catch (SQLException e) {
 			e.printStackTrace();

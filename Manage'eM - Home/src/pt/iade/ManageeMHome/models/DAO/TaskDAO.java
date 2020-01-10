@@ -8,6 +8,7 @@ import java.sql.Statement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import pt.iade.ManageeMHome.models.Kid;
+import pt.iade.ManageeMHome.models.Task;
 
 public class TaskDAO {
 public static void addTaskBD(int sliderValue, String nameText, String descriptionText, ObservableList<Kid> selectedKids) {
@@ -72,6 +73,21 @@ public static void addTaskBD(int sliderValue, String nameText, String descriptio
 			e.printStackTrace();
 		} 
 		return kids;
+	}
+	
+	public static void removeNotificationBD(Task task, Kid kid) {
+		try {
+			String sql ="DELETE FROM Kids_Task WHERE Kids_Task.Task=? AND Kids_Task.kid=?";
+			
+			PreparedStatement stmt = JDBC.getCon().prepareStatement(sql);
+			stmt.setInt(1,task.getId());
+			stmt.setInt(2,kid.getId());
+			stmt.execute();
+			System.out.println(stmt);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace(); 
+		}
 	}
 
 }

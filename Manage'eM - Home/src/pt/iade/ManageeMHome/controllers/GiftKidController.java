@@ -44,7 +44,7 @@ public class GiftKidController {
 	@FXML
 	private void giftButtonClick() {
 
-		KidDAO.giftKidBD((int)slider.getValue(), kid); 
+		KidDAO.giftKidBD((int)slider.getValue(), kid.getId()); 
 		Main.terciaryStage.close();
 		
 	}

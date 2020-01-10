@@ -81,7 +81,7 @@ public class KidViewController {
 
 	@FXML
 	private void notificationClick() {
-		Main.openNotifications("views/notificationsView.fxml", new NotificationsController());
+		Main.openNotifications(this, "views/notificationsView.fxml", new NotificationsController());
 	}
 
 

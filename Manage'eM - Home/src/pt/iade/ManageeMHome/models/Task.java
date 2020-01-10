@@ -10,21 +10,23 @@ import javafx.collections.ObservableList;
  *
  */
 public class Task {
+	private int id;
 	private String name;
 	private int points;
 	private String details;
 	private boolean isComplete;
 	private Kid kid;
-	public Task( String name,int points, String details,
+	public Task( String name,int points,int id, String details,
 			boolean isComplete) {
 		this.name = name;
 		this.points=points;
+		this.id=id;
 		this.details=details;
 		this.isComplete=isComplete;
 	}
-	public Task( String name,int points, String details, 
+	public Task( String name,int points,int id, String details, 
 			boolean isComplete, Kid kid) {
-		this(name, points, details, isComplete);
+		this(name, points,id, details, isComplete);
 		this.kid= kid;
 	}
 	
@@ -47,5 +49,12 @@ public class Task {
 	public String getKidName() {
 		return kid.getName();
 	}
+	public Kid getKid() {
+		return kid;
+	}
+	public int getId() {
+		return id;
+	}
+	
 	
 }
