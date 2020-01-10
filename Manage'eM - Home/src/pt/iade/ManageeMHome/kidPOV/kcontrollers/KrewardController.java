@@ -53,7 +53,7 @@ public class KrewardController {
 					if(!empty){
 						Button button = new Button("GET");
 						button.setOnAction((event) -> {
-							
+							//mandar notificação de reward ao pai
 
 						});
 						setGraphic(button);
