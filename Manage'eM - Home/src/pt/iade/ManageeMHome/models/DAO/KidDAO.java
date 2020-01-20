@@ -7,6 +7,7 @@ import java.util.Calendar;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import jdk.nashorn.internal.scripts.JD;
 import pt.iade.ManageeMHome.Main;
 import pt.iade.ManageeMHome.models.Kid;
 import pt.iade.ManageeMHome.models.Reward;
@@ -144,7 +145,45 @@ public static  ObservableList<Task> updateKidPOVTaskBD(int kid) {
 }
 
 
-public static void buyReward(int pts,int kid) {
+public static void returnPoints(int pts,int kid, int id_reward) {
+	
+	try {
+		String sql ="UPDATE Kid SET pts_Kid = pts_Kid + ? WHERE id_Kid = ?;";
+		
+		PreparedStatement stmt = JDBC.getCon().prepareStatement(sql);
+		stmt.setInt(1,pts);
+		stmt.setInt(2, kid);
+		stmt.execute();
+		System.out.println(stmt);
+		PreparedStatement stat = JDBC.getCon().prepareStatement("UPDATE Kids_Reward set requested = false WHERE kid = ?  and reward = ?");
+		stat.setInt(1, kid);
+		stat.setInt(2, id_reward);
+		stat.execute();
+		
+		
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	
+}
+
+
+
+public static void removeNotifReward(int kid, int id_reward) {
+	try {
+		PreparedStatement stat = JDBC.getCon().prepareStatement("UPDATE Kids_Reward set requested = false WHERE kid = ?  and reward = ?");
+		stat.setInt(1, kid);
+		stat.setInt(2, id_reward);
+		stat.execute();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+}
+
+public static void buyReward(int pts,int kid, int id_reward) {
 	
 	try {
 		String sql ="UPDATE Kid SET pts_Kid = pts_Kid - ? WHERE id_Kid = ?;";
@@ -154,6 +193,12 @@ public static void buyReward(int pts,int kid) {
 		stmt.setInt(2, kid);
 		stmt.execute();
 		System.out.println(stmt);
+		PreparedStatement stat = JDBC.getCon().prepareStatement("UPDATE Kids_Reward set requested = true WHERE kid = ?  and reward = ?");
+		stat.setInt(1, kid);
+		stat.setInt(2, id_reward);
+		stat.execute();
+		
+		
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

@@ -40,10 +40,8 @@ public class KrewardController {
 
 	@FXML
 	private TableColumn<Boolean, Reward> getColumn;
-	private int kid = 0;
 	private Reward selectedItem;
-	private int points = 0;
-
+	private int kid, points, id_reward = 0;
 	@FXML
 	private void initialize() {
 		kid = PersonDAO.getLoggedKid().getId();
@@ -63,9 +61,10 @@ public class KrewardController {
 							 rewardTV.getSelectionModel().select(getTableRow().getIndex());
                              
 							points = rewardTV.getSelectionModel().getSelectedItem().getPoints();
+							id_reward = rewardTV.getSelectionModel().getSelectedItem().getId();
 							System.out.println("é isto: " +points);
 							//mandar notificação de reward ao pai
-							KidDAO.buyReward(points, kid);
+							KidDAO.buyReward(points, kid,id_reward);
 						});
 						setGraphic(button);
 					} else  {

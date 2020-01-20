@@ -15,6 +15,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import pt.iade.ManageeMHome.Main;
 import pt.iade.ManageeMHome.models.Kid;
+import pt.iade.ManageeMHome.models.Reward;
 import pt.iade.ManageeMHome.models.Task;
 import pt.iade.ManageeMHome.models.DAO.JDBC;
 import pt.iade.ManageeMHome.models.DAO.KidDAO;
@@ -35,6 +36,9 @@ public class NotificationsController {
 
 	@FXML
 	private TableView<Task> notificationTV;
+	
+    @FXML
+    private TableView<Reward> notifRewardTV;
 
 	@FXML
 	private TableColumn<String, Task> taskColumn;
@@ -46,14 +50,28 @@ public class NotificationsController {
 	private TableColumn<Boolean, Button> noColumn;
 	@FXML
 	private TableColumn<Boolean, Button> yesColumn;
+	
+    @FXML
+    private TableColumn<String, Reward> rewardColumn;
+
+    @FXML
+    private TableColumn<String, Reward> kidRewardColumn;
+
+    @FXML
+    private TableColumn<Boolean, Button> noRewardColumn;
+
+    @FXML
+    private TableColumn<Boolean, Button> yesRewardColumn;
 
 	private  static int parent = 0;
 	private ObservableList<Task> completedTasks= FXCollections.observableArrayList();
+	private ObservableList<Reward> requestedRewards= FXCollections.observableArrayList();
 
 	@FXML
 	private void initialize() {
-
+		//tasks 
 		findCompletedTasks();
+		findRequestedRewards();
 		taskColumn.setCellValueFactory(new PropertyValueFactory<String, Task>("name"));
 		kidColumnN.setCellValueFactory(new PropertyValueFactory<String, Task>("kid"));
 		FXCollections.observableArrayList();
@@ -108,9 +126,92 @@ public class NotificationsController {
 			}; 
 		});
 
+//		rewards
+		rewardColumn.setCellValueFactory(new PropertyValueFactory<String, Reward>("name"));
+		kidRewardColumn.setCellValueFactory(new PropertyValueFactory<String, Reward>("kid"));
+	
+		notifRewardTV.setItems(requestedRewards);
+		
+		noRewardColumn.setCellFactory((tableCol)-> {
+			return new TableCell<Boolean, Button> ()  {
+				@Override
+				protected void updateItem(Button b1, boolean empty) {
+					super.updateItem(b1, empty);
+					if(!empty){
+						Button button = new Button("NO");
+						button.setOnAction((event) -> {
+							notifRewardTV.getSelectionModel().select(getTableRow().getIndex());
+							Reward  selectedItem     =    notifRewardTV.getSelectionModel().getSelectedItem();
+							
+							
+							KidDAO.returnPoints(selectedItem.getPoints(), selectedItem.getKid().getId(), selectedItem.getId());
+							
+							
+							
+							notifRewardTV.getItems().remove(selectedItem);
+							notifRewardTV.setItems(requestedRewards);
+						
+						});
+						setGraphic(button);
+					} else  {
+						setGraphic(null);
+
+					}}
+
+			}; 
+		});
+		yesRewardColumn.setCellFactory((tableCol)-> {
+			return new TableCell<Boolean, Button> ()  {
+				@Override
+				protected void updateItem(Button b1, boolean empty) {
+					super.updateItem(b1, empty);
+					if(!empty){
+						Button button = new Button("YES");
+						button.setOnAction((event) -> { 
+							notifRewardTV.getSelectionModel().select(getTableRow().getIndex());
+							Reward  selectedItem     =    notifRewardTV.getSelectionModel().getSelectedItem();
+							KidDAO.removeNotifReward(selectedItem.getKid().getId(), selectedItem.getId());
+						
+							notifRewardTV.getItems().remove(selectedItem);
+							notifRewardTV.setItems(requestedRewards);
+							
+										
+						});
+						setGraphic(button);
+					} else  {
+						setGraphic(null);
+
+					}
+				}   
+			}; 
+		});
+		
 	}
-
-
+	private void findRequestedRewards() {
+		String sql ="select Kid.pts_Kid as Points_Kid, Reward.name as Reward, User.name as Kid, Reward.id_Reward, User.id_User,"
+				+ " Reward.pts_required as points from Kid, Family_Relation, Reward, Kids_Reward, User where Family_Relation.parent= ?"
+				+ " and Family_Relation.kid= User.id_User and Kids_Reward.kid = User.id_User "
+				+ "and Kids_Reward.requested= true and Kids_Reward.reward = Reward.id_Reward and User.id_User = Kid.id_Kid ";
+		try (PreparedStatement stat = JDBC.getCon().prepareStatement(sql)){
+			parent = PersonDAO.getLoggedParent().getId();
+			stat.setInt(1, parent);
+			stat.executeQuery();
+			ResultSet rs = stat.executeQuery();	
+			while(rs.next()) {
+				requestedRewards.add(new Reward(rs.getString("Reward"),rs.getInt("points"), rs.getInt("id_Reward"), 
+						new Kid(rs.getString("Kid"),//Kid
+								0, // age
+								rs.getInt("id_User"),// id
+								rs.getInt("points_Kid"),	//points
+								false)// first time
+						));
+				
+			
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		} 
+		}
 	private void findCompletedTasks() {
 
 		String sql ="Select Task.id_Task, Kid.id_Kid as IdKid,Task.pts_Task as pts_Task ,User.name as Filho, Task.name as Task_Name from User, Task,"
