@@ -10,6 +10,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import pt.iade.ManageeMHome.controllers.KidTableItemController;
 import pt.iade.ManageeMHome.controllers.KidViewController;
+import pt.iade.ManageeMHome.controllers.NotificationsController;
 import pt.iade.ManageeMHome.controllers.ParentViewController;
 import pt.iade.ManageeMHome.controllers.RewardViewController;
 import pt.iade.ManageeMHome.controllers.TaskViewController;
@@ -82,7 +83,7 @@ public class Main extends Application {
 	 * @param FXMLTabLink
 	 * @param cont
 	 */
-	public static void openNotifications(KidViewController kidView, String FXMLTabLink, Object cont) {
+	public static void openNotifications(KidViewController kidView, String FXMLTabLink, NotificationsController cont) {
 		try {
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource(FXMLTabLink));
 			loader.setController(cont);
@@ -94,8 +95,7 @@ public class Main extends Application {
 			secondaryStage.initModality(Modality.APPLICATION_MODAL);
 			secondaryStage.setScene(scene);
 			secondaryStage.showAndWait();
-			kidView.updateKidInfo();
-
+			if(kidView!=null) kidView.updateKidInfo();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
