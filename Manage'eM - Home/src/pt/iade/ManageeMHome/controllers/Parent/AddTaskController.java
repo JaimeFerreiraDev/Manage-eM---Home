@@ -23,6 +23,7 @@ import pt.iade.ManageeMHome.Main;
 import pt.iade.ManageeMHome.models.Kid;
 import pt.iade.ManageeMHome.models.Task;
 import pt.iade.ManageeMHome.models.DAO.JDBC;
+import pt.iade.ManageeMHome.models.DAO.KidDAO;
 import pt.iade.ManageeMHome.models.DAO.PersonDAO;
 import pt.iade.ManageeMHome.models.DAO.TaskDAO;
 /**
@@ -127,7 +128,7 @@ public class AddTaskController {
 
 	@FXML
 	public void initialize() {
-		notSelectedKids=TaskDAO.getTaskKidsBD();
+		notSelectedKids=KidDAO.getKidsBD();
 		radioOneTime.setToggleGroup(frequency);
 		radioWeekly.setToggleGroup(frequency);
 		radioDaily.setToggleGroup(frequency);

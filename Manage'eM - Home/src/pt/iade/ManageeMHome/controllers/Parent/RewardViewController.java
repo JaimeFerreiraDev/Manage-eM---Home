@@ -16,6 +16,7 @@ import pt.iade.ManageeMHome.models.Reward;
 import pt.iade.ManageeMHome.models.Task;
 import pt.iade.ManageeMHome.models.DAO.JDBC;
 import pt.iade.ManageeMHome.models.DAO.PersonDAO;
+import pt.iade.ManageeMHome.models.DAO.RewardDAO;
 /**
  * This class is the controller for the "reward tab" that has:
  * <p>
@@ -44,6 +45,7 @@ public class RewardViewController  implements ITab{
 	private TableColumn<String, Reward> nameColumn;
 	@FXML
 	private TableColumn<Integer, Reward> pointsColumn;
+	private ObservableList<Reward> rewards= FXCollections.observableArrayList();
 
 	@FXML
 	public void onKidButtonClicked() {
@@ -87,28 +89,11 @@ public class RewardViewController  implements ITab{
 		     updateTableInfo();
 		     //set items here using the database
 		    }
-		int parent = 0;
+
 		@Override
 		public void updateTableInfo() {
-
-			String sql ="Select * from Parents_Reward, Reward where parent = ? and id_Reward = reward;";
-			try (PreparedStatement stat = JDBC.getCon().prepareStatement(sql)){
-				parent = PersonDAO.getLoggedParent().getId();
-				stat.setInt(1, parent);
-				System.out.println(stat);
-				ResultSet rs = stat.executeQuery();	
-				ObservableList<Reward> rewards= FXCollections.observableArrayList();
-				while(rs.next()) {
-					rewards.add(new Reward(rs.getString("name"),
-							rs.getInt("pts_required"),
-							rs.getInt("Id_Reward"))
-							);
-				}
-				rewardTV.setItems(rewards);
-				
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} 
+			rewards = RewardDAO.getRewards();
+			rewardTV.setItems(rewards);
 		}
 	
 

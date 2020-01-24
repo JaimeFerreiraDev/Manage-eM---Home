@@ -42,6 +42,9 @@ public class LoginViewController {
 	@FXML
 	private TextField passText;
 
+	/**
+	 * @author 
+	 */
 	@FXML
 	public void newAccButton() {
 		Main.changeTab("views/newAccView.fxml", new NewAccController());

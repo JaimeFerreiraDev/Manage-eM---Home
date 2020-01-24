@@ -26,7 +26,6 @@ import pt.iade.ManageeMHome.models.DAO.PersonDAO;
  */
 public class KidTableItemController {
 	private Kid kid;
-	private int points = 0;
 
 	public KidTableItemController(Kid kid) {
 		this.kid = kid;

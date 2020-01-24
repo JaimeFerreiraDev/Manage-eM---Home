@@ -74,15 +74,9 @@ public class KtaskController {
 						button.setOnAction((event) -> {
 							try {
 
-								
-                                PreparedStatement stmt = JDBC.getCon().prepareStatement(" UPDATE Kids_Task, Task SET completed = true WHERE Kids_Task.kid ="
-                                        + "? and Task.id_Task = Kids_Task.Task and Task.name = ?;");
-                                stmt.setInt(1,kid);
                                 taskTV.getSelectionModel().select(getTableRow().getIndex());
                                 String nome = taskTV.getSelectionModel().getSelectedItem().getName();
-                                System.out.println(nome);
-                                stmt.setString(2, nome);
-                                stmt.execute();
+                                TaskDAO.setTaskCompleted(kid,nome);
                                 tasks.remove(taskTV.getSelectionModel().getSelectedItem());
                                 updateKidPOVTask();
 

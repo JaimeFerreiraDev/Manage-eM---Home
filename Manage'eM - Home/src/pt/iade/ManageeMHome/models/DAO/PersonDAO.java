@@ -26,33 +26,19 @@ import pt.iade.ManageeMHome.models.Task;
  */
 public class PersonDAO {
 	public static ObservableList<Person> personList = FXCollections.observableArrayList();
+	
+	
 	private static Parent loggedParent;
 	private static Kid loggedKid;
-	public static ObservableList<Person> getPersonList() {
-		return personList;
-	}
 
-	//	public static ObservableList<Kid> getKids(int id){
-	//		String sql = "SELECT * FROM kids WHERE";
-	//		return null;
-	//	}
-
-//	public static ObservableList<Kid> getKidList() {
-//
-//		ObservableList<Kid> kids = FXCollections.observableArrayList();
-//		for (Person person : personList) {
-//			if (person instanceof Kid) {
-//				kids.add((Kid) person);
-//			}
-//
-//		}
-//		return kids;
-//	}
 
 	public static Parent getLoggedParent() {
 		return loggedParent;
 	}
-
+/**
+ * sets a parent as the curent user of the application
+ * @param loggedParent
+ */
 	public static void setLoggedParent(Parent loggedParent) {
 		PersonDAO.loggedParent = loggedParent;
 	}
@@ -61,14 +47,25 @@ public class PersonDAO {
 	public static Kid getLoggedKid() {
 		return loggedKid;
 	}
-
+	/**
+	 * sets a kid as the curent user of the application
+	 * @param loggedParent
+	 */
 	public static void setLoggedKid(Kid loggedKid) {
 		PersonDAO.loggedKid = loggedKid;
 	}
 
 	
 	
-	
+	/**
+	 * compares user input (username and password) with database users to start using the application
+	 * it checks a column in the table user named Role to check if its a Parent or kid
+	 * If its a Kid it has extra steps, it checks if the kid is already connected to a parent, depending on that, opens a diferent scene
+	 *
+	 * @param username
+	 * @param password
+	 * @throws SQLException
+	 */
 	
 	public static void loginBD(String username, String password) throws SQLException {
 		Connection conn= JDBC.getCon(); 
