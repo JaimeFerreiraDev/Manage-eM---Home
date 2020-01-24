@@ -45,26 +45,30 @@ public class RewardViewController  implements ITab{
 	@FXML
 	private TableColumn<Integer, Reward> pointsColumn;
 
-	// Outras tabs
-	@Override
 	@FXML
 	public void onKidButtonClicked() {
-		Main.changeTab(kidView, new KidViewController());
-		System.out.println("KIDS CLICKED");
+		ITab.onKidButtonClicked();
 	}
-	// Outras tabs
-	@Override
-	@FXML
-	public void onParentButtonClicked() {
-		Main.changeTab(parentView, new ParentViewController());
-		System.out.println("PARENTS CLICKED");
-	}
-	// Outras tabs
-	@Override
+	
 	@FXML
 	public void onTaskButtonClicked() {
-		Main.changeTab(taskView, new TaskViewController());
-		System.out.println("TASKS CLICKED");
+		ITab.onTaskButtonClicked();
+	}
+	// Outras tabs
+
+	@FXML
+	public void onParentButtonClicked() {
+		ITab.onParentButtonClicked();
+	}
+	// Outras tabs
+
+	@FXML
+	public void onRewardButtonClicked() {
+		
+	}
+	@FXML
+	public void notificationClick() {
+		ITab.notificationClick();
 	}
 	// Botao de adicionar
 	@Override
@@ -73,12 +77,7 @@ public class RewardViewController  implements ITab{
 			Main.openPlus( this, add_rewardView, new AddRewardController());
 			System.out.println("PLUS CLICKED");
 		}
-	@Override
-		@FXML
-		public void notificationClick() {
-			Main.openNotifications(null, notif_view, new NotificationsController());
-		}
-		
+
 		@FXML
 		   private void initialize() {
 			 
@@ -111,10 +110,6 @@ public class RewardViewController  implements ITab{
 				e.printStackTrace();
 			} 
 		}
-		@Override
-		public void onRewardButtonClicked() {
-			// TODO Auto-generated method stub
-			
-		}
+	
 
 }

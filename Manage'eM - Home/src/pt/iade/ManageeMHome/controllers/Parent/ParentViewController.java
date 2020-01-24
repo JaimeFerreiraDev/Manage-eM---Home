@@ -43,30 +43,30 @@ public class ParentViewController implements ITab {
 	@FXML
 	private TableColumn<String, Parent> nameColumn;
 	// Outras tabs
-	@Override
-	public void onParentButtonClicked() {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
 	@FXML
 	public void onKidButtonClicked() {
-		Main.changeTab(kidView, new KidViewController());
-		System.out.println("KIDS CLICKED");
+		ITab.onKidButtonClicked();
 	}
-	// Outras tabs
-	@Override
+	
 	@FXML
 	public void onTaskButtonClicked() {
-		Main.changeTab(taskView, new TaskViewController());
-		System.out.println("TASKS CLICKED");
+		ITab.onTaskButtonClicked();
 	}
 	// Outras tabs
-	@Override
+
+	@FXML
+	public void onParentButtonClicked() {
+	
+	}
+	// Outras tabs
+
 	@FXML
 	public void onRewardButtonClicked() {
-		Main.changeTab(rewardView, new RewardViewController());
-		System.out.println("REWARDS CLICKED");
+		ITab.onRewardButtonClicked();
+	}
+	@FXML
+	public void notificationClick() {
+		ITab.notificationClick();
 	}
 	// Botao de adicionar
 	@Override
@@ -74,11 +74,6 @@ public class ParentViewController implements ITab {
 	public void onPlusButtonClicked() {
 		Main.openPlus(this,add_parentView, new AddParentController());
 		System.out.println("PLUS CLICKED");
-	}
-	@Override
-	@FXML
-	public void notificationClick() {
-		Main.openNotifications(null,notif_view, new NotificationsController());
 	}
 
 	@FXML

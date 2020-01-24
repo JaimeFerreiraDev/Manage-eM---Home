@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import pt.iade.ManageeMHome.controllers.LoginViewController;
 import pt.iade.ManageeMHome.controllers.Parent.ITab;
 import pt.iade.ManageeMHome.controllers.Parent.KidTableItemController;
 import pt.iade.ManageeMHome.controllers.Parent.KidViewController;
@@ -34,11 +35,12 @@ public class Main extends Application {
 	 */
 	@Override
 	public void start(Stage primaryStage) throws IOException {
-		openLogin();
-
+		changeTab("views/LoginView.fxml", new LoginViewController());
 	}
 	/**
-	 * This method is responsible for changing the scene betweenkids,parents to tasks and rewards
+	 * This method is responsible for changing the scene between kids,parents to tasks and rewards
+	 * <p>the {@link #counter} is there to make sure a new stage is only created the 1st time, so we 
+	 * <p>wouldn't have to create a similar method just for when the program starts.
 	 * @param FXMLTabLink is the fxml link 
 	 * @param cont is the controller for the window that is oppened
 	 */
@@ -61,54 +63,15 @@ public class Main extends Application {
 		}
 
 	}
-	
-	/**
-	 * This method opens the 1st window of the program: the login window
-	 * @throws IOException
-	 */
-	public static void openLogin() throws IOException {
-		try {
-			Pane root = FXMLLoader.load(Main.class.getResource("views/LoginView.fxml"));
-
-			scene = new Scene(root);
-			primaryStage = new Stage();
-			primaryStage.setScene(scene);
-			primaryStage.show();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	/**
-	 * this method is responsible for opening the notifications's tab, which is reachable from
-	 * <p>any of the tabs: kid, parent, task, reward.
-	 * @param FXMLTabLink
-	 * @param cont
-	 */
-	public static void openNotifications(KidViewController kidView, String FXMLTabLink, NotificationsController cont) {
-		try {
-			FXMLLoader loader = new FXMLLoader(Main.class.getResource(FXMLTabLink));
-			loader.setController(cont);
-			Pane root = loader.load();
-			scene = new Scene(root);
-
-			secondaryStage = new Stage();
-			secondaryStage.initOwner(primaryStage);
-			secondaryStage.initModality(Modality.APPLICATION_MODAL);
-			secondaryStage.setScene(scene);
-			secondaryStage.showAndWait();
-			if(kidView!=null) kidView.updateTableInfo();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
 /**
- * This method is used to open table views's items respective windows, for all the tabs: kid, parent, task and reward.
+ * this method is responsible for opening the notifications's tab, which is reachable from
+ * <p>any of the tabs: kid, parent, task, reward.
+ * <p>This method is used to open table views's items respective windows, for all the tabs: kid, parent, task and reward.
  * @param kidView
  * @param FXMLItemLink
  * @param cont
  */
-	public static void openTableItem(KidViewController kidView,String FXMLItemLink, KidTableItemController cont) {
+	public static void openTableItemAndNotif(KidViewController kidView,String FXMLItemLink, Object cont) {
 		try {
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource(FXMLItemLink));
 			loader.setController(cont);
@@ -122,7 +85,7 @@ public class Main extends Application {
 			secondaryStage.initModality(Modality.APPLICATION_MODAL);
 			secondaryStage.setScene(scene);
 			secondaryStage.showAndWait();
-			kidView.updateTableInfo();
+			if(kidView!=null) kidView.updateTableInfo();
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -155,9 +118,10 @@ public class Main extends Application {
 		}
 	}
 /**
- * this method opens all the adding windows for all the tabs: kid, parent, task and reward.
+ * This method opens all the adding windows for all the tabs: kid, parent, task and reward.
  * @param FXMLPlusLink
- * @param cont
+ * @param viewController this parameter is used to call the {@link pt.iade.ManageeMHome.controllers.Parent.Itab}
+ * @param addController
  */
 	public static void openPlus(ITab viewController , String FXMLPlusLink, Object addController) {
 		try {
@@ -175,18 +139,6 @@ public class Main extends Application {
 			
 			if(viewController != null)
 				viewController.updateTableInfo();
-			
-	
-			
-//			if(viewController != null)
-//				if(viewController instanceof KidViewController)
-//					((KidViewController) viewController).updateTableInfo();
-//				else if(viewController instanceof ParentViewController)
-//					( (ParentViewController) viewController).updateTableInfo();
-//				else if(viewController instanceof RewardViewController)
-//				( (RewardViewController) viewController).updateTableInfo();
-//				else if(viewController instanceof TaskViewController)
-//				( (TaskViewController)viewController).updateTableInfo();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

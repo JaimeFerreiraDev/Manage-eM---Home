@@ -59,28 +59,30 @@ public class KidViewController implements ITab{
 
 
 	
-	@Override
 	@FXML
-	public void onParentButtonClicked() {
-		Main.changeTab( parentView, new ParentViewController());
-		System.out.println("PARENTS CLICKED");
+	public void onKidButtonClicked() {
+		ITab.onKidButtonClicked();
 	}
-	@Override
-	@FXML
-	public void onKidButtonClicked() {}
-	// Outras tabs
-	@Override
+	
 	@FXML
 	public void onTaskButtonClicked() {
-		Main.changeTab(taskView, new TaskViewController());
-		System.out.println("TASKS CLICKED");
+		ITab.onTaskButtonClicked();
 	}
 	// Outras tabs
-	@Override
+
+	@FXML
+	public void onParentButtonClicked() {
+		ITab.onParentButtonClicked();
+	}
+	// Outras tabs
+
 	@FXML
 	public void onRewardButtonClicked() {
-		Main.changeTab(rewardView, new RewardViewController());
-		System.out.println("REWARDS CLICKED");
+		ITab.onRewardButtonClicked();
+	}
+	@FXML
+	public void notificationClick() {
+		ITab.notificationClick();
 	}
 	// Botao de adicionar
 	@Override
@@ -90,10 +92,7 @@ public class KidViewController implements ITab{
 		System.out.println("PLUS CLICKED");
 	}
 	
-	@FXML
-	public void notificationClick() {
-		Main.openNotifications(null, notif_view, new NotificationsController());
-	}
+
 	
 	
 	
@@ -110,7 +109,7 @@ public class KidViewController implements ITab{
 					Kid kid = kidTV.getSelectionModel().getSelectedItem();
 					kidTV.getSelectionModel().clearSelection();
 					if (kid != null)
-					Main.openTableItem(this, "views/Parent/kidTableItemView.fxml", new KidTableItemController(kid));
+					Main.openTableItemAndNotif(this, "views/Parent/kidTableItemView.fxml", new KidTableItemController(kid));
 					});
 
 	}

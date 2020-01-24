@@ -58,28 +58,31 @@ public class TaskViewController implements ITab{
 
 
 	// Outras tabs
-	@Override
+	
 	@FXML
 	public void onKidButtonClicked() {
-		Main.changeTab(kidView, new KidViewController());
-		System.out.println("KIDS CLICKED");
+		ITab.onKidButtonClicked();
 	}
-	@Override
+	
 	@FXML
-	public void onTaskButtonClicked() {}
+	public void onTaskButtonClicked() {
+		
+	}
 	// Outras tabs
-	@Override
+
 	@FXML
 	public void onParentButtonClicked() {
-		Main.changeTab(parentView, new ParentViewController());
-		System.out.println("PARENTS CLICKED");
+		ITab.onParentButtonClicked();
 	}
 	// Outras tabs
-	@Override
+
 	@FXML
 	public void onRewardButtonClicked() {
-		Main.changeTab(rewardView, new RewardViewController());
-		System.out.println("REWARDS CLICKED");
+		ITab.onRewardButtonClicked();
+	}
+	@FXML
+	public void notificationClick() {
+		ITab.notificationClick();
 	}
 	// Botão de adicionar
 	@Override
@@ -88,11 +91,8 @@ public class TaskViewController implements ITab{
 		Main.openPlus(this, add_taskView, new AddTaskController());
 		System.out.println("PLUS CLICKED");
 	}
-	@Override
-	@FXML
-	public void notificationClick() {
-		Main.openNotifications(null, notif_view, new NotificationsController());
-	}
+	
+	
 
 
 
