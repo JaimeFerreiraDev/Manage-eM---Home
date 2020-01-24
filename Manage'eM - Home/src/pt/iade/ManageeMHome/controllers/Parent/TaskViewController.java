@@ -8,6 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -54,6 +55,8 @@ public class TaskViewController implements ITab{
 
 	@FXML
 	private TableColumn<Boolean, Task> statusColumn;
+	@FXML
+	private Label notifiNumber;
 	
 
 
@@ -97,11 +100,14 @@ public class TaskViewController implements ITab{
 
 
 	int parent = 0;
-
+	int num = 0;
 
 
 	@FXML
-	private void initialize() {
+	private void initialize() throws SQLException {
+		
+		num = PersonDAO.getNumberOfNotif();
+		notifiNumber.setText(""+num);
 		
 		parent = PersonDAO.getLoggedParent().getId();
 		updateTableInfo();

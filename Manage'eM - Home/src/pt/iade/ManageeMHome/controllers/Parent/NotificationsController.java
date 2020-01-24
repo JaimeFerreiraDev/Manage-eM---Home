@@ -64,7 +64,7 @@ public class NotificationsController {
 	@FXML
 	private TableColumn<Boolean, Button> yesRewardColumn;
 
-	private  static int parent = 0;
+
 	private ObservableList<Task> completedTasks= FXCollections.observableArrayList();
 	private ObservableList<Reward> requestedRewards= FXCollections.observableArrayList();
 

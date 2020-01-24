@@ -135,12 +135,15 @@ public class PersonDAO {
 	public static int getNumberOfNotif() throws SQLException {
         int parent = 0;
         int num = 0;
+        parent = PersonDAO.getLoggedParent().getId();
+        System.out.println(num);
         PreparedStatement stmt = JDBC.getCon().prepareStatement("select COUNT(Kids_Task.Task)as num from Kids_Task, User, Family_Relation where User.id_User =?"
                 + " and User.id_User = Family_Relation.parent and Family_Relation.kid = Kids_Task.kid and completed = true ");
         stmt.setInt(1,parent);
         stmt.executeQuery();
         ResultSet rs = stmt.executeQuery();
         if(rs.next()) num += rs.getInt("num");
+        System.out.println(num);
         PreparedStatement stat = JDBC.getCon().prepareStatement("select COUNT(Kids_Reward.reward)as num from Kids_Reward, User, "
                 + "Family_Relation where User.id_User = ? and User.id_User = Family_Relation.parent "
                 + "and Family_Relation.kid = Kids_Reward.kid and Kids_Reward.requested = true;");
@@ -148,7 +151,7 @@ public class PersonDAO {
         stat.executeQuery();
         ResultSet rSet = stat.executeQuery();
         if(rSet.next()) num += rs.getInt("num");
-
+        System.out.println(num);
         return num;
 
     }

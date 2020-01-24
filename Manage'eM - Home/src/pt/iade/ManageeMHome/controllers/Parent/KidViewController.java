@@ -60,12 +60,12 @@ public class KidViewController implements ITab{
 	@FXML
 	private Label notifiNumber;
 
-	
+
 	@FXML
 	public void onKidButtonClicked() {
 		ITab.onKidButtonClicked();
 	}
-	
+
 	@FXML
 	public void onTaskButtonClicked() {
 		ITab.onTaskButtonClicked();
@@ -93,19 +93,17 @@ public class KidViewController implements ITab{
 		Main.openPlus( this,add_kidView, new AddKidController());
 		System.out.println("PLUS CLICKED");
 	}
-	
 
-	
-	
-	
+
+
+
+	int num = 0;
 	@FXML
-	private void initialize() {
-		try {
-			notifiNumber.setText(""+PersonDAO.getNumberOfNotif());
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	private void initialize() throws SQLException {
+	
+		num = PersonDAO.getNumberOfNotif();
+		notifiNumber.setText(""+num);
+
 		updateTableInfo();
 		nameColumn.setCellValueFactory(new PropertyValueFactory<String, Kid>("name"));
 		ageColumn.setCellValueFactory(new PropertyValueFactory<Integer, Kid>("age"));
@@ -116,18 +114,18 @@ public class KidViewController implements ITab{
 					Kid kid = kidTV.getSelectionModel().getSelectedItem();
 					kidTV.getSelectionModel().clearSelection();
 					if (kid != null)
-					Main.openTableItemAndNotif(this, "views/Parent/kidTableItemView.fxml", new KidTableItemController(kid));
-					});
+						Main.openTableItemAndNotif(this, "views/Parent/kidTableItemView.fxml", new KidTableItemController(kid));
+				});
 
 	}
-	
+
 	@Override
 	public void updateTableInfo() {
 		kidTV.setItems( KidDAO.getKidsBD());
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 }

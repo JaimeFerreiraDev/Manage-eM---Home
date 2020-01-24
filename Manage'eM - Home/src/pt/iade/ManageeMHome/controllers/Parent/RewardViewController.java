@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -22,7 +23,7 @@ import pt.iade.ManageeMHome.models.DAO.RewardDAO;
  * <p>
  * <p> a table view {@link #rewardTV}, that displays the rewards that the logged parent, returned by the method:
  * <p>{@link pt.iade.ManageeMHome.models.DAO.PersonDAO#getLoggedParent()}
-* <p>
+ * <p>
  * <p>a "plus button" that opens the "add reward window", managed by:
  * <p>{@link pt.iade.ManageeMHome.controllers.AddRewardController.java}
  * <p>
@@ -45,13 +46,15 @@ public class RewardViewController  implements ITab{
 	private TableColumn<String, Reward> nameColumn;
 	@FXML
 	private TableColumn<Integer, Reward> pointsColumn;
+	@FXML
+	private Label notifiNumber;
 	private ObservableList<Reward> rewards= FXCollections.observableArrayList();
 
 	@FXML
 	public void onKidButtonClicked() {
 		ITab.onKidButtonClicked();
 	}
-	
+
 	@FXML
 	public void onTaskButtonClicked() {
 		ITab.onTaskButtonClicked();
@@ -66,7 +69,7 @@ public class RewardViewController  implements ITab{
 
 	@FXML
 	public void onRewardButtonClicked() {
-		
+
 	}
 	@FXML
 	public void notificationClick() {
@@ -74,27 +77,30 @@ public class RewardViewController  implements ITab{
 	}
 	// Botao de adicionar
 	@Override
-		@FXML
-		public void onPlusButtonClicked() {
-			Main.openPlus( this, add_rewardView, new AddRewardController());
-			System.out.println("PLUS CLICKED");
-		}
+	@FXML
+	public void onPlusButtonClicked() {
+		Main.openPlus( this, add_rewardView, new AddRewardController());
+		System.out.println("PLUS CLICKED");
+	}
+	int num = 0 ;
+	@FXML
+	private void initialize() throws SQLException {
 
-		@FXML
-		   private void initialize() {
-			 
-			 nameColumn.setCellValueFactory(new PropertyValueFactory<String, Reward>("Name"));
-			 pointsColumn.setCellValueFactory(new PropertyValueFactory<Integer, Reward>("Points"));
-		     FXCollections.observableArrayList();
-		     updateTableInfo();
-		     //set items here using the database
-		    }
+		num = PersonDAO.getNumberOfNotif();
+		notifiNumber.setText(""+num);
 
-		@Override
-		public void updateTableInfo() {
-			rewards = RewardDAO.getRewards();
-			rewardTV.setItems(rewards);
-		}
-	
+		nameColumn.setCellValueFactory(new PropertyValueFactory<String, Reward>("Name"));
+		pointsColumn.setCellValueFactory(new PropertyValueFactory<Integer, Reward>("Points"));
+		FXCollections.observableArrayList();
+		updateTableInfo();
+		//set items here using the database
+	}
+
+	@Override
+	public void updateTableInfo() {
+		rewards = RewardDAO.getRewards();
+		rewardTV.setItems(rewards);
+	}
+
 
 }

@@ -1,8 +1,11 @@
 package pt.iade.ManageeMHome.controllers.Parent;
 
+import java.sql.SQLException;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -18,7 +21,7 @@ import pt.iade.ManageeMHome.models.DAO.PersonDAO;
  * <p> a table view {@link #parentTV}, that displays the other parents that are part of the family of 
  * <p>the logged parent, returned by the method:
  * <p>{@link pt.iade.ManageeMHome.models.DAO.PersonDAO#getLoggedParent()}
-* <p>
+ * <p>
  * <p>a "plus button" that opens the "add parent window", managed by:
  * <p>{@link pt.iade.ManageeMHome.controllers.AddParentController.java}
  * <p>
@@ -35,19 +38,21 @@ import pt.iade.ManageeMHome.models.DAO.PersonDAO;
  *
  */
 public class ParentViewController implements ITab {
-	
+
 	// Outras tabs
 	private ObservableList<Parent> parentList;
 	@FXML
 	private TableView<Parent> parentTV;
 	@FXML
 	private TableColumn<String, Parent> nameColumn;
+	@FXML
+	private Label notifiNumber;
 	// Outras tabs
 	@FXML
 	public void onKidButtonClicked() {
 		ITab.onKidButtonClicked();
 	}
-	
+
 	@FXML
 	public void onTaskButtonClicked() {
 		ITab.onTaskButtonClicked();
@@ -56,7 +61,7 @@ public class ParentViewController implements ITab {
 
 	@FXML
 	public void onParentButtonClicked() {
-	
+
 	}
 	// Outras tabs
 
@@ -75,9 +80,12 @@ public class ParentViewController implements ITab {
 		Main.openPlus(this,add_parentView, new AddParentController());
 		System.out.println("PLUS CLICKED");
 	}
-
+	int num = 0;
 	@FXML
-	private void initialize() {
+	private void initialize() throws SQLException {
+		
+		num = PersonDAO.getNumberOfNotif();
+		notifiNumber.setText(""+num);
 		nameColumn.setCellValueFactory(new PropertyValueFactory<String, Parent>("name"));
 		parentList = FXCollections.observableArrayList();
 	}

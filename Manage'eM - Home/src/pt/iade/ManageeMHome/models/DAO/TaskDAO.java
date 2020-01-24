@@ -58,8 +58,8 @@ public class TaskDAO {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
+
 
 	/**
 	 * whenever a task is completed and reviewed on the notification by the parent, we unlink the kid from this task
@@ -80,11 +80,11 @@ public class TaskDAO {
 			e.printStackTrace(); 
 		}
 	}
-/**
- * if the task is considered to not be complete we set it back default( not completed)
- * @param kid
- * @param task
- */
+	/**
+	 * if the task is considered to not be complete we set it back default( not completed)
+	 * @param kid
+	 * @param task
+	 */
 	public static void taskIsNotCompletedBD(int kid, int task) {
 		try {
 			String sql = "UPDATE Kids_Task SET completed = false WHERE kid=? and Task = ?;";
@@ -98,7 +98,7 @@ public class TaskDAO {
 		}
 
 	}
-	
+
 	/**
 	 * returns a list of all the tasks made by this parent.
 	 * @param parent
@@ -111,7 +111,7 @@ public class TaskDAO {
 			stat.setInt(1, parent);
 			System.out.println(stat);
 			ResultSet rs = stat.executeQuery();	
-			
+
 			while(rs.next()) {
 				tasks.add(new Task(rs.getString("name"),
 						rs.getInt("pts_Task"), rs.getInt("id_Task"),
@@ -119,14 +119,14 @@ public class TaskDAO {
 						false)
 						);
 			}
-			
+
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} 
 		return tasks;
 	}
-	
+
 	/**
 	 * whenever a kid completes a task we update a variable so it shows up on the notification window for the parent to review.
 	 * @param kid
@@ -134,11 +134,11 @@ public class TaskDAO {
 	 * @throws SQLException
 	 */
 	public static void setTaskCompleted(int kid, String task) throws SQLException {
-		 PreparedStatement stmt = JDBC.getCon().prepareStatement(" UPDATE Kids_Task, Task SET completed = true WHERE Kids_Task.kid ="
-                 + "? and Task.id_Task = Kids_Task.Task and Task.name = ?;");
-         stmt.setInt(1,kid);
-         stmt.setString(2, task);
-         stmt.execute();
+		PreparedStatement stmt = JDBC.getCon().prepareStatement(" UPDATE Kids_Task, Task SET completed = true WHERE Kids_Task.kid ="
+				+ "? and Task.id_Task = Kids_Task.Task and Task.name = ?;");
+		stmt.setInt(1,kid);
+		stmt.setString(2, task);
+		stmt.execute();
 	}
 	/**
 	 * searches the database for tasks that have been completed by this parents kids.
@@ -172,4 +172,12 @@ public class TaskDAO {
 		} 
 		return completedTasks;
 	}
+
+
+
+
+
+
+
+
 }
