@@ -12,6 +12,7 @@ import pt.iade.ManageeMHome.Main;
 import pt.iade.ManageeMHome.models.Kid;
 import pt.iade.ManageeMHome.models.Parent;
 import pt.iade.ManageeMHome.models.DAO.JDBC;
+import pt.iade.ManageeMHome.models.DAO.KidDAO;
 import pt.iade.ManageeMHome.models.DAO.PersonDAO;
 
 /**
@@ -36,18 +37,6 @@ public class K1stTimeController {
 	 */
 	@FXML
 	private void initialize() {
-		Connection conn= JDBC.getCon(); 
-		int id = 0;
-		String sql = "select id_User from User, Password where User.id_User = ?";
-		try (PreparedStatement stat = JDBC.getCon().prepareStatement(sql)){
-			id = PersonDAO.getLoggedKid().getId();
-			stat.setInt(1,id);
-			stat.execute();		
-			System.out.println(stat);
-			codeLabel.setText(""+id);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} 
-
+		codeLabel.setText(""+KidDAO.firstTimeKidLogin());
 	}
 }

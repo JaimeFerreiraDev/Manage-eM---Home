@@ -21,6 +21,7 @@ import pt.iade.ManageeMHome.Main;
 import pt.iade.ManageeMHome.models.Kid;
 import pt.iade.ManageeMHome.models.Reward;
 import pt.iade.ManageeMHome.models.DAO.JDBC;
+import pt.iade.ManageeMHome.models.DAO.KidDAO;
 import pt.iade.ManageeMHome.models.DAO.RewardDAO;
 import pt.iade.ManageeMHome.models.DAO.TaskDAO;
 /**
@@ -79,7 +80,7 @@ private ObservableList<Kid> notSelectedKids  = FXCollections.observableArrayList
 private ObservableList<Kid> selectedKids  = FXCollections.observableArrayList();
 
 public void initialize() {
-	notSelectedKids=RewardDAO.getRewardsBD();
+	notSelectedKids=KidDAO.getKidsBD();
 	kidComboBox.setItems(notSelectedKids);
 }
 }

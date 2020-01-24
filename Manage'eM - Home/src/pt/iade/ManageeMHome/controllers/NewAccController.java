@@ -21,6 +21,8 @@ import pt.iade.ManageeMHome.Main;
 import pt.iade.ManageeMHome.models.Kid;
 import pt.iade.ManageeMHome.models.Parent;
 import pt.iade.ManageeMHome.models.DAO.JDBC;
+import pt.iade.ManageeMHome.models.DAO.KidDAO;
+import pt.iade.ManageeMHome.models.DAO.ParentDAO;
 import pt.iade.ManageeMHome.models.DAO.PersonDAO;
 /**
  * This class is a controller to the "new account window" which allows the user to create a new account.
@@ -54,7 +56,7 @@ public class NewAccController {
 	 * @throws IOException
 	 */
 	@FXML
-	public void okButtonClick() throws IOException {
+	public void okButtonClick() throws SQLException {
 		if( !userText.getText().isEmpty() &&
 				!passText.getText().isEmpty() &&
 				!confirmPassText.getText().isEmpty() &&
@@ -62,67 +64,13 @@ public class NewAccController {
 				userTypeCombo.getValue()!=null && 
 				!nameText.getText().isEmpty() &&
 				Date.valueOf(datePicker.getValue()) != null) {
-			
-			
-			if(userTypeCombo.getValue().equals("Parent")) {
-//				String sql ="insert into User (username, role) values(?,1);"
-//						+ "insert into Parent (id_Parent, name, age) values ((select id_User from User where username = ? ,?, ?;"
-//						+ "insert into Password(id_Password, password) values ((select id_User from User where username = ?), ?);";
-				try {
+						
+			if(userTypeCombo.getValue().equals("Parent")) {	
 					System.out.println("Sou parent");
-					PreparedStatement stat = JDBC.getCon().prepareStatement("insert into User (role, username, name, age) values(1,?,?,?);");
-					stat.setString(1,userText.getText());
-					stat.setString(2,nameText.getText());
-					SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-					String format =  formatter.format(Date.valueOf(datePicker.getValue()));
-					stat.setString(3, format);
-					System.out.println("primeira query: "+stat);
-					stat.execute();	
-					stat.close();
-					stat = JDBC.getCon().prepareStatement("insert into Password(id_Password, password)"
-							+ " values ((select id_User from User where username = ?), ?);");
-					stat.setString(1,userText.getText());
-					stat.setString(2,passText.getText());
-					System.out.println("segunda query: "+stat);
-					stat.execute();	
-					stat.close();
-					
-				} catch (SQLException e) {
-					e.printStackTrace();
-				} 
+					ParentDAO.createParentBD(userText.getText(), nameText.getText(), passText.getText(), datePicker.getValue());
 			}else if(userTypeCombo.getValue().equals("Kid")){
-				try {
 					System.out.println("Sou Kid");
-					PreparedStatement stat = JDBC.getCon().prepareStatement("insert into User(role, username, name, age) values(2,?,?,?);");
-					stat.setString(1,userText.getText());
-					stat.setString(2,nameText.getText());
-					SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-					String format = formatter.format(Date.valueOf(datePicker.getValue()));
-					stat.setString(3,format);
-					System.out.println("primeira query: "+stat);
-					stat.execute();	
-					stat.close();
-					stat = JDBC.getCon().prepareStatement("insert into Kid (id_Kid, pts_Kid, Connected) "
-							+ "values ((select id_User from User where username = ?),0,false);");
-					stat.setString(1,userText.getText());
-					System.out.println("segunda query: "+stat);
-					stat.execute();	
-					stat.close();
-					stat = JDBC.getCon().prepareStatement("insert into Password(id_Password, password) "
-							+ "values ((select id_User from User where username = ?), ?);");
-					stat.setString(1,userText.getText());
-					stat.setString(2,passText.getText());
-					System.out.println("terceirea query: "+stat);
-					stat.execute();	
-					stat.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				} 
-
-				System.out.println("consigo fechar");
-			
-//				Main.openLogin();
-//				Main.changeTab("views/LoginView.fxml", new LoginViewController());
+					KidDAO.createKidBD(userText.getText(), nameText.getText(), passText.getText(), datePicker.getValue());
 			}
 			Main.primaryStage.close();
 		}else {

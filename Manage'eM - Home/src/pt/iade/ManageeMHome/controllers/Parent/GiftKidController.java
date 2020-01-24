@@ -19,11 +19,10 @@ import pt.iade.ManageeMHome.models.DAO.KidDAO;
  *
  */
 public class GiftKidController {
-	private int currentPoints;
+
 	@FXML
 	private JFXSlider slider;
 
-	private int newPoints;
 	@FXML
 	private Label kidNameLabel;
 	private Kid kid;
