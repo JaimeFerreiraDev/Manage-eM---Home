@@ -1,4 +1,4 @@
-package pt.iade.ManageeMHome.controllers;
+package pt.iade.ManageeMHome.controllers.Parent;
 
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXSlider;

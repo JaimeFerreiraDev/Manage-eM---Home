@@ -1,4 +1,4 @@
-package pt.iade.ManageeMHome.kidPOV.kcontrollers;
+package pt.iade.ManageeMHome.controllers.Kid;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,11 +13,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import pt.iade.ManageeMHome.Main;
-import pt.iade.ManageeMHome.controllers.AddTaskController;
-import pt.iade.ManageeMHome.controllers.KidViewController;
-import pt.iade.ManageeMHome.controllers.NotificationsController;
-import pt.iade.ManageeMHome.controllers.ParentViewController;
-import pt.iade.ManageeMHome.controllers.RewardViewController;
+import pt.iade.ManageeMHome.controllers.Parent.AddTaskController;
+import pt.iade.ManageeMHome.controllers.Parent.KidViewController;
+import pt.iade.ManageeMHome.controllers.Parent.NotificationsController;
+import pt.iade.ManageeMHome.controllers.Parent.ParentViewController;
+import pt.iade.ManageeMHome.controllers.Parent.RewardViewController;
 import pt.iade.ManageeMHome.models.Task;
 import pt.iade.ManageeMHome.models.DAO.JDBC;
 import pt.iade.ManageeMHome.models.DAO.KidDAO;
@@ -34,7 +34,7 @@ This class is a controller to the "kid tasks window".
 public class KtaskController {
 	@FXML
 	private void rewardsClick() {
-		Main.changeTab("kidPOV/kviews/krewardView.fxml", new KrewardController());
+		Main.changeTab("views/Kid/krewardView.fxml", new KrewardController());
 	}
 	@FXML
 	private TableView<Task> taskTV;
@@ -79,7 +79,7 @@ public class KtaskController {
                                 stmt.setString(2, nome);
                                 stmt.execute();
                                 tasks.remove(taskTV.getSelectionModel().getSelectedItem());
-                                taskTV.setItems(tasks);
+                                updateKidPOVTask();
 
 							} catch (SQLException e) {
 								// TODO Auto-generated catch block

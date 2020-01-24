@@ -1,4 +1,4 @@
-package pt.iade.ManageeMHome.controllers;
+package pt.iade.ManageeMHome.controllers.Parent;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +14,7 @@ import pt.iade.ManageeMHome.models.DAO.KidDAO;
 import pt.iade.ManageeMHome.models.DAO.PersonDAO;
 /**
  * This class is a controller to the "Add Kid window" that pops up when the user clicks in the plus button in the kid tab, managed
- * <p> by the {@link pt.iade.ManageeMHome.controllers.KidViewController} class.
+ * <p> by the {@link pt.iade.ManageeMHome.controllers.Parent.KidViewController} class.
  * <p>The add "Add Kid window" is in this fxml file: {@link pt.iade.ManageeMHome.views#addKidView.fxml}.
  * @author jaime
  *
@@ -28,7 +28,6 @@ public class AddKidController {
 	 */
 	@FXML
 	public void addButtonOnClick() {
-		
 		if(!codeField.getText().isEmpty()){
 			KidDAO.addKidBD(PersonDAO.getLoggedParent().getId(), Integer.valueOf(codeField.getText()));
 		}
@@ -39,12 +38,13 @@ public class AddKidController {
 	 */
 	@FXML
 	public void cancelButtonOnClick() {
+
 		Main.secondaryStage.close();
 	}	
 
 	@FXML
 	public void initialize(){
-		
+
 	}
 }
 

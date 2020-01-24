@@ -8,12 +8,13 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import pt.iade.ManageeMHome.controllers.KidTableItemController;
-import pt.iade.ManageeMHome.controllers.KidViewController;
-import pt.iade.ManageeMHome.controllers.NotificationsController;
-import pt.iade.ManageeMHome.controllers.ParentViewController;
-import pt.iade.ManageeMHome.controllers.RewardViewController;
-import pt.iade.ManageeMHome.controllers.TaskViewController;
+import pt.iade.ManageeMHome.controllers.Parent.ITab;
+import pt.iade.ManageeMHome.controllers.Parent.KidTableItemController;
+import pt.iade.ManageeMHome.controllers.Parent.KidViewController;
+import pt.iade.ManageeMHome.controllers.Parent.NotificationsController;
+import pt.iade.ManageeMHome.controllers.Parent.ParentViewController;
+import pt.iade.ManageeMHome.controllers.Parent.RewardViewController;
+import pt.iade.ManageeMHome.controllers.Parent.TaskViewController;
 import pt.iade.ManageeMHome.models.Kid;
 /**
  * This is the class responsible for managing the windows in the project.
@@ -95,7 +96,7 @@ public class Main extends Application {
 			secondaryStage.initModality(Modality.APPLICATION_MODAL);
 			secondaryStage.setScene(scene);
 			secondaryStage.showAndWait();
-			if(kidView!=null) kidView.updateKidInfo();
+			if(kidView!=null) kidView.updateTableInfo();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -121,7 +122,7 @@ public class Main extends Application {
 			secondaryStage.initModality(Modality.APPLICATION_MODAL);
 			secondaryStage.setScene(scene);
 			secondaryStage.showAndWait();
-			kidView.updateKidInfo();
+			kidView.updateTableInfo();
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -158,26 +159,34 @@ public class Main extends Application {
  * @param FXMLPlusLink
  * @param cont
  */
-	public static void openPlus(KidViewController kidController,TaskViewController taskController,
-			RewardViewController rewardController, ParentViewController parentController, String FXMLPlusLink, Object cont) {
+	public static void openPlus(ITab viewController , String FXMLPlusLink, Object addController) {
 		try {
 
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource(FXMLPlusLink));
-			loader.setController(cont);
+			loader.setController(addController);
 			Pane root = loader.load();	
 			scene = new Scene(root);
-
+	
 			secondaryStage = new Stage();
 			secondaryStage.initOwner(primaryStage);
 			secondaryStage.initModality(Modality.APPLICATION_MODAL);
 			secondaryStage.setScene(scene);
-			secondaryStage.showAndWait();
+			secondaryStage.showAndWait();		
 			
-			if(kidController != null)
-			kidController.updateKidInfo();
-			else if (taskController!=null )taskController.updateTaskInfo();
-			else if (rewardController!=null )rewardController.updateRewardInfo();
-			else if (parentController!=null )parentController.updateParentInfo();
+			if(viewController != null)
+				viewController.updateTableInfo();
+			
+	
+			
+//			if(viewController != null)
+//				if(viewController instanceof KidViewController)
+//					((KidViewController) viewController).updateTableInfo();
+//				else if(viewController instanceof ParentViewController)
+//					( (ParentViewController) viewController).updateTableInfo();
+//				else if(viewController instanceof RewardViewController)
+//				( (RewardViewController) viewController).updateTableInfo();
+//				else if(viewController instanceof TaskViewController)
+//				( (TaskViewController)viewController).updateTableInfo();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -1,4 +1,4 @@
-package pt.iade.ManageeMHome.controllers;
+package pt.iade.ManageeMHome.controllers.Parent;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -14,7 +14,7 @@ import pt.iade.ManageeMHome.models.DAO.KidDAO;
 /**
  * This class is the controller to "gift kid window" that allows the user to select an amount of points, using
  * <p>the {@link #slider}, to gift the kid that was selected in the kid tab:
- * <p>{@link pt.iade.ManageeMHome.controllers.KidViewController#kidTV.java}.
+ * <p>{@link pt.iade.ManageeMHome.controllers.Parent.KidViewController#kidTV.java}.
  * @author jaime
  *
  */

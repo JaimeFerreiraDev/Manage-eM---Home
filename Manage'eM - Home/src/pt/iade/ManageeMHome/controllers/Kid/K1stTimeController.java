@@ -1,4 +1,4 @@
-package pt.iade.ManageeMHome.kidPOV.kcontrollers;
+package pt.iade.ManageeMHome.controllers.Kid;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -1,8 +1,9 @@
-package pt.iade.ManageeMHome.controllers;
+package pt.iade.ManageeMHome.controllers.Parent;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -33,7 +34,7 @@ import pt.iade.ManageeMHome.models.DAO.PersonDAO;
  * @author jaime
  *
  */
-public class ParentViewController {
+public class ParentViewController implements ITab {
 	
 	// Outras tabs
 	private ObservableList<Parent> parentList;
@@ -42,33 +43,42 @@ public class ParentViewController {
 	@FXML
 	private TableColumn<String, Parent> nameColumn;
 	// Outras tabs
+	@Override
+	public void onParentButtonClicked() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
 	@FXML
 	public void onKidButtonClicked() {
-		Main.changeTab("views/kidView.fxml", new KidViewController());
+		Main.changeTab(kidView, new KidViewController());
 		System.out.println("KIDS CLICKED");
 	}
 	// Outras tabs
+	@Override
 	@FXML
 	public void onTaskButtonClicked() {
-		Main.changeTab("views/taskView.fxml", new TaskViewController());
+		Main.changeTab(taskView, new TaskViewController());
 		System.out.println("TASKS CLICKED");
 	}
 	// Outras tabs
+	@Override
 	@FXML
 	public void onRewardButtonClicked() {
-		Main.changeTab("views/rewardView.fxml", new RewardViewController());
+		Main.changeTab(rewardView, new RewardViewController());
 		System.out.println("REWARDS CLICKED");
 	}
 	// Botao de adicionar
+	@Override
 	@FXML
 	public void onPlusButtonClicked() {
-		Main.openPlus(null, null, null, this,"views/addParentView.fxml", new AddParentController());
+		Main.openPlus(this,add_parentView, new AddParentController());
 		System.out.println("PLUS CLICKED");
 	}
-
+	@Override
 	@FXML
-	private void notificationClick() {
-		Main.openNotifications(null, "views/notificationsView.fxml", new NotificationsController());
+	public void notificationClick() {
+		Main.openNotifications(null,notif_view, new NotificationsController());
 	}
 
 	@FXML
@@ -76,7 +86,7 @@ public class ParentViewController {
 		nameColumn.setCellValueFactory(new PropertyValueFactory<String, Parent>("name"));
 		parentList = FXCollections.observableArrayList();
 	}
-	public void updateParentInfo() {
-		
-	}
+	@Override
+	public void updateTableInfo() {}
+
 }

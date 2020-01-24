@@ -1,4 +1,4 @@
-package pt.iade.ManageeMHome.controllers;
+package pt.iade.ManageeMHome.controllers.Parent;
 
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;

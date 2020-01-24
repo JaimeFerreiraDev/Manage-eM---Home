@@ -1,4 +1,4 @@
-package pt.iade.ManageeMHome.controllers;
+package pt.iade.ManageeMHome.controllers.Parent;
 
 import java.io.IOException;
 import java.sql.PreparedStatement;
@@ -25,7 +25,7 @@ import pt.iade.ManageeMHome.models.DAO.RewardDAO;
 import pt.iade.ManageeMHome.models.DAO.TaskDAO;
 /**
  * This class is a controller to the "Add Reward window" that pops up when the user clicks in the plus button in the Reward tab, managed
- * <p> by the {@link pt.iade.ManageeMHome.controllers.RewardViewController} class.
+ * <p> by the {@link pt.iade.ManageeMHome.controllers.Parent.RewardViewController} class.
  * <p>The add Reward window is in this fxml file: {@link pt.iade.ManageeMHome.views#addRewardView.fxml}.
  * @author jaime
  *

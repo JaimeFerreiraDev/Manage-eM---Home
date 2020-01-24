@@ -1,4 +1,4 @@
-package pt.iade.ManageeMHome.controllers;
+package pt.iade.ManageeMHome.controllers.Parent;
 
 
 import java.sql.PreparedStatement;
@@ -235,6 +235,17 @@ public class NotificationsController {
 		}catch (SQLException e) {
 			e.printStackTrace();
 		} 
+	}
+	
+	@FXML
+	private void rewardTabClicked() {
+		findRequestedRewards();
+		notifRewardTV.setItems(requestedRewards);
+	}
+	@FXML
+	private void taskTabClicked() {
+		findCompletedTasks();
+		notificationTV.setItems(completedTasks);
 	}
 }
 

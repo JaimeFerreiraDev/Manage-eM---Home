@@ -1,4 +1,4 @@
-package pt.iade.ManageeMHome.kidPOV.kcontrollers;
+package pt.iade.ManageeMHome.controllers.Kid;
 /**
  * This class is not functional yet.
  * This class is a controller to the "kid regulation window".

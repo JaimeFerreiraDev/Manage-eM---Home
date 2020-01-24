@@ -1,4 +1,4 @@
-package pt.iade.ManageeMHome.kidPOV.kcontrollers;
+package pt.iade.ManageeMHome.controllers.Kid;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -27,7 +27,7 @@ import pt.iade.ManageeMHome.models.DAO.PersonDAO;
 public class KrewardController {
 	@FXML
 	private void taskClick() {
-		Main.changeTab("kidPOV/kviews/ktaskView.fxml", new KtaskController());
+		Main.changeTab("views/Kid/ktaskView.fxml", new KtaskController());
 	}
 	@FXML
 	private TableView<Reward> rewardTV;

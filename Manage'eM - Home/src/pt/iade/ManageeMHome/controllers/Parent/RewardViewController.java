@@ -1,4 +1,4 @@
-package pt.iade.ManageeMHome.controllers;
+package pt.iade.ManageeMHome.controllers.Parent;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -36,7 +37,7 @@ import pt.iade.ManageeMHome.models.DAO.PersonDAO;
  * @author jaime
  *
  */
-public class RewardViewController {
+public class RewardViewController  implements ITab{
 	@FXML
 	private TableView<Reward> rewardTV;
 	@FXML
@@ -45,32 +46,37 @@ public class RewardViewController {
 	private TableColumn<Integer, Reward> pointsColumn;
 
 	// Outras tabs
+	@Override
 	@FXML
 	public void onKidButtonClicked() {
-		Main.changeTab("views/kidView.fxml", new KidViewController());
+		Main.changeTab(kidView, new KidViewController());
 		System.out.println("KIDS CLICKED");
 	}
 	// Outras tabs
+	@Override
 	@FXML
 	public void onParentButtonClicked() {
-		Main.changeTab("views/parentView.fxml", new ParentViewController());
+		Main.changeTab(parentView, new ParentViewController());
 		System.out.println("PARENTS CLICKED");
 	}
 	// Outras tabs
+	@Override
 	@FXML
 	public void onTaskButtonClicked() {
-		Main.changeTab("views/taskView.fxml", new TaskViewController());
+		Main.changeTab(taskView, new TaskViewController());
 		System.out.println("TASKS CLICKED");
 	}
 	// Botao de adicionar
+	@Override
 		@FXML
 		public void onPlusButtonClicked() {
-			Main.openPlus(null, null, this, null, "views/addRewardView.fxml", new AddRewardController());
+			Main.openPlus( this, add_rewardView, new AddRewardController());
 			System.out.println("PLUS CLICKED");
 		}
+	@Override
 		@FXML
-		private void notificationClick() {
-			Main.openNotifications(null, "views/notificationsView.fxml", new NotificationsController());
+		public void notificationClick() {
+			Main.openNotifications(null, notif_view, new NotificationsController());
 		}
 		
 		@FXML
@@ -79,11 +85,12 @@ public class RewardViewController {
 			 nameColumn.setCellValueFactory(new PropertyValueFactory<String, Reward>("Name"));
 			 pointsColumn.setCellValueFactory(new PropertyValueFactory<Integer, Reward>("Points"));
 		     FXCollections.observableArrayList();
-		     updateRewardInfo();
+		     updateTableInfo();
 		     //set items here using the database
 		    }
 		int parent = 0;
-		public void updateRewardInfo() {
+		@Override
+		public void updateTableInfo() {
 
 			String sql ="Select * from Parents_Reward, Reward where parent = ? and id_Reward = reward;";
 			try (PreparedStatement stat = JDBC.getCon().prepareStatement(sql)){
@@ -104,4 +111,10 @@ public class RewardViewController {
 				e.printStackTrace();
 			} 
 		}
+		@Override
+		public void onRewardButtonClicked() {
+			// TODO Auto-generated method stub
+			
+		}
+
 }

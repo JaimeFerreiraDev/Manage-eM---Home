@@ -1,4 +1,4 @@
-package pt.iade.ManageeMHome.controllers;
+package pt.iade.ManageeMHome.controllers.Parent;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,6 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -17,6 +18,7 @@ import pt.iade.ManageeMHome.models.Kid;
 import pt.iade.ManageeMHome.models.Task;
 import pt.iade.ManageeMHome.models.DAO.JDBC;
 import pt.iade.ManageeMHome.models.DAO.PersonDAO;
+import pt.iade.ManageeMHome.models.DAO.TaskDAO;
 
 /**
  * This class is the controller for the "task tab" that has:
@@ -39,7 +41,7 @@ import pt.iade.ManageeMHome.models.DAO.PersonDAO;
  * @author jaime
  *
  */
-public class TaskViewController {
+public class TaskViewController implements ITab{
 
 	@FXML
 	private TableView<Task> taskTV;
@@ -53,48 +55,56 @@ public class TaskViewController {
 	@FXML
 	private TableColumn<Boolean, Task> statusColumn;
 	
-	int parent = 0;
+
 
 	// Outras tabs
+	@Override
 	@FXML
 	public void onKidButtonClicked() {
-		Main.changeTab("views/kidView.fxml", new KidViewController());
+		Main.changeTab(kidView, new KidViewController());
 		System.out.println("KIDS CLICKED");
 	}
+	@Override
+	@FXML
+	public void onTaskButtonClicked() {}
 	// Outras tabs
+	@Override
 	@FXML
 	public void onParentButtonClicked() {
-		Main.changeTab("views/ParentView.fxml", new ParentViewController());
+		Main.changeTab(parentView, new ParentViewController());
 		System.out.println("PARENTS CLICKED");
 	}
 	// Outras tabs
+	@Override
 	@FXML
 	public void onRewardButtonClicked() {
-		Main.changeTab("views/rewardView.fxml", new RewardViewController());
+		Main.changeTab(rewardView, new RewardViewController());
 		System.out.println("REWARDS CLICKED");
 	}
 	// Botão de adicionar
+	@Override
 	@FXML
-	public void onPlusTaskButtonClicked() {
-		Main.openPlus(null, this, null, null, "views/addTaskView.fxml", new AddTaskController());
+	public void onPlusButtonClicked() {
+		Main.openPlus(this, add_taskView, new AddTaskController());
 		System.out.println("PLUS CLICKED");
 	}
+	@Override
 	@FXML
-	private void notificationClick() {
-		Main.openNotifications(null, "views/notificationsView.fxml", new NotificationsController());
+	public void notificationClick() {
+		Main.openNotifications(null, notif_view, new NotificationsController());
 	}
 
 
 
-
+	int parent = 0;
 
 
 
 	@FXML
 	private void initialize() {
-
 		
-		updateTaskInfo();
+		parent = PersonDAO.getLoggedParent().getId();
+		updateTableInfo();
 		nameColumn.setCellValueFactory(new PropertyValueFactory<String, Task>("Name"));
 		pointsColumn.setCellValueFactory(new PropertyValueFactory<Integer, Task>("Points"));
 		statusColumn.setCellFactory((tableCol)-> {
@@ -124,50 +134,12 @@ public class TaskViewController {
 //						}
 //					);
 		});
-		FXCollections.observableArrayList();
+	
 
 	}
-	
-	public void updateTaskInfo() {
-		String sql ="Select * from Parents_Task, Task where parent = ? and id_Task = task;";
-		try (PreparedStatement stat = JDBC.getCon().prepareStatement(sql)){
-			parent = PersonDAO.getLoggedParent().getId();
-			stat.setInt(1, parent);
-			System.out.println(stat);
-			ResultSet rs = stat.executeQuery();	
-			ObservableList<Task> tasks = FXCollections.observableArrayList();
-			while(rs.next()) {
-				tasks.add(new Task(rs.getString("name"),
-						rs.getInt("pts_Task"), rs.getInt("id_Task"),
-						rs.getString("description"),
-						false)
-						);
-			}
-			taskTV.setItems(tasks);
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} 
+	@Override
+	public void updateTableInfo() {
+		taskTV.setItems(TaskDAO.getTasksBD(parent));
 	}
-	public void refreshTasks() {
-		int parent = 0;
-		String sql ="Select * from Parents_Task, Task where parent = ? and Task = id_Task;";
-		try (PreparedStatement stat = JDBC.getCon().prepareStatement(sql)){
-			parent = PersonDAO.getLoggedParent().getId();
-			stat.setInt(1, parent);
-			System.out.println(stat);
-			ResultSet rs = stat.executeQuery();	
-			ObservableList<Task> tasks = FXCollections.observableArrayList();
-			while(rs.next()) {
-				tasks.add(new Task(rs.getString("name"), 
-						rs.getInt("pts_Task"),rs.getInt("id_Task"),
-						rs.getString("description"), 
-						rs.getBoolean("is_complete")));
-				System.out.println(tasks.toString());
-			}
-		taskTV.setItems(tasks);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} 
-	}
+
 }

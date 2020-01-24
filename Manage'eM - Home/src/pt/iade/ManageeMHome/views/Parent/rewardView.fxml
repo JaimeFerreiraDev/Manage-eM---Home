@@ -17,22 +17,22 @@
          <items>
             <ImageView fitHeight="44.0" fitWidth="44.0" onMouseClicked="#onKidButtonClicked" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/kid.png" />
+                  <Image url="@../../images/kid.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="44.0" fitWidth="44.0" onMouseClicked="#onParentButtonClicked" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/parents.png" />
+                  <Image url="@../../images/parents.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="44.0" fitWidth="44.0" onMouseClicked="#onTaskButtonClicked" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/task.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/pressedTask.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="44.0" fitWidth="44.0" onMouseClicked="#onRewardButtonClicked" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/rewards.png" />
+                  <Image url="@../../images/pressedRewards.png" />
                </image>
             </ImageView>
          </items>
@@ -48,21 +48,20 @@
             <Font name="System Bold" size="25.0" />
          </font>
       </Label>
-      <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="236.0" layoutY="432.0" onMouseClicked="#onPlusTaskButtonClicked" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="236.0" layoutY="432.0" onMouseClicked="#onPlusButtonClicked" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/plus.png" />
+            <Image url="@../../images/plus.png" />
          </image>
       </ImageView>
-      <TableView fx:id="taskTV" layoutX="15.0" layoutY="72.0" prefHeight="353.0" prefWidth="266.0">
+      <TableView fx:id="rewardTV" layoutX="15.0" layoutY="72.0" prefHeight="353.0" prefWidth="266.0">
         <columns>
-          <TableColumn fx:id="nameColumn" prefWidth="137.0" text="Tasks" />
-          <TableColumn fx:id="pointsColumn" minWidth="0.0" prefWidth="42.0" text="M's" />
-            <TableColumn fx:id="statusColumn" prefWidth="102.0" text="Status" />
+          <TableColumn fx:id="nameColumn" prefWidth="198.0" text="Name" />
+          <TableColumn fx:id="pointsColumn" prefWidth="67.0" text="M's" />
         </columns>
       </TableView>
       <ImageView fitHeight="44.0" fitWidth="37.0" layoutX="243.0" layoutY="14.0" onMouseClicked="#notificationClick" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../bin/pt/iade/ManageeMHome/images/notifications.png" />
+            <Image url="@../../images/notifications.png" />
          </image>
       </ImageView>
    </children>

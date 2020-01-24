@@ -21,7 +21,7 @@
       </Label>
       <TabPane prefHeight="358.0" prefWidth="361.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Tasks">
+          <Tab onSelectionChanged="#taskTabClicked" text="Tasks">
                <content>
                   <TableView fx:id="notificationTV" prefHeight="341.0" prefWidth="169.0">
                     <columns>
@@ -33,7 +33,7 @@
                   </TableView>
                </content>
             </Tab>
-          <Tab text="Rewards">
+          <Tab onSelectionChanged="#rewardTabClicked" text="Rewards">
                <content>
                   <TableView fx:id="notifRewardTV" prefHeight="200.0" prefWidth="200.0">
                     <columns>

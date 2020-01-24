@@ -13,26 +13,26 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="295.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ToolBar layoutX="-3.0" layoutY="483.0" prefHeight="44.0" prefWidth="288.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="-3.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="483.0">
+      <ToolBar layoutX="-3.0" layoutY="483.0" prefHeight="44.0" prefWidth="301.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="-3.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="483.0">
          <items>
-            <ImageView fitHeight="44.0" fitWidth="44.0" onMouseClicked="#onKidButtonClicked" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/kid.png" />
-               </image>
-            </ImageView>
             <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/pressedParents.png" />
+                  <Image url="@../../images/pressedKid.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="44.0" fitWidth="44.0" onMouseClicked="#onParentButtonClicked" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/parents.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="44.0" fitWidth="44.0" onMouseClicked="#onTaskButtonClicked" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/task.png" />
+                  <Image url="@../../images/task.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="44.0" fitWidth="44.0" onMouseClicked="#onRewardButtonClicked" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/rewards.png" />
+                  <Image url="@../../images/rewards.png" />
                </image>
             </ImageView>
          </items>
@@ -50,17 +50,19 @@
       </Label>
       <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="236.0" layoutY="432.0" onMouseClicked="#onPlusButtonClicked" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/plus.png" />
+            <Image url="@../../images/plus.png" />
          </image>
       </ImageView>
-      <TableView fx:id="ParentTV" layoutX="15.0" layoutY="72.0" prefHeight="353.0" prefWidth="266.0">
+      <TableView fx:id="kidTV" layoutX="15.0" layoutY="72.0" prefHeight="353.0" prefWidth="266.0">
         <columns>
-          <TableColumn fx:id="nameColumn" prefWidth="265.0" text="Parents" />
+          <TableColumn fx:id="nameColumn" prefWidth="131.0" text="Name" />
+          <TableColumn fx:id="ageColumn" prefWidth="56.0" text="Age" />
+            <TableColumn fx:id="pointsColumn" maxWidth="50000.0" prefWidth="78.0" text="M's" />
         </columns>
       </TableView>
       <ImageView fitHeight="44.0" fitWidth="37.0" layoutX="243.0" layoutY="14.0" onMouseClicked="#notificationClick" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../bin/pt/iade/ManageeMHome/images/notifications.png" />
+            <Image url="@../../images/notifications.png" />
          </image>
       </ImageView>
    </children>

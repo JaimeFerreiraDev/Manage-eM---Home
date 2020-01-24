@@ -1,4 +1,4 @@
-package pt.iade.ManageeMHome.controllers;
+package pt.iade.ManageeMHome.controllers.Parent;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -12,7 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-
+import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -31,21 +31,21 @@ import pt.iade.ManageeMHome.models.DAO.PersonDAO;
  * <p>{@link pt.iade.ManageeMHome.models.DAO.PersonDAO#getLoggedParent()}
  * <p>
  * <p>a "plus button" that opens the "add kid window", managed by:
- * <p>{@link pt.iade.ManageeMHome.controllers.AddKidController}
+ * <p>{@link pt.iade.ManageeMHome.controllers.Parent.AddKidController}
  * <p>
  * <p>a "notifications button" that opens the "notifications window" managed by:
- * <p>{@link pt.iade.ManageeMHome.controllers.NotificationsController}
+ * <p>{@link pt.iade.ManageeMHome.controllers.Parent.NotificationsController}
  * <p>
  * <p>buttons to the other tabs: parents, tasks and rewards:
- * <p>{@link pt.iade.ManageeMHome.controllers.ParentViewController}
- * <p>{@link pt.iade.ManageeMHome.controllers.TaskViewController}
- * <p>{@link pt.iade.ManageeMHome.controllers.RewardViewController}
+ * <p>{@link pt.iade.ManageeMHome.controllers.Parent.ParentViewController}
+ * <p>{@link pt.iade.ManageeMHome.controllers.Parent.TaskViewController}
+ * <p>{@link pt.iade.ManageeMHome.controllers.Parent.RewardViewController}
  * <p>
  * <p>The "kid tab" is in this fxml file: {@link pt.iade.ManageeMHome.views#kidView.fxml}.
  * @author jaime
  *
  */
-public class KidViewController {
+public class KidViewController implements ITab{
 	// Paraa apagar quando tivermos BD
 	public static KidViewController kvc = new KidViewController();
 	@FXML
@@ -57,37 +57,50 @@ public class KidViewController {
 	@FXML
 	private TableColumn<Integer, Kid> pointsColumn;
 
+
+	
+	@Override
 	@FXML
 	public void onParentButtonClicked() {
-
-		Main.changeTab("views/parentView.fxml", new ParentViewController());
+		Main.changeTab( parentView, new ParentViewController());
+		System.out.println("PARENTS CLICKED");
 	}
-	// Outras tabs
+	@Override
 	@FXML
-	public void onRewardButtonClicked() {
-		Main.changeTab("views/rewardView.fxml", new RewardViewController());
-	}
+	public void onKidButtonClicked() {}
 	// Outras tabs
+	@Override
 	@FXML
 	public void onTaskButtonClicked() {
-		Main.changeTab("views/taskView.fxml", new TaskViewController());
+		Main.changeTab(taskView, new TaskViewController());
+		System.out.println("TASKS CLICKED");
+	}
+	// Outras tabs
+	@Override
+	@FXML
+	public void onRewardButtonClicked() {
+		Main.changeTab(rewardView, new RewardViewController());
+		System.out.println("REWARDS CLICKED");
 	}
 	// Botao de adicionar
+	@Override
 	@FXML
 	public void onPlusButtonClicked() {
-		Main.openPlus(this,null, null, null, "views/addKidView.fxml", new AddKidController());
-
+		Main.openPlus( this,add_kidView, new AddKidController());
+		System.out.println("PLUS CLICKED");
 	}
-
+	
 	@FXML
-	private void notificationClick() {
-		Main.openNotifications(this, "views/notificationsView.fxml", new NotificationsController());
+	public void notificationClick() {
+		Main.openNotifications(null, notif_view, new NotificationsController());
 	}
-
-
+	
+	
+	
 	@FXML
 	private void initialize() {
-		updateKidInfo();
+		
+		updateTableInfo();
 		nameColumn.setCellValueFactory(new PropertyValueFactory<String, Kid>("name"));
 		ageColumn.setCellValueFactory(new PropertyValueFactory<Integer, Kid>("age"));
 		pointsColumn.setCellValueFactory(new PropertyValueFactory<Integer, Kid>("points"));
@@ -97,13 +110,13 @@ public class KidViewController {
 					Kid kid = kidTV.getSelectionModel().getSelectedItem();
 					kidTV.getSelectionModel().clearSelection();
 					if (kid != null)
-					Main.openTableItem(this, "views/kidTableItemView.fxml", new KidTableItemController(kid));
+					Main.openTableItem(this, "views/Parent/kidTableItemView.fxml", new KidTableItemController(kid));
 					});
 
 	}
-
 	
-	public void updateKidInfo() {
+	@Override
+	public void updateTableInfo() {
 		kidTV.setItems( KidDAO.getKidsBD());
 	}
 	

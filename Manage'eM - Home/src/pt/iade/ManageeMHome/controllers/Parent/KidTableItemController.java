@@ -1,4 +1,4 @@
-package pt.iade.ManageeMHome.controllers;
+package pt.iade.ManageeMHome.controllers.Parent;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,7 +18,7 @@ import pt.iade.ManageeMHome.models.DAO.KidDAO;
 import pt.iade.ManageeMHome.models.DAO.PersonDAO;
 /**
  * This class is the controller to "kid table item window" that shows info related to the kid selected in the
- * <p>table view in the kid tab: {@link pt.iade.ManageeMHome.controllers.KidViewController#kidTV}.
+ * <p>table view in the kid tab: {@link pt.iade.ManageeMHome.controllers.Parent.KidViewController#kidTV}.
  * <p>Allowing the user to gift the kid or giving him an allowance.
  * <p>The "kid table item window" is in this fxml file: {@link pt.iade.ManageeMHome.views#kidTableItemView.fxml}.
  * @author jaime
@@ -46,14 +46,14 @@ public class KidTableItemController {
  */
 	@FXML
 	private void giftButtonClick() {
-		Main.openGiftOrAllowance(this,kid, "views/giftKidView.fxml", new GiftKidController(kid));
+		Main.openGiftOrAllowance(this,kid, "views/Parent/giftKidView.fxml", new GiftKidController(kid));
 	}
 	/**
 	 * This method opens the "allowance window" managed by {@link pt.iade.ManageeMHome.controllers.GiftKidController.java}
 	 */
 	@FXML
 	private void allowanceButtonClick() {
-		Main.openGiftOrAllowance(this,kid, "views/allowanceKidView.fxml", new AllowanceController(kid));
+		Main.openGiftOrAllowance(this,kid, "views/Parent/allowanceKidView.fxml", new AllowanceController(kid));
 	}
 	/**
 	 * This method closes the window.
