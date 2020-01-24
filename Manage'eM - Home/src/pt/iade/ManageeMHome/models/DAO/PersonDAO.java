@@ -30,11 +30,12 @@ public class PersonDAO {
 	
 	private static Parent loggedParent;
 	private static Kid loggedKid;
-
+	private static Connection conn= JDBC.getCon();
 
 	public static Parent getLoggedParent() {
 		return loggedParent;
 	}
+	private static String usernamePD;
 /**
  * sets a parent as the curent user of the application
  * @param loggedParent
@@ -66,56 +67,89 @@ public class PersonDAO {
 	 * @param password
 	 * @throws SQLException
 	 */
-	
+
 	public static void loginBD(String username, String password) throws SQLException {
-		Connection conn= JDBC.getCon(); 
-			int role = 0;
+		 
+		int role = 0;
 
-		String sql = "select * from User, Password where username = ? and password = ? and id_User = id_Password;";
-		PreparedStatement stat = conn.prepareStatement(sql); // erro aqui 		
-		stat.setString(1, username);
-		stat.setString(2, password);
-		System.out.println(stat);
-		ResultSet rs = stat.executeQuery();
-		if(rs.next()) {
-			role = rs.getInt("role");
-			if (role ==1) {
-				PersonDAO.setLoggedParent(new Parent(
-						rs.getString("name"),
-						rs.getInt("age"),
-						rs.getInt("id_User")));
-				Main.primaryStage.close();
-				Main.changeTab("views/Parent/kidView.fxml", new KidViewController());
-			}
-			else if(role == 2) {
-				PreparedStatement statement = conn.prepareStatement("Select * from Kid , User where username = ? and Kid.id_Kid = User.id_User");
-				statement.setString(1, username);
-				ResultSet kids = statement.executeQuery();
-				System.out.println(statement);
-				if(kids.next()) {
-					PersonDAO.setLoggedKid(new Kid(
-							kids.getString("name"),
-							kids.getInt("age"),
-							kids.getInt("id_Kid"),
-							kids.getInt("pts_Kid"),
-							kids.getBoolean("Connected")
-							));
-					System.out.println(PersonDAO.getLoggedKid().toString());
-					Main.primaryStage.close();
-					
-					if(!kids.getBoolean("Connected")) {
-						Main.changeTab("views/Kid/k1stTimeView.fxml", new K1stTimeController());
-					
-					}
-					else if(kids.getBoolean("Connected")) {
-						Main.changeTab("views/Kid/ktaskView.fxml", new KtaskController());
-					}
-					
-					
-				}
-
-			}
+	String sql = "select * from User, Password where username = ? and password = ? and id_User = id_Password;";
+	PreparedStatement stat = conn.prepareStatement(sql); // erro aqui 		
+	stat.setString(1, username);
+	stat.setString(2, password);
+	System.out.println(stat);
+	ResultSet rs = stat.executeQuery();
+	if(rs.next()) {
+		role = rs.getInt("role");
+		if (role ==1) {
+			PersonDAO.setLoggedParent(new Parent(
+					rs.getString("name"),
+					rs.getInt("age"),
+					rs.getInt("id_User")));
+			Main.primaryStage.close();
+			Main.changeTab("views/Parent/kidView.fxml", new KidViewController());
 		}
+		else if(role == 2) {
+			usernamePD=username;
+			theLoggedKid();
 
+		}
 	}
+
+}
+	/**
+	 * This method is just make the {@link #loginBD(String, String)} lighter in terms of reading.
+	 */
+	public static void theLoggedKid() {
+		try {
+			PreparedStatement statement = conn.prepareStatement("Select * from Kid , User where username = ? and Kid.id_Kid = User.id_User");
+			statement.setString(1, usernamePD);
+			ResultSet kids = statement.executeQuery();
+			System.out.println(statement);
+			if(kids.next()) {
+				PersonDAO.setLoggedKid(new Kid(
+						kids.getString("name"),
+						kids.getInt("age"),
+						kids.getInt("id_Kid"),
+						kids.getInt("pts_Kid"),
+						kids.getBoolean("Connected")
+						));
+				System.out.println(PersonDAO.getLoggedKid().toString());
+				Main.primaryStage.close();
+				
+				if(!kids.getBoolean("Connected")) {
+					Main.changeTab("views/Kid/k1stTimeView.fxml", new K1stTimeController());
+				
+				}
+				else if(kids.getBoolean("Connected")) {
+					Main.changeTab("views/Kid/ktaskView.fxml", new KtaskController());
+				}
+				
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static int getNumberOfNotif() throws SQLException {
+        int parent = 0;
+        int num = 0;
+        PreparedStatement stmt = JDBC.getCon().prepareStatement("select COUNT(Kids_Task.Task)as num from Kids_Task, User, Family_Relation where User.id_User =?"
+                + " and User.id_User = Family_Relation.parent and Family_Relation.kid = Kids_Task.kid and completed = true ");
+        stmt.setInt(1,parent);
+        stmt.executeQuery();
+        ResultSet rs = stmt.executeQuery();
+        if(rs.next()) num += rs.getInt("num");
+        PreparedStatement stat = JDBC.getCon().prepareStatement("select COUNT(Kids_Reward.reward)as num from Kids_Reward, User, "
+                + "Family_Relation where User.id_User = ? and User.id_User = Family_Relation.parent "
+                + "and Family_Relation.kid = Kids_Reward.kid and Kids_Reward.requested = true;");
+        stat.setInt(1,parent);
+        stat.executeQuery();
+        ResultSet rSet = stat.executeQuery();
+        if(rSet.next()) num += rs.getInt("num");
+
+        return num;
+
+    }
 }

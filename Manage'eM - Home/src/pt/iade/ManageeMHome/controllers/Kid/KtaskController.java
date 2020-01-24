@@ -59,7 +59,7 @@ public class KtaskController {
 
 	@FXML
 	private void initialize() {
-		pointsLabel.setText(""+PersonDAO.getLoggedKid().getPoints());  
+		pointsLabel.setText(""+KidDAO.checkPoints());  
 		kid =    PersonDAO.getLoggedKid().getId();
 		updateKidPOVTask();
 		nameColumn.setCellValueFactory(new PropertyValueFactory<String, Task>("Name"));

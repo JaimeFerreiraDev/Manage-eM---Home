@@ -12,6 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -56,7 +57,8 @@ public class KidViewController implements ITab{
 	private TableColumn<Integer, Kid> ageColumn;
 	@FXML
 	private TableColumn<Integer, Kid> pointsColumn;
-
+	@FXML
+	private Label notifiNumber;
 
 	
 	@FXML
@@ -98,7 +100,12 @@ public class KidViewController implements ITab{
 	
 	@FXML
 	private void initialize() {
-		
+		try {
+			notifiNumber.setText(""+PersonDAO.getNumberOfNotif());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		updateTableInfo();
 		nameColumn.setCellValueFactory(new PropertyValueFactory<String, Kid>("name"));
 		ageColumn.setCellValueFactory(new PropertyValueFactory<Integer, Kid>("age"));

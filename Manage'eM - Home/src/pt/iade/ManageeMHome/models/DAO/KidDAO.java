@@ -1,5 +1,6 @@
 package pt.iade.ManageeMHome.models.DAO;
 
+import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -300,5 +301,22 @@ public class KidDAO {
 			e.printStackTrace();
 		} 
 		return id;
+	}
+	public static int checkPoints() {
+		Connection conn= JDBC.getCon(); 
+		int pts = 0;
+		try {
+			PreparedStatement statement = conn.prepareStatement("SELECT pts_Kid FROM `Kid` WHERE id_Kid =?;");
+			statement.setInt(1, PersonDAO.getLoggedKid().getId());
+			ResultSet rs = statement.executeQuery(); 
+			
+			if(rs.next()) {
+				pts=rs.getInt("pts_Kid");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	return pts; //posso sim. eu so n sei o q returnar T~T 
 	}
 }

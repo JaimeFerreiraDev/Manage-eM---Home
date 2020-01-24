@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -37,13 +38,14 @@ public class KrewardController {
 
 	@FXML
 	private TableColumn<Integer, Reward> pointsColumn;
-
+	@FXML
+	private Label pointsLabel;
 	@FXML
 	private TableColumn<Boolean, Reward> getColumn;
-	private Reward selectedItem;
 	private int kid, points, id_reward = 0;
 	@FXML
 	private void initialize() {
+		pointsLabel.setText(""+KidDAO.checkPoints());  
 		kid = PersonDAO.getLoggedKid().getId();
 		updateKidPOVReward();
 		
@@ -58,13 +60,13 @@ public class KrewardController {
 					if(!empty){
 						Button button = new Button("GET");
 						button.setOnAction((event) -> {
-							 rewardTV.getSelectionModel().select(getTableRow().getIndex());
-                             
+							rewardTV.getSelectionModel().select(getTableRow().getIndex());
 							points = rewardTV.getSelectionModel().getSelectedItem().getPoints();
 							id_reward = rewardTV.getSelectionModel().getSelectedItem().getId();
 							System.out.println("é isto: " +points);
 							//mandar notificação de reward ao pai
 							KidDAO.buyReward(points, kid,id_reward);
+							pointsLabel.setText(""+KidDAO.checkPoints());  
 						});
 						setGraphic(button);
 					} else  {
