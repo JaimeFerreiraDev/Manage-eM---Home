@@ -9,6 +9,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import pt.iade.ManageeMHome.Main;
+import pt.iade.ManageeMHome.controllers.LoginViewController;
+import pt.iade.ManageeMHome.controllers.NewAccController;
 import pt.iade.ManageeMHome.models.Kid;
 import pt.iade.ManageeMHome.models.Parent;
 import pt.iade.ManageeMHome.models.DAO.JDBC;
@@ -29,7 +31,7 @@ public class K1stTimeController {
 	 */
 	@FXML
 	private void connectClick() {
-
+		Main.changeTab("views/LoginView.fxml", new LoginViewController());
 	}
 	/**
 	 * this method gets the logged kid's ID from the database

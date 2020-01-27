@@ -150,7 +150,7 @@ public class PersonDAO {
         stat.setInt(1,parent);
         stat.executeQuery();
         ResultSet rSet = stat.executeQuery();
-        if(rSet.next()) num += rs.getInt("num");
+        if(rSet.next()) num += rSet.getInt("num");
         System.out.println(num);
         return num;
 

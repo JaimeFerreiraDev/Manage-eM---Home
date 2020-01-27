@@ -68,11 +68,13 @@ public class NewAccController {
 			if(userTypeCombo.getValue().equals("Parent")) {	
 					System.out.println("Sou parent");
 					ParentDAO.createParentBD(userText.getText(), nameText.getText(), passText.getText(), datePicker.getValue());
+					Main.changeTab("views/LoginView.fxml", new LoginViewController());
 			}else if(userTypeCombo.getValue().equals("Kid")){
 					System.out.println("Sou Kid");
 					KidDAO.createKidBD(userText.getText(), nameText.getText(), passText.getText(), datePicker.getValue());
+					Main.changeTab("views/LoginView.fxml", new LoginViewController());
 			}
-			Main.primaryStage.close();
+			
 		}else {
 			//errors
 			if(userText.getText().isEmpty()) {
